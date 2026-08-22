@@ -53,15 +53,18 @@ button { border: 0; background: none; cursor: pointer; transition: box-shadow .2
 [data-slide="on"] [data-kb] { transform: scale(1); transition: transform 9s linear; }
 
 [data-navwrap] {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 60;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
   padding: 16px 0 8px;
   transition: transform .42s cubic-bezier(.16, .84, .28, 1), opacity .32s ease;
   will-change: transform, opacity;
 }
 html[data-nav-hidden="1"] [data-navwrap] {
-  transform: translateY(-110%);
+  transform: translateY(-120%);
   opacity: 0;
   pointer-events: none;
 }
@@ -145,7 +148,7 @@ html[data-sede="trujillo"] [data-sedecard="trujillo"] { box-shadow: var(--nuin) 
   </nav>
 </div>
 
-<section id="inicio" style="width:min(1300px,calc(100% - 32px));margin:10px auto 0">
+<section id="inicio" style="width:min(1300px,calc(100% - 32px));margin:96px auto 0">
   <div id="hero-slider" style="position:relative;border-radius:clamp(22px,2.6vw,34px);overflow:hidden;box-shadow:var(--nu2);background:var(--sunk);transition:background-color .6s ease">
     <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 22px,var(--line) 22px 23px),repeating-linear-gradient(-45deg,transparent 0 22px,var(--line) 22px 23px)"></div>
 
