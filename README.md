@@ -222,9 +222,29 @@ que escalan y siguen al tema.
 Importa el repo; `vercel.json` ya trae framework, build y cabeceras. No hace
 falta configurar nada mas.
 
-Cache: todo lo de `/assets/` lleva hash de contenido y se sirve `immutable` a un
-año; el HTML se revalida siempre, para que un deploy nuevo salga al aire de
-inmediato.
+### Politica de cache (por que cada regla es como es)
+
+El esquema de `vercel.json` **no admite propiedades extra** dentro de `headers`,
+asi que estas notas no pueden ir como comentarios en el propio archivo: un
+`"comment"` ahi hace que Vercel rechace el deploy con
+`headers[0] should NOT have additional property comment`.
+
+| Ruta | Cabecera | Por que |
+|---|---|---|
+| `/assets/(.*)` | `max-age=31536000, immutable` | Todo lo que emite Vite lleva hash de contenido: si cambia el archivo, cambia el nombre. Se puede cachear para siempre. |
+| `/video/(.*)` | `max-age=86400, stale-while-revalidate=604800` | Los videos y sus posters viven en `public/` y **no** llevan hash: si se reemplaza un clip, el nombre no cambia. Por eso no pueden ser `immutable`. Un dia de frescura, y una semana sirviendo el viejo mientras revalida en segundo plano. |
+| `/` | `max-age=0, must-revalidate` | El HTML no lleva hash. Se revalida siempre para que un deploy nuevo salga al aire de inmediato. |
+| `/(.*)` | cabeceras de seguridad | `nosniff`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy` y HSTS. |
+
+### Requisitos del build
+
+`package.json` fija `engines.node: ">=20.19"` porque Vite 7 lo exige. Sin eso,
+Vercel podria elegir una version antigua y el build reventaria sin un mensaje
+claro.
+
+Las dos variables que Vercel detecta (`VITE_FORM_ENDPOINT` y
+`VITE_FORM_ACCESS_KEY`) son **opcionales**: sin ellas el formulario cae al
+`mailto:` prellenado y el deploy funciona igual.
 
 ## Optimizacion
 
