@@ -606,3 +606,88 @@
     aspect-ratio: 16 / 10;
   }
 }
+
+/* ==========================================================================
+   Movil: composicion centrada
+   A ancho completo, un bloque de texto alineado a la izquierda con lineas de
+   largo desigual se ve torcido. Centrado y con `text-wrap: balance` —que
+   reparte las palabras para que las lineas midan casi lo mismo— queda parejo.
+
+   Solo se centran las ENTRADILLAS de seccion (eyebrow, h2, lead) y el
+   manifiesto. El texto de las tarjetas se queda a la izquierda a proposito:
+   son parrafos de lectura y centrarlos obliga al ojo a buscar el inicio de
+   cada linea.
+   ========================================================================== */
+
+@media (max-width: 700px) {
+  .eyebrow {
+    justify-content: center;
+  }
+
+  .h2 {
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .lead {
+    text-align: center;
+    text-wrap: balance;
+    margin-inline: auto;
+  }
+
+  /* Manifiesto */
+  .manifiesto__caja {
+    text-align: center;
+  }
+
+  .manifiesto__titulo {
+    text-wrap: balance;
+  }
+
+  .manifiesto__texto {
+    margin-inline: auto;
+    text-wrap: balance;
+  }
+
+  /* Cabeceras que llevan un boton al lado: en movil se apilan centradas en
+     vez de quedar una a cada extremo. */
+  .headrow {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .headrow > div {
+    max-width: none;
+  }
+
+  .tracking__titulo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .badge-pronto {
+    margin-top: 4px;
+  }
+
+  /* Los grupos de botones (mision/vision, filtro de bitacora) tambien */
+  .segment {
+    align-self: center;
+  }
+
+  .mv > * {
+    text-align: center;
+  }
+
+  .mv__title,
+  .mv__body {
+    text-wrap: balance;
+  }
+
+  /* Panel del hero */
+  .hero__centro {
+    align-items: center;
+    text-align: center;
+  }
+}

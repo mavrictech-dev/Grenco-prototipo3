@@ -78,6 +78,17 @@ En el hero, que tapa el cielo, el cambio de sede se nota por **`--amb-tinte`**:
 un lavado azul de dia en Piura y naranja de atardecer en Trujillo, aplicado
 como ultima capa de `.hero__overlay`.
 
+**En movil el cielo necesita su propia banda.** Las tarjetas destacadas solapan
+el hero -58px y son opacas; apiladas a ancho completo tapaban por entero el sol
+y las nubes, asi que el cielo no se veia en ningun momento. Por debajo de 700px
+ese solape se cambia por **200px de banda de cielo** entre el hero y las
+tarjetas, y la capa baja a `148vh` para que el sol (que va al 74%) caiga en el
+centro de esa banda.
+
+El tamano del sol va en `clamp(min, vw, max)` por el mismo motivo: un disco de
+190px se comia la banda entera en un movil. Queda en 62/44/108/82px segun sede
+y tema en movil, y 95/62/187/132px en escritorio.
+
 ### Textos por sede
 
 `src/data/sede-contenido.js` tiene el relato de cada sede: titular del hero,

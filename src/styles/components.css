@@ -164,10 +164,31 @@
 }
 
 @media (max-width: 700px) {
-  /* En movil el cielo se ve poco y cuatro nubes lo ensucian. */
-  .nube--2,
+  /* La banda de cielo visible en movil es estrecha: las nubes se encogen y se
+     reparten dentro de ella. La cuarta sobra, satura. */
   .nube--4 {
     display: none;
+  }
+
+  .nube--1 {
+    width: 118px;
+    height: 28px;
+    top: 68%;
+    left: 4%;
+  }
+
+  .nube--2 {
+    width: 84px;
+    height: 21px;
+    top: 78%;
+    left: 40%;
+  }
+
+  .nube--3 {
+    width: 132px;
+    height: 31px;
+    top: 72%;
+    left: 62%;
   }
 }
 
@@ -812,6 +833,21 @@ html[data-theme='dark'] .hero__centro {
   margin: -58px auto 0;
   position: relative;
   z-index: 2;
+}
+
+/* En movil las tarjetas se apilan a ancho completo y son opacas, asi que con
+   el solape de -58px tapaban por entero el sol y las nubes: el cielo no se
+   veia en ningun momento. Aqui el solape se cambia por una banda de 200px de
+   cielo entre el hero y las tarjetas. La altura del cielo baja a 148vh para
+   que el sol (74% de la capa) caiga justo en el centro de esa banda. */
+@media (max-width: 700px) {
+  .highlights {
+    margin-top: 200px;
+  }
+
+  .ambient {
+    height: 148vh;
+  }
 }
 
 .highlights .grid-auto {

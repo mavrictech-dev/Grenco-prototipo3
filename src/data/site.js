@@ -91,11 +91,19 @@ export const hero = {
   ],
 };
 
+/**
+ * Las tres pruebas rapidas que solapan el hero.
+ *
+ * Cada una cubre un eje distinto —gente, plazo y seguridad— y ninguna repite
+ * lo que ya dicen las otras secciones. La flota tiene su propia seccion
+ * (Maquinaria) y se menciona en el titular, asi que aqui ocupaba un sitio que
+ * rendia mas hablando del personal.
+ */
 export const highlights = [
   {
-    icon: 'truck',
-    title: 'Flota propia',
-    text: 'Excavadoras, cargadores y volquetes operados por personal de planilla. Sin intermediarios en el frente de trabajo.',
+    icon: 'users',
+    title: 'Cuadrillas en planilla',
+    text: 'Operadores y peones contratados en planilla, con seguro y capacitación. Sin subcontratas informales en el frente de trabajo.',
   },
   {
     icon: 'clock',

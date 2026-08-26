@@ -61,10 +61,10 @@ html[data-sede='piura'] {
 
   --sol-x: 78%;
   --sol-y: 74%;
-  --sol-tam: 96px;
+  --sol-tam: clamp(62px, 6.6vw, 96px);
   --sol-nucleo: #fffdf0;
   --sol-halo: rgba(255, 244, 190, 0.8);
-  --sol-alcance: 380px;
+  --sol-alcance: clamp(230px, 26vw, 380px);
   --sol-op: 1;
 
   /* Tinte del hero. Es lo unico del ambiente que se ve en la primera pantalla:
@@ -84,10 +84,10 @@ html[data-sede='piura'][data-theme='dark'] {
 
   --sol-x: 74%;
   --sol-y: 75%;
-  --sol-tam: 62px;
+  --sol-tam: clamp(44px, 4.3vw, 62px);
   --sol-nucleo: #e8eef7;
   --sol-halo: rgba(180, 205, 235, 0.24);
-  --sol-alcance: 240px;
+  --sol-alcance: clamp(160px, 17vw, 240px);
   --sol-op: 0.85;
 
   --amb-tinte: rgba(24, 54, 104, 0.34);
@@ -106,10 +106,10 @@ html[data-sede='trujillo'] {
 
   --sol-x: 72%;
   --sol-y: 78%;
-  --sol-tam: 190px;
+  --sol-tam: clamp(108px, 13vw, 190px);
   --sol-nucleo: #fff3c4;
   --sol-halo: rgba(255, 150, 60, 0.62);
-  --sol-alcance: 680px;
+  --sol-alcance: clamp(360px, 47vw, 680px);
   --sol-op: 1;
 
   --amb-tinte: rgba(244, 132, 54, 0.26);
@@ -126,10 +126,10 @@ html[data-sede='trujillo'][data-theme='dark'] {
 
   --sol-x: 70%;
   --sol-y: 80%;
-  --sol-tam: 132px;
+  --sol-tam: clamp(82px, 9.2vw, 132px);
   --sol-nucleo: #ff9d52;
   --sol-halo: rgba(226, 92, 40, 0.42);
-  --sol-alcance: 560px;
+  --sol-alcance: clamp(300px, 39vw, 560px);
   --sol-op: 0.9;
 
   --amb-tinte: rgba(158, 52, 26, 0.32);
