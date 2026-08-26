@@ -1,0 +1,608 @@
+/* ==========================================================================
+   GRENCO Tracking — adelanto de la app / portal del cliente
+   ========================================================================== */
+
+.tracking__titulo {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tracking__titulo .h2 {
+  flex: 1 1 auto;
+  min-width: min(100%, 18ch);
+}
+
+/* Insignia de "producto que aun no existe". Va deliberadamente marcada, con
+   borde discontinuo: la seccion muestra una maqueta y no debe leerse como algo
+   ya disponible. */
+.badge-pronto {
+  flex: 0 0 auto;
+  margin-top: 24px;
+  padding: 9px 15px;
+  border-radius: 99px;
+  background: color-mix(in oklab, var(--brand) 18%, transparent);
+  border: 1px dashed color-mix(in oklab, var(--brand) 62%, transparent);
+  color: var(--accent-ink);
+  font: 700 10.5px var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tracking__mocks {
+  display: grid;
+  grid-template-columns: minmax(0, 262px) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 52px);
+  align-items: center;
+  margin-top: 52px;
+}
+
+@media (max-width: 860px) {
+  .tracking__mocks {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+/* --- Maqueta de telefono --------------------------------------------------
+   El marco es CSS, no una captura: escala con el layout y sigue al tema.
+   -------------------------------------------------------------------------- */
+
+.mock-tel {
+  position: relative;
+  width: 100%;
+  max-width: 262px;
+  aspect-ratio: 9 / 19;
+  padding: 12px;
+  border-radius: 38px;
+  background: var(--bg);
+  box-shadow: var(--nu2);
+}
+
+.mock-tel__notch {
+  position: absolute;
+  top: 19px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 74px;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--sunk);
+  box-shadow: var(--nuins);
+  z-index: 2;
+}
+
+.mock-tel__pantalla {
+  height: 100%;
+  border-radius: 28px;
+  background: var(--sunk);
+  box-shadow: var(--nuin);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.mock-tel__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 16px 8px;
+  font: 700 9.5px var(--font-sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+
+.mock-tel__punto {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.mock-tel__cuerpo {
+  flex: 1 1 auto;
+  padding: 6px 15px 15px;
+  overflow: hidden;
+}
+
+.mock-tel__cuerpo .panel__kicker {
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+}
+
+.mock-tel__obra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 6px 0 15px;
+}
+
+.mock-tel__obra b {
+  font: 400 13.5px/1.2 var(--font-serif);
+}
+
+.chip--sm {
+  padding: 5px 9px;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.bars--compact {
+  gap: 11px;
+  margin-top: 0;
+}
+
+.bars--compact .bar__head {
+  font-size: 10.5px;
+}
+
+.bars--compact .bar__track {
+  height: 7px;
+  margin-top: 6px;
+}
+
+.mock-tel__seccion {
+  margin: 17px 0 9px;
+  font: 700 9px var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+
+.mock-cuadrillas {
+  display: grid;
+  gap: 7px;
+}
+
+.mock-cuadrillas li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: var(--nu1);
+}
+
+.mock-cuadrillas__ini {
+  flex: 0 0 auto;
+  width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--brand) 26%, transparent);
+  font: 700 10px var(--font-sans);
+  color: var(--accent-ink);
+}
+
+.mock-cuadrillas b {
+  display: block;
+  font: 600 10.5px var(--font-sans);
+}
+
+.mock-cuadrillas em {
+  display: block;
+  margin-top: 1px;
+  font: 400 9px var(--font-sans);
+  font-style: normal;
+  color: var(--ink3);
+}
+
+/* --- Maqueta del panel web ------------------------------------------------ */
+
+.mock-web {
+  width: 100%;
+  border-radius: 22px;
+  background: var(--bg);
+  box-shadow: var(--nu2);
+  overflow: hidden;
+}
+
+.mock-web__crom {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 16px;
+  background: var(--sunk);
+  box-shadow: var(--nuins);
+}
+
+.mock-web__crom i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ink3);
+  opacity: 0.4;
+}
+
+.mock-web__crom span {
+  margin-left: 12px;
+  font: 500 11px var(--font-sans);
+  color: var(--ink3);
+}
+
+.mock-web__cuerpo {
+  padding: clamp(18px, 2.4vw, 28px);
+}
+
+.mock-web__cuerpo .minitiles {
+  margin-top: 0;
+}
+
+.mock-tira {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 8px;
+}
+
+.mock-tira__foto {
+  display: block;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--nuins);
+  background: var(--sunk);
+}
+
+.mock-tira__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tracking__features {
+  margin-top: 44px;
+}
+
+.tracking__feature {
+  padding: 28px 26px;
+  border-radius: 22px;
+}
+
+.tracking__feature h3 {
+  margin-top: 18px;
+  font: 400 20px/1.2 var(--font-serif);
+}
+
+.tracking__feature p {
+  margin-top: 9px;
+  font: 400 14.5px/1.62 var(--font-sans);
+  color: var(--ink2);
+}
+
+/* ==========================================================================
+   Bitacora de obra — feed de actualizaciones
+   ========================================================================== */
+
+.feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
+  gap: 22px;
+  margin-top: 52px;
+}
+
+.post {
+  border-radius: 26px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.post__foto {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--sunk);
+}
+
+.post__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.post:hover .post__foto img {
+  transform: scale(1.045);
+}
+
+.post__fecha {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font: 600 10.5px var(--font-sans);
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.post__cuerpo {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 26px;
+}
+
+.post__meta {
+  font: 600 10.5px var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+.post__cuerpo h3 {
+  margin-top: 12px;
+  font: 400 22px/1.2 var(--font-serif);
+  text-wrap: pretty;
+}
+
+.post__cuerpo p {
+  margin-top: 10px;
+  font: 400 14.5px/1.62 var(--font-sans);
+  color: var(--ink2);
+}
+
+.post__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.post__tags li {
+  padding: 6px 11px;
+  border-radius: 8px;
+  background: var(--sunk);
+  box-shadow: var(--nuins);
+  font: 600 10px var(--font-sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+
+.feed__mas {
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+}
+
+/* El filtro reusa .segment, pero marca estado con aria-pressed (es un grupo de
+   botones) en vez de aria-selected (que es de tabs). */
+.segment button[aria-pressed='true'] {
+  box-shadow: var(--nuins);
+  color: var(--ink);
+}
+
+.segment button {
+  text-transform: capitalize;
+}
+
+/* --- Esqueleto de carga ---------------------------------------------------
+   Existe porque getPosts() es asincrona: hoy resuelve al instante, pero en
+   cuanto apunte a una API real este es el estado que se ve.
+   -------------------------------------------------------------------------- */
+
+.post--esqueleto {
+  pointer-events: none;
+}
+
+.esq {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: var(--sunk);
+  box-shadow: var(--nuins);
+  margin-bottom: 10px;
+}
+
+.esq--corta {
+  width: 46%;
+}
+
+.esq--titulo {
+  height: 20px;
+  width: 82%;
+  margin-bottom: 14px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .post--esqueleto .post__foto,
+  .esq {
+    animation: latido 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes latido {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ==========================================================================
+   Detalles de UI/UX transversales
+   ========================================================================== */
+
+/* Barra de progreso de lectura: una linea fina sobre la barra de navegacion.
+   Da sensacion de longitud de pagina sin ocupar sitio. */
+.progreso {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  z-index: 120;
+  background: var(--brand);
+  border-radius: 0 3px 3px 0;
+  transition: width 0.14s linear;
+  pointer-events: none;
+}
+
+/* Salto al contenido: primer tabulador de la pagina, invisible hasta enfocar. */
+.skip {
+  position: absolute;
+  left: 50%;
+  top: -100px;
+  transform: translateX(-50%);
+  z-index: 200;
+  padding: 14px 22px;
+  border-radius: 0 0 14px 14px;
+  background: var(--brand);
+  color: var(--onbrand);
+  font: 700 12.5px var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: top 0.2s ease;
+}
+
+.skip:focus-visible {
+  top: 0;
+  color: var(--onbrand);
+}
+
+/* Volver arriba. Se sienta encima del boton de WhatsApp. */
+.arriba {
+  position: fixed;
+  right: 24px;
+  bottom: 98px;
+  z-index: 80;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--bg);
+  box-shadow: var(--nu1);
+  color: var(--ink2);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-out), box-shadow 0.3s ease;
+}
+
+.arriba.is-on {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.arriba:hover {
+  box-shadow: var(--nuins);
+  color: var(--accent-ink);
+}
+
+@media (max-width: 560px) {
+  .arriba {
+    right: 20px;
+    bottom: 92px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* Enlace de navegacion de la seccion en la que estas. El punto es mas discreto
+   que colorear el texto y no compite con el hover. */
+.nav__links a[aria-current='page'] {
+  color: var(--ink);
+  position: relative;
+}
+
+.nav__links a[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+/* ==========================================================================
+   Manifiesto — el titular de la marca
+   Recoge el texto que antes iba encima del video del hero.
+   ========================================================================== */
+
+.manifiesto {
+  padding-top: clamp(70px, 8vw, 110px);
+}
+
+/* Texto a la izquierda y foto de obra a la derecha. La columna de la foto es
+   mas estrecha: manda el titular, la imagen solo lo acompana. */
+.manifiesto__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .manifiesto__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.manifiesto__caja {
+  max-width: 54ch;
+}
+
+.manifiesto__titulo {
+  font: 400 clamp(40px, 5.2vw, 74px) / 0.98 var(--font-serif);
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.manifiesto__texto {
+  margin-top: clamp(22px, 2.6vw, 32px);
+  max-width: 48ch;
+  font: 400 clamp(15.5px, 1.2vw, 17.5px) / 1.7 var(--font-sans);
+  color: var(--ink2);
+  text-wrap: pretty;
+}
+
+.manifiesto__caja .btn {
+  margin-top: clamp(24px, 2.8vw, 34px);
+}
+
+/* Marco neumorfico, igual que el resto de tarjetas del sistema: el contenedor
+   sobresale del fondo (--nu2) y la foto va hundida dentro (--nuin). Ese par
+   —relieve fuera, hueco dentro— es lo que da la sensacion de que la imagen
+   esta encajada en el material, en vez de pegada encima. */
+.manifiesto__foto {
+  padding: clamp(14px, 1.6vw, 20px);
+  border-radius: clamp(26px, 2.6vw, 34px);
+  background: var(--bg);
+  box-shadow: var(--nu2);
+  transition: box-shadow 0.4s ease, transform 0.4s ease, background-color 0.6s ease;
+}
+
+.manifiesto__foto:hover {
+  box-shadow: var(--nu3);
+  transform: translateY(-4px);
+}
+
+.manifiesto__foto .media {
+  aspect-ratio: 4 / 5;
+  border-radius: clamp(16px, 1.8vw, 22px);
+  box-shadow: var(--nuin);
+}
+
+@media (max-width: 900px) {
+  /* Apilada, la foto vertical ocupa demasiado alto. */
+  .manifiesto__foto .media {
+    aspect-ratio: 16 / 10;
+  }
+}

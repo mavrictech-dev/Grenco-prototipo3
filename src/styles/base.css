@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Reset, tipografia y utilidades compartidas
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  overflow-x: clip;
+  transition: background-color 0.6s ease;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--accent-ink);
+  text-decoration: none;
+  transition: color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+a:hover {
+  color: var(--brand);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--brand);
+  color: var(--onbrand);
+}
+
+/* --- Tipografia ---------------------------------------------------------- */
+
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font: 600 11px var(--font-sans);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 9px;
+  height: 9px;
+  background: var(--brand);
+}
+
+.h2 {
+  margin-top: 20px;
+  font: 400 clamp(34px, 4.4vw, 58px) / 1.02 var(--font-serif);
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+
+.lead {
+  margin-top: 22px;
+  font: 400 16.5px/1.72 var(--font-sans);
+  color: var(--ink2);
+  text-wrap: pretty;
+}
+
+/* --- Layout -------------------------------------------------------------- */
+
+.shell {
+  width: var(--shell);
+  margin-inline: auto;
+}
+
+.section {
+  width: var(--shell);
+  margin-inline: auto;
+  padding-top: var(--gap-section);
+}
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+  gap: 20px;
+}
+
+/* --- Botones ------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  border-radius: 16px;
+  font: 700 13px var(--font-sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 17px 30px;
+  box-shadow: var(--nu1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.btn--primary {
+  background: var(--brand);
+  color: var(--onbrand);
+}
+
+.btn--secondary {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.btn--sm {
+  padding: 15px 24px;
+  border-radius: 14px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.btn--block {
+  display: block;
+  width: 100%;
+}
+
+.btn:hover {
+  box-shadow: var(--nu2);
+  transform: translateY(-2px);
+}
+
+.btn--primary:hover {
+  color: var(--onbrand);
+}
+
+.btn--secondary:hover {
+  color: var(--ink);
+}
+
+.btn:active {
+  box-shadow: var(--nuins);
+  transform: translateY(1px);
+}
+
+/* --- Tarjetas ------------------------------------------------------------ */
+
+.card {
+  border-radius: 24px;
+  background: var(--bg);
+  box-shadow: var(--nu1);
+  transition: box-shadow 0.4s ease, transform 0.4s ease, background-color 0.6s ease;
+}
+
+.card--lift:hover {
+  box-shadow: var(--nu3);
+  transform: translateY(-6px);
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: var(--nuin);
+  background: var(--sunk);
+}
+
+.media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Formato vertical, para la foto que acompana a Nosotros. */
+.media--retrato {
+  aspect-ratio: 4 / 5;
+  border-radius: 24px;
+}
+
+/* --- Animaciones --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-anim='1'] .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  html[data-anim='1'] .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal {
+    transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out),
+      box-shadow 0.4s ease, background-color 0.6s ease;
+  }
+}
+
+@keyframes wapulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  70% { transform: scale(2); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes scrolldot {
+  0% { transform: translateY(0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(22px); opacity: 0; }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

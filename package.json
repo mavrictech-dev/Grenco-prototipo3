@@ -1,16 +1,26 @@
 {
-  "name": "landing-grenco-neumorfismo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "image-slot.js",
+  "name": "grenco-landing",
+  "version": "2.0.0",
+  "description": "Landing de GRENCO — Grupo Enriquez Construcciones",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "images": "node scripts/optimize-images.mjs",
+    "video": "node scripts/encode-video.mjs",
+    "fotos": "node scripts/convert-heic.mjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "sharp": "^0.35.3"
+    "@fontsource-variable/archivo": "^5.2.5",
+    "@fontsource/young-serif": "^5.2.5",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "sharp": "^0.35.3",
+    "vite": "^7.1.0"
   }
 }

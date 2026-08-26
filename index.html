@@ -1,798 +1,99 @@
-<!DOCTYPE html>
-<html lang="es" data-sede="piura" data-anim="1">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GRENCO · Grupo Enriquez Construcciones</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Young+Serif&display=swap" rel="stylesheet">
-<style>
-:root, html[data-sede="piura"] {
-  --bg: #e9e6e0; --sunk: #e3dfd8; --hl: #ffffff; --sh: #bcb5a8;
-  --ink: #1b1a17; --ink2: #5e574d; --ink3: #8b8478;
-  --brand: #e5a11c; --accent-ink: #8a5a00; --onbrand: #191712;
-  --line: rgba(27,26,23,.10); --markop: .085;
-  --logoL: block; --logoD: none;
-}
-html[data-sede="trujillo"] {
-  --bg: #1e2024; --sunk: #191b1e; --hl: #2c2f36; --sh: #0e0f11;
-  --ink: #eeece7; --ink2: #a6a29a; --ink3: #7c786f;
-  --brand: #f0ad2a; --accent-ink: #f0ad2a; --onbrand: #17150f;
-  --line: rgba(255,255,255,.09); --markop: .07;
-  --logoL: none; --logoD: block;
-}
-:root {
-  --nu1: 7px 7px 16px var(--sh), -7px -7px 16px var(--hl);
-  --nu2: 16px 16px 34px var(--sh), -12px -12px 26px var(--hl);
-  --nu3: 24px 24px 48px var(--sh), -16px -16px 34px var(--hl);
-  --nuin: inset 6px 6px 12px var(--sh), inset -6px -6px 12px var(--hl);
-  --nuins: inset 3px 3px 7px var(--sh), inset -3px -3px 7px var(--hl);
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--bg); overflow-x: clip; transition: background-color .6s ease; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background-color .6s ease, color .6s ease; }
-h1, h2, h3, h4, p, figure { margin: 0; }
-ul { margin: 0; padding: 0; list-style: none; }
-a { color: var(--accent-ink); text-decoration: none; transition: color .25s ease, box-shadow .25s ease, transform .25s ease; }
-a:hover { color: var(--brand); }
-button, input, textarea, select { font: inherit; color: inherit; }
-button { border: 0; background: none; cursor: pointer; transition: box-shadow .25s ease, transform .25s ease, color .25s ease; }
-:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
-::selection { background: var(--brand); color: var(--onbrand); }
+<!doctype html>
+<html lang="es" data-sede="piura">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#e9e6e0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1e2024" media="(prefers-color-scheme: dark)" />
 
-@media (prefers-reduced-motion: no-preference) {
-  html[data-anim="1"] [data-rv] { opacity: 0; transform: translateY(28px); }
-  html[data-anim="1"] [data-rv="in"] { opacity: 1; transform: none; }
-  [data-rv] { transition: opacity .9s cubic-bezier(.16,.84,.28,1), transform .9s cubic-bezier(.16,.84,.28,1), box-shadow .4s ease, background-color .6s ease; }
-}
+    <title>GRENCO · Movimiento de tierras y obra civil en Piura y Trujillo</title>
+    <meta
+      name="description"
+      content="Grupo Enriquez Construcciones: movimiento de tierras, obra civil, habilitación urbana y alquiler de maquinaria pesada con flota y cuadrillas propias en Piura y La Libertad."
+    />
+    <link rel="canonical" href="https://grenco.pe/" />
 
-[data-slide] { opacity: 0; transition: opacity 1.3s ease; }
-[data-slide="on"] { opacity: 1; }
-[data-slide] [data-kb] { transform: scale(1.14); transition: none; }
-[data-slide="on"] [data-kb] { transform: scale(1); transition: transform 9s linear; }
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GRENCO" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:title" content="GRENCO · Movemos tierra. Levantamos el norte." />
+    <meta
+      property="og:description"
+      content="Movimiento de tierras, obra civil y alquiler de maquinaria pesada en Piura y La Libertad. Flota propia, cuadrillas propias, plazos firmados."
+    />
+    <meta property="og:url" content="https://grenco.pe/" />
+    <meta property="og:image" content="https://grenco.pe/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-[data-navwrap] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 100;
-  padding: 16px 0 8px;
-  transition: transform .42s cubic-bezier(.16, .84, .28, 1), opacity .32s ease;
-  will-change: transform, opacity;
-}
-html[data-nav-hidden="1"] [data-navwrap] {
-  transform: translateY(-120%);
-  opacity: 0;
-  pointer-events: none;
-}
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
 
-html[data-scrolled="1"] [data-nav] { box-shadow: var(--nu2) !important; }
-[data-stickycta] { opacity: 0; transform: translate(-50%,26px); pointer-events: none; }
-html[data-past="1"] [data-stickycta] { opacity: 1; transform: translate(-50%,0); pointer-events: auto; }
+    <!--
+      LCP: el poster del primer panel del triptico. Se pinta antes de que el
+      video tenga un solo fotograma, asi que es lo que mide Lighthouse. Su ruta
+      no lleva hash (vive en public/), por eso se puede precargar desde aqui.
+    -->
+    <link rel="preload" as="image" href="/video/obra-1.webp" fetchpriority="high" />
 
-[data-seg][data-on="mision"] [data-opt="mision"],
-[data-seg][data-on="vision"] [data-opt="vision"] { box-shadow: var(--nuins) !important; color: var(--ink) !important; }
-[data-svc]:hover [data-svcicon] { box-shadow: var(--nuin) !important; color: var(--accent-ink) !important; }
-[data-field] input:not(:placeholder-shown)+label,
-[data-field] input:focus+label,
-[data-field] textarea:not(:placeholder-shown)+label,
-[data-field] textarea:focus+label { transform: translateY(-14px) scale(.74); color: var(--accent-ink) !important; }
-[data-wa]:hover [data-watip],
-[data-wa]:focus-visible [data-watip] { opacity: 1 !important; transform: translateX(0) !important; }
-html[data-sede="piura"] [data-sedecard="piura"],
-html[data-sede="trujillo"] [data-sedecard="trujillo"] { box-shadow: var(--nuin) !important; }
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "name": "GRENCO — Grupo Enriquez Construcciones S.A.C.",
+        "url": "https://grenco.pe",
+        "email": "contacto@grenco.pe",
+        "areaServed": ["Piura", "La Libertad"],
+        "address": [
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Piura",
+            "addressCountry": "PE"
+          },
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Trujillo",
+            "addressRegion": "La Libertad",
+            "addressCountry": "PE"
+          }
+        ]
+      }
+    </script>
 
-/* Interactive Hover States */
-[data-navlinks] a:hover { box-shadow: var(--nu1); color: var(--ink) !important; }
-.btn-primary:hover { box-shadow: var(--nu2) !important; transform: translateY(-2px); color: var(--onbrand) !important; }
-.btn-primary:active { box-shadow: var(--nuins) !important; transform: translateY(1px); }
-.btn-secondary:hover { box-shadow: var(--nu2) !important; transform: translateY(-2px); color: var(--ink) !important; }
-.btn-secondary:active { box-shadow: var(--nuins) !important; transform: translateY(1px); }
-.card-hover:hover { box-shadow: var(--nu3) !important; transform: translateY(-6px); }
+    <script>
+      // Aplica el tema antes del primer pintado. Sin esto la pagina parpadea
+      // en claro durante un frame antes de que React monte y ponga el oscuro.
+      (function () {
+        try {
+          var saved = localStorage.getItem('grenco.theme');
+          var theme =
+            saved === 'light' || saved === 'dark'
+              ? saved
+              : matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          var root = document.documentElement;
+          root.setAttribute('data-theme', theme);
+          root.style.colorScheme = theme;
 
-@keyframes wapulse { 0% { transform: scale(1); opacity: .5; } 70% { transform: scale(2); opacity: 0; } 100% { opacity: 0; } }
-@keyframes scrolldot { 0% { transform: translateY(0); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(22px); opacity: 0; } }
-
-@media (max-width: 1180px) {
-  [data-nav] { flex-wrap: wrap; row-gap: 6px; }
-  [data-navlinks] { order: 3; width: 100%; margin-left: 0 !important; flex-wrap: wrap; justify-content: flex-start; padding-top: 2px; }
-}
-@media (max-width: 760px) { [data-hidesm] { display: none !important; } }
-@media (max-width: 560px) {
-  [data-navwrap] { padding: 10px 0 6px !important; }
-  [data-nav] { justify-content: space-between; gap: 10px !important; padding: 10px 10px 10px 14px !important; }
-  [data-nav] img { height: 30px !important; }
-  [data-navlinks] a { padding: 8px 10px !important; font-size: 12.5px !important; }
-}
-</style>
-<script src="./image-slot.js"></script>
-</head>
-<body>
-
-<div style="position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0">
-  <div style="position:absolute;left:50%;top:46%;width:min(74vw,780px);opacity:var(--markop);transition:opacity .7s ease;transform:translate(-50%,-50%)">
-    <img id="bg-mark" src="assets/grenco-mark.png" alt="" style="display:block;width:100%;height:auto;transform:scale(.62);transform-origin:50% 50%;will-change:transform">
-  </div>
-  <div style="position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 40%,transparent 45%,var(--bg) 100%);transition:background .6s ease"></div>
-</div>
-
-<div style="position:relative;z-index:1;min-height:100vh;padding-bottom:1px">
-
-<div data-navwrap>
-  <nav data-nav style="width:min(1300px,calc(100% - 32px));margin:0 auto;display:flex;align-items:center;gap:22px;padding:12px 12px 12px 22px;border-radius:22px;background:var(--bg);box-shadow:var(--nu1);transition:box-shadow .5s ease,background-color .6s ease">
-    <a href="#inicio" style="display:flex;align-items:center;flex:0 0 auto">
-      <img src="assets/grenco-lockup-light.png" alt="GRENCO — Grupo Enriquez Construcciones" style="display:var(--logoL);height:38px;width:auto">
-      <img src="assets/grenco-lockup-dark.png" alt="GRENCO — Grupo Enriquez Construcciones" style="display:var(--logoD);height:38px;width:auto">
-    </a>
-    <ul data-navlinks style="display:flex;align-items:center;gap:4px;margin-left:auto">
-      <li><a href="#inicio" style="display:block;padding:10px 14px;border-radius:12px;font:500 13.5px Archivo,sans-serif;color:var(--ink2)">Inicio</a></li>
-      <li><a href="#nosotros" style="display:block;padding:10px 14px;border-radius:12px;font:500 13.5px Archivo,sans-serif;color:var(--ink2)">Nosotros</a></li>
-      <li><a href="#servicios" style="display:block;padding:10px 14px;border-radius:12px;font:500 13.5px Archivo,sans-serif;color:var(--ink2)">Servicios</a></li>
-      <li><a href="#maquinaria" style="display:block;padding:10px 14px;border-radius:12px;font:500 13.5px Archivo,sans-serif;color:var(--ink2)">Maquinaria</a></li>
-      <li><a href="#proyectos" style="display:block;padding:10px 14px;border-radius:12px;font:500 13.5px Archivo,sans-serif;color:var(--ink2)">Proyectos</a></li>
-      <li><a href="#galeria" style="display:block;padding:10px 14px;border-radius:12px;font:500 13.5px Archivo,sans-serif;color:var(--ink2)">Galería</a></li>
-    </ul>
-    <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
-      <div style="position:relative;display:flex;align-items:center">
-        <select id="sede-select" aria-label="Elegir sede" style="appearance:none;-webkit-appearance:none;padding:12px 40px 12px 18px;border:0;border-radius:14px;background:var(--sunk);box-shadow:var(--nuins);font:600 12px Archivo,sans-serif;letter-spacing:.04em;color:var(--ink);cursor:pointer;transition:background-color .6s ease,color .6s ease">
-          <option value="piura">Sede Piura — Claro</option>
-          <option value="trujillo">Sede Trujillo — Oscuro</option>
-        </select>
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--ink3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:14px;pointer-events:none"><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-      <a data-hidesm href="#contacto" class="btn-primary" style="padding:13px 22px;border-radius:14px;background:var(--brand);color:var(--onbrand);font:700 12.5px Archivo,sans-serif;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;box-shadow:var(--nu1);transition:box-shadow .3s ease,transform .3s ease">Cotizar obra</a>
-    </div>
-  </nav>
-</div>
-
-<section id="inicio" style="width:min(1300px,calc(100% - 32px));margin:96px auto 0">
-  <div id="hero-slider" style="position:relative;border-radius:clamp(22px,2.6vw,34px);overflow:hidden;box-shadow:var(--nu2);background:var(--sunk);transition:background-color .6s ease">
-    <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 22px,var(--line) 22px 23px),repeating-linear-gradient(-45deg,transparent 0 22px,var(--line) 22px 23px)"></div>
-
-    <div data-slide="on" style="position:absolute;inset:0"><div data-kb style="position:absolute;inset:0"><image-slot id="grenco-hero-1" shape="rect" src="assets/images/hero-1.webp" placeholder="Obra en ejecución — foto horizontal"></image-slot></div></div>
-    <div data-slide="off" style="position:absolute;inset:0"><div data-kb style="position:absolute;inset:0"><image-slot id="grenco-hero-2" shape="rect" src="assets/images/hero-2.webp" placeholder="Excavadora en frente de trabajo"></image-slot></div></div>
-    <div data-slide="off" style="position:absolute;inset:0"><div data-kb style="position:absolute;inset:0"><image-slot id="grenco-hero-3" shape="rect" src="assets/images/hero-3.webp" placeholder="Habilitación urbana / vías"></image-slot></div></div>
-    <div data-slide="off" style="position:absolute;inset:0"><div data-kb style="position:absolute;inset:0"><image-slot id="grenco-hero-4" shape="rect" src="assets/images/hero-4.webp" placeholder="Flota y taller propio"></image-slot></div></div>
-
-    <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,color-mix(in oklab,var(--bg) 88%,transparent) 0%,color-mix(in oklab,var(--bg) 62%,transparent) 42%,transparent 74%)"></div>
-
-    <div style="position:relative;z-index:2;min-height:clamp(520px,86vh,860px);display:flex;flex-direction:column;gap:clamp(16px,2.4vh,30px);padding:clamp(18px,4vw,64px);padding-bottom:clamp(72px,8vh,100px);pointer-events:none">
-      <div style="flex:1 1 auto;display:flex;align-items:center;min-height:0">
-      <div data-px="0.06" style="pointer-events:auto;max-width:min(660px,100%);padding:clamp(22px,3.4vw,46px);border-radius:clamp(20px,2.4vw,28px);background:color-mix(in oklab,var(--bg) 82%,transparent);backdrop-filter:blur(20px) saturate(1.15);-webkit-backdrop-filter:blur(20px) saturate(1.15);box-shadow:var(--nu2);transition:background-color .6s ease">
-        <div style="display:flex;align-items:center;gap:11px;font:600 11px Archivo,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)"><i style="display:block;width:9px;height:9px;background:var(--brand)"></i>Grupo Enriquez Construcciones</div>
-        <h1 style="margin-top:22px;font:400 clamp(40px,6.2vw,86px)/.96 'Young Serif',Georgia,serif;letter-spacing:-.022em;text-wrap:balance">Movemos tierra.<br>Levantamos<br>el norte.</h1>
-        <p style="margin-top:24px;max-width:52ch;font:400 clamp(15px,1.25vw,17.5px)/1.68 Archivo,sans-serif;color:var(--ink2);text-wrap:pretty">Movimiento de tierras, obra civil y alquiler de maquinaria pesada para proyectos públicos y privados en Piura y La Libertad. Flota propia, cuadrillas propias, plazos firmados.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px">
-          <a href="#proyectos" class="btn-primary" style="padding:17px 30px;border-radius:16px;background:var(--brand);color:var(--onbrand);font:700 13px Archivo,sans-serif;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;box-shadow:var(--nu1)">Ver proyectos</a>
-          <a href="#contacto" class="btn-secondary" style="padding:17px 30px;border-radius:16px;background:var(--bg);color:var(--ink);font:700 13px Archivo,sans-serif;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;box-shadow:var(--nu1)">Solicitar cotización</a>
-        </div>
-      </div>
-      </div>
-
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;pointer-events:auto">
-      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-      <div style="display:flex;gap:9px;padding:11px 14px;border-radius:16px;background:color-mix(in oklab,var(--bg) 80%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--nu1)">
-        <button data-ind type="button" aria-label="Ver imagen 1" style="width:46px;height:7px;padding:0;border-radius:99px;background:var(--sunk);box-shadow:var(--nuins);overflow:hidden"><span style="display:block;height:100%;width:0;border-radius:99px;background:var(--brand)"></span></button>
-        <button data-ind type="button" aria-label="Ver imagen 2" style="width:46px;height:7px;padding:0;border-radius:99px;background:var(--sunk);box-shadow:var(--nuins);overflow:hidden"><span style="display:block;height:100%;width:0;border-radius:99px;background:var(--brand)"></span></button>
-        <button data-ind type="button" aria-label="Ver imagen 3" style="width:46px;height:7px;padding:0;border-radius:99px;background:var(--sunk);box-shadow:var(--nuins);overflow:hidden"><span style="display:block;height:100%;width:0;border-radius:99px;background:var(--brand)"></span></button>
-        <button data-ind type="button" aria-label="Ver imagen 4" style="width:46px;height:7px;padding:0;border-radius:99px;background:var(--sunk);box-shadow:var(--nuins);overflow:hidden"><span style="display:block;height:100%;width:0;border-radius:99px;background:var(--brand)"></span></button>
-      </div>
-      <span data-caption style="font:600 11px Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3)">Habilitación urbana · Piura</span>
-      </div>
-
-      <div data-hidesm style="display:flex;flex-direction:column;align-items:center;gap:10px">
-        <span style="font:600 10px Archivo,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--ink3);writing-mode:vertical-rl">Scroll</span>
-        <div style="width:2px;height:44px;background:var(--line);position:relative;overflow:hidden"><i style="position:absolute;top:0;left:-1px;width:4px;height:12px;background:var(--brand);animation:scrolldot 1.9s ease-in-out infinite"></i></div>
-      </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section style="width:min(1300px,calc(100% - 32px));margin:0 auto;position:relative;z-index:2;margin-top:-58px">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:20px">
-    <article data-rv data-rvd="0" class="card-hover" style="padding:32px 30px;border-radius:24px;background:var(--bg);box-shadow:var(--nu1)">
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16V6a1 1 0 0 1 1-1h10v11"/><path d="M14 9h4l3 3v4h-3"/><circle cx="7.5" cy="17.5" r="2.2"/><circle cx="17.5" cy="17.5" r="2.2"/></svg>
-      <h3 style="margin-top:20px;font:400 23px/1.14 'Young Serif',Georgia,serif">Flota propia</h3>
-      <p style="margin-top:10px;font:400 15px/1.62 Archivo,sans-serif;color:var(--ink2)">Excavadoras, cargadores y volquetes operados por personal de planilla. Sin intermediarios en el frente de trabajo.</p>
-    </article>
-    <article data-rv data-rvd="90" class="card-hover" style="padding:32px 30px;border-radius:24px;background:var(--bg);box-shadow:var(--nu1)">
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
-      <h3 style="margin-top:20px;font:400 23px/1.14 'Young Serif',Georgia,serif">Plazos firmes</h3>
-      <p style="margin-top:10px;font:400 15px/1.62 Archivo,sans-serif;color:var(--ink2)">Cronograma valorizado desde el día uno y reporte semanal de avance con evidencia fotográfica.</p>
-    </article>
-    <article data-rv data-rvd="180" class="card-hover" style="padding:32px 30px;border-radius:24px;background:var(--bg);box-shadow:var(--nu1)">
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.4 3.4 7.7 8 9 4.6-1.3 8-4.6 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
-      <h3 style="margin-top:20px;font:400 23px/1.14 'Young Serif',Georgia,serif">SSOMA primero</h3>
-      <p style="margin-top:10px;font:400 15px/1.62 Archivo,sans-serif;color:var(--ink2)">Charla de cinco minutos, señalización y equipo de protección verificado en cada turno de obra.</p>
-    </article>
-  </div>
-</section>
-
-<section id="nosotros" style="width:min(1300px,calc(100% - 32px));margin:0 auto;padding:clamp(90px,11vw,150px) 0 0">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:clamp(40px,6vw,86px);align-items:center">
-    <div data-rv>
-      <div style="display:flex;align-items:center;gap:11px;font:600 11px Archivo,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)"><i style="display:block;width:9px;height:9px;background:var(--brand)"></i>Quiénes somos</div>
-      <h2 style="margin-top:20px;font:400 clamp(34px,4.4vw,58px)/1.02 'Young Serif',Georgia,serif;letter-spacing:-.018em;text-wrap:balance">Una constructora del norte, hecha para el terreno del norte.</h2>
-      <p style="margin-top:22px;max-width:56ch;font:400 16.5px/1.72 Archivo,sans-serif;color:var(--ink2);text-wrap:pretty">GRENCO nació en Piura ejecutando movimiento de tierras para habilitaciones urbanas. Hoy operamos desde dos sedes con equipo propio, taller propio y un método simple: medir el terreno antes de prometer una fecha.</p>
-      <ul style="margin-top:34px;display:grid;gap:14px">
-        <li style="display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:18px;background:var(--bg);box-shadow:var(--nu1);transition:box-shadow .4s ease">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="m5 12 4.5 4.5L19 7"/></svg>
-          <div><strong style="display:block;font:600 15px Archivo,sans-serif">Control topográfico en cada corte</strong><span style="display:block;margin-top:4px;font:400 14.5px/1.55 Archivo,sans-serif;color:var(--ink2)">Replanteo con estación total antes, durante y al cierre de cada partida.</span></div>
-        </li>
-        <li style="display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:18px;background:var(--bg);box-shadow:var(--nu1);transition:box-shadow .4s ease">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:2px"><path d="m5 12 4.5 4.5L19 7"/></svg>
-          <div><strong style="display:block;font:600 15px Archivo,sans-serif">Mantenimiento en taller propio</strong><span style="display:block;margin-top:4px;font:400 14.5px/1.55 Archivo,sans-serif;color:var(--ink2)">Los equipos no paran la obra: repuestos críticos en stock y mecánicos en sede.</span></div>
-        </li>
-      </ul>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px">
-        <div style="padding:20px 18px;border-radius:18px;background:var(--sunk);box-shadow:var(--nuins)"><div style="font:400 clamp(28px,3vw,38px)/1 'Young Serif',Georgia,serif;color:var(--ink)">12</div><div style="margin-top:8px;font:600 10.5px Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)">Años en obra</div></div>
-        <div style="padding:20px 18px;border-radius:18px;background:var(--sunk);box-shadow:var(--nuins)"><div style="font:400 clamp(28px,3vw,38px)/1 'Young Serif',Georgia,serif;color:var(--ink)">180</div><div style="margin-top:8px;font:600 10.5px Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)">Obras entregadas</div></div>
-        <div style="padding:20px 18px;border-radius:18px;background:var(--sunk);box-shadow:var(--nuins)"><div style="font:400 clamp(28px,3vw,38px)/1 'Young Serif',Georgia,serif;color:var(--ink)">02</div><div style="margin-top:8px;font:600 10.5px Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)">Sedes operativas</div></div>
-      </div>
-    </div>
-
-    <div data-rv data-rvd="140" data-px="0.05" style="position:relative">
-      <div style="padding:22px;border-radius:34px;background:var(--bg);box-shadow:var(--nu3)">
-        <div style="padding:26px 24px;border-radius:24px;background:var(--sunk);box-shadow:var(--nuin)">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
-            <div>
-              <div style="font:600 10.5px Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3)">Control de obra · semana 14</div>
-              <div style="margin-top:8px;font:400 22px/1.14 'Young Serif',Georgia,serif">Habilitación Los Algarrobos</div>
-            </div>
-            <span style="flex:0 0 auto;white-space:nowrap;padding:8px 14px;border-radius:99px;background:var(--brand);color:var(--onbrand);font:700 10.5px Archivo,sans-serif;letter-spacing:.1em;text-transform:uppercase">En obra</span>
-          </div>
-          <ul style="margin-top:26px;display:grid;gap:18px">
-            <li>
-              <div style="display:flex;justify-content:space-between;font:500 13px Archivo,sans-serif;color:var(--ink2)"><span>Movimiento de tierras</span><span data-num style="font-variant-numeric:tabular-nums;color:var(--ink)">92%</span></div>
-              <div style="margin-top:9px;height:10px;border-radius:99px;background:var(--bg);box-shadow:var(--nuins);overflow:hidden"><i data-fill="92" style="display:block;height:100%;width:0;border-radius:99px;background:var(--brand);transition:width 1.4s cubic-bezier(.2,.8,.2,1)"></i></div>
-            </li>
-            <li>
-              <div style="display:flex;justify-content:space-between;font:500 13px Archivo,sans-serif;color:var(--ink2)"><span>Redes de agua y desagüe</span><span style="font-variant-numeric:tabular-nums;color:var(--ink)">64%</span></div>
-              <div style="margin-top:9px;height:10px;border-radius:99px;background:var(--bg);box-shadow:var(--nuins);overflow:hidden"><i data-fill="64" style="display:block;height:100%;width:0;border-radius:99px;background:var(--brand);transition:width 1.4s cubic-bezier(.2,.8,.2,1) .12s"></i></div>
-            </li>
-            <li>
-              <div style="display:flex;justify-content:space-between;font:500 13px Archivo,sans-serif;color:var(--ink2)"><span>Pavimentación</span><span style="font-variant-numeric:tabular-nums;color:var(--ink)">21%</span></div>
-              <div style="margin-top:9px;height:10px;border-radius:99px;background:var(--bg);box-shadow:var(--nuins);overflow:hidden"><i data-fill="21" style="display:block;height:100%;width:0;border-radius:99px;background:var(--brand);transition:width 1.4s cubic-bezier(.2,.8,.2,1) .24s"></i></div>
-            </li>
-          </ul>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px">
-            <div style="padding:14px 12px;border-radius:16px;background:var(--bg);box-shadow:var(--nu1);text-align:left"><div style="font:600 18px Archivo,sans-serif">4</div><div style="margin-top:4px;font:500 10px Archivo,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)">Cuadrillas</div></div>
-            <div style="padding:14px 12px;border-radius:16px;background:var(--bg);box-shadow:var(--nu1)"><div style="font:600 18px Archivo,sans-serif">11</div><div style="margin-top:4px;font:500 10px Archivo,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)">Equipos</div></div>
-            <div style="padding:14px 12px;border-radius:16px;background:var(--bg);box-shadow:var(--nu1)"><div style="font:600 18px Archivo,sans-serif;color:var(--accent-ink)">+6%</div><div style="margin-top:4px;font:500 10px Archivo,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)">Semanal</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="servicios" style="width:min(1300px,calc(100% - 32px));margin:0 auto;padding:clamp(90px,11vw,150px) 0 0">
-  <div data-rv style="max-width:60ch">
-    <div style="display:flex;align-items:center;gap:11px;font:600 11px Archivo,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)"><i style="display:block;width:9px;height:9px;background:var(--brand)"></i>Servicios que brindamos</div>
-    <h2 style="margin-top:20px;font:400 clamp(34px,4.4vw,58px)/1.02 'Young Serif',Georgia,serif;letter-spacing:-.018em;text-wrap:balance">Del terreno en bruto a la obra entregada.</h2>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:20px;margin-top:52px">
-    <article data-svc data-rv data-rvd="0" class="card-hover" style="padding:34px 30px 30px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div data-svcicon style="width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:var(--bg);box-shadow:var(--nu1);color:var(--ink);transition:box-shadow .45s ease,color .45s ease"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="m2 13 10 5 10-5"/></svg></div>
-      <h3 style="margin-top:24px;font:400 25px/1.14 'Young Serif',Georgia,serif">Movimiento de tierras</h3>
-      <p style="margin-top:12px;font:400 15px/1.65 Archivo,sans-serif;color:var(--ink2)">Corte, relleno, nivelación y compactación con control topográfico y ensayos de densidad.</p>
-    </article>
-    <article data-svc data-rv data-rvd="80" class="card-hover" style="padding:34px 30px 30px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div data-svcicon style="width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:var(--bg);box-shadow:var(--nu1);color:var(--ink);transition:box-shadow .45s ease,color .45s ease"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15"/><path d="M13 10h5a2 2 0 0 1 2 2v9"/><path d="M2 21h20M7 8h2M7 12h2M7 16h2"/></svg></div>
-      <h3 style="margin-top:24px;font:400 25px/1.14 'Young Serif',Georgia,serif">Obras civiles</h3>
-      <p style="margin-top:12px;font:400 15px/1.65 Archivo,sans-serif;color:var(--ink2)">Cimentación, estructuras de concreto armado, pavimentos rígidos y flexibles.</p>
-    </article>
-    <article data-svc data-rv data-rvd="160" class="card-hover" style="padding:34px 30px 30px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div data-svcicon style="width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:var(--bg);box-shadow:var(--nu1);color:var(--ink);transition:box-shadow .45s ease,color .45s ease"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16V6a1 1 0 0 1 1-1h10v11"/><path d="M14 9h4l3 3v4h-3"/><circle cx="7.5" cy="17.5" r="2.2"/><circle cx="17.5" cy="17.5" r="2.2"/></svg></div>
-      <h3 style="margin-top:24px;font:400 25px/1.14 'Young Serif',Georgia,serif">Alquiler de maquinaria</h3>
-      <p style="margin-top:12px;font:400 15px/1.65 Archivo,sans-serif;color:var(--ink2)">Equipos con operador, combustible y mantenimiento incluidos. Por hora, día o partida.</p>
-    </article>
-    <article data-svc data-rv data-rvd="0" class="card-hover" style="padding:34px 30px 30px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div data-svcicon style="width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:var(--bg);box-shadow:var(--nu1);color:var(--ink);transition:box-shadow .45s ease,color .45s ease"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5.5 6 5.5 9.5a5.5 5.5 0 0 1-11 0C6.5 9 12 3 12 3Z"/><path d="M9.5 13.5a2.5 2.5 0 0 0 2.5 2.5"/></svg></div>
-      <h3 style="margin-top:24px;font:400 25px/1.14 'Young Serif',Georgia,serif">Saneamiento y redes</h3>
-      <p style="margin-top:12px;font:400 15px/1.65 Archivo,sans-serif;color:var(--ink2)">Agua potable, alcantarillado y drenaje pluvial con pruebas hidráulicas certificadas.</p>
-    </article>
-    <article data-svc data-rv data-rvd="80" class="card-hover" style="padding:34px 30px 30px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div data-svcicon style="width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:var(--bg);box-shadow:var(--nu1);color:var(--ink);transition:box-shadow .45s ease,color .45s ease"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
-      <h3 style="margin-top:24px;font:400 25px/1.14 'Young Serif',Georgia,serif">Habilitación urbana</h3>
-      <p style="margin-top:12px;font:400 15px/1.65 Archivo,sans-serif;color:var(--ink2)">Lotización, vías, veredas y servicios: terreno listo para vender o construir.</p>
-    </article>
-    <article data-svc data-rv data-rvd="160" class="card-hover" style="padding:34px 30px 30px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div data-svcicon style="width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:var(--bg);box-shadow:var(--nu1);color:var(--ink);transition:box-shadow .45s ease,color .45s ease"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="8" rx="1"/><path d="M17 14v7M7 14v7M17 3v3M7 3v3M10 14 3 7M14 6l7 7"/></svg></div>
-      <h3 style="margin-top:24px;font:400 25px/1.14 'Young Serif',Georgia,serif">Demolición y desbroce</h3>
-      <p style="margin-top:12px;font:400 15px/1.65 Archivo,sans-serif;color:var(--ink2)">Retiro controlado, eliminación de material y limpieza de terreno con disposición final.</p>
-    </article>
-  </div>
-</section>
-
-<section id="maquinaria" style="width:min(1300px,calc(100% - 32px));margin:0 auto;padding:clamp(90px,11vw,150px) 0 0">
-  <div data-rv style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between">
-    <div style="max-width:56ch">
-      <div style="display:flex;align-items:center;gap:11px;font:600 11px Archivo,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)"><i style="display:block;width:9px;height:9px;background:var(--brand)"></i>Nuestra flota</div>
-      <h2 style="margin-top:20px;font:400 clamp(34px,4.4vw,58px)/1.02 'Young Serif',Georgia,serif;letter-spacing:-.018em;text-wrap:balance">Tres equipos que resuelven el 80% de una obra.</h2>
-    </div>
-    <a href="#contacto" class="btn-secondary" style="padding:15px 24px;border-radius:14px;background:var(--bg);color:var(--ink);font:700 12px Archivo,sans-serif;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;box-shadow:var(--nu1)">Ver ficha técnica</a>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(310px,100%),1fr));gap:22px;margin-top:52px">
-    <article data-rv data-rvd="0" class="card-hover" style="border-radius:28px;background:var(--bg);box-shadow:var(--nu1);padding:20px">
-      <div style="position:relative;height:230px;border-radius:20px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-maq-1" shape="rect" src="assets/images/maq-excavadora.webp" placeholder="Excavadora sobre orugas"></image-slot></div>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px">
-        <h3 style="font:400 24px/1.14 'Young Serif',Georgia,serif">Excavadora sobre orugas</h3>
-        <span style="flex:0 0 auto;padding:7px 12px;border-radius:10px;background:var(--sunk);box-shadow:var(--nuins);font:700 10.5px Archivo,sans-serif;letter-spacing:.12em;color:var(--ink3)">20 T</span>
-      </div>
-      <ul style="margin-top:18px;display:grid;gap:10px;font:400 14.5px/1.4 Archivo,sans-serif;color:var(--ink2)">
-        <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line)"><span>Alcance de excavación</span><span style="flex:0 0 auto;white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums">9.9 m</span></li>
-        <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line)"><span>Capacidad de cuchara</span><span style="flex:0 0 auto;white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums">1.0 m³</span></li>
-        <li style="display:flex;justify-content:space-between"><span>Operador certificado</span><span style="flex:0 0 auto;white-space:nowrap;color:var(--ink)">Incluido</span></li>
-      </ul>
-      <a href="#contacto" class="btn-secondary" style="display:block;text-align:center;width:100%;margin-top:22px;padding:15px 20px;border-radius:14px;background:var(--bg);box-shadow:var(--nu1);font:700 12px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase">Consultar disponibilidad</a>
-    </article>
-    <article data-rv data-rvd="110" class="card-hover" style="border-radius:28px;background:var(--bg);box-shadow:var(--nu1);padding:20px">
-      <div style="position:relative;height:230px;border-radius:20px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-maq-2" shape="rect" src="assets/images/maq-retroexcavadora.webp" placeholder="Retroexcavadora 4x4"></image-slot></div>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px">
-        <h3 style="font:400 24px/1.14 'Young Serif',Georgia,serif">Retroexcavadora 4×4</h3>
-        <span style="flex:0 0 auto;padding:7px 12px;border-radius:10px;background:var(--sunk);box-shadow:var(--nuins);font:700 10.5px Archivo,sans-serif;letter-spacing:.12em;color:var(--ink3)">7 T</span>
-      </div>
-      <ul style="margin-top:18px;display:grid;gap:10px;font:400 14.5px/1.4 Archivo,sans-serif;color:var(--ink2)">
-        <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line)"><span>Profundidad de zanja</span><span style="flex:0 0 auto;white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums">4.4 m</span></li>
-        <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line)"><span>Cuchara frontal</span><span style="flex:0 0 auto;white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums">1.0 m³</span></li>
-        <li style="display:flex;justify-content:space-between"><span>Ideal para</span><span style="flex:0 0 auto;white-space:nowrap;color:var(--ink)">Redes</span></li>
-      </ul>
-      <a href="#contacto" class="btn-secondary" style="display:block;text-align:center;width:100%;margin-top:22px;padding:15px 20px;border-radius:14px;background:var(--bg);box-shadow:var(--nu1);font:700 12px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase">Consultar disponibilidad</a>
-    </article>
-    <article data-rv data-rvd="220" class="card-hover" style="border-radius:28px;background:var(--bg);box-shadow:var(--nu1);padding:20px">
-      <div style="position:relative;height:230px;border-radius:20px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-maq-3" shape="rect" src="assets/images/maq-cargador.webp" placeholder="Cargador frontal"></image-slot></div>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px">
-        <h3 style="font:400 24px/1.14 'Young Serif',Georgia,serif">Cargador frontal</h3>
-        <span style="flex:0 0 auto;padding:7px 12px;border-radius:10px;background:var(--sunk);box-shadow:var(--nuins);font:700 10.5px Archivo,sans-serif;letter-spacing:.12em;color:var(--ink3)">3 m³</span>
-      </div>
-      <ul style="margin-top:18px;display:grid;gap:10px;font:400 14.5px/1.4 Archivo,sans-serif;color:var(--ink2)">
-        <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line)"><span>Carga de operación</span><span style="flex:0 0 auto;white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums">5.4 t</span></li>
-        <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line)"><span>Altura de descarga</span><span style="flex:0 0 auto;white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums">3.3 m</span></li>
-        <li style="display:flex;justify-content:space-between"><span>Ideal para</span><span style="flex:0 0 auto;white-space:nowrap;color:var(--ink)">Acopio</span></li>
-      </ul>
-      <a href="#contacto" class="btn-secondary" style="display:block;text-align:center;width:100%;margin-top:22px;padding:15px 20px;border-radius:14px;background:var(--bg);box-shadow:var(--nu1);font:700 12px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase">Consultar disponibilidad</a>
-    </article>
-  </div>
-</section>
-
-<section style="width:min(1300px,calc(100% - 32px));margin:0 auto;padding:clamp(90px,11vw,150px) 0 0">
-  <div data-rv style="padding:clamp(30px,4vw,58px);border-radius:34px;background:var(--bg);box-shadow:var(--nu2)">
-    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
-      <div>
-        <div style="display:flex;align-items:center;gap:11px;font:600 11px Archivo,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)"><i style="display:block;width:9px;height:9px;background:var(--brand)"></i>Hacia dónde vamos</div>
-        <h2 style="margin-top:18px;font:400 clamp(30px,3.6vw,46px)/1.05 'Young Serif',Georgia,serif;letter-spacing:-.018em">Misión y visión</h2>
-      </div>
-      <div id="seg-container" data-seg data-on="mision" style="display:flex;gap:6px;padding:7px;border-radius:18px;background:var(--sunk);box-shadow:var(--nuins)">
-        <button id="btn-seg-mision" data-opt="mision" type="button" style="padding:13px 26px;border-radius:13px;font:700 12px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);transition:box-shadow .35s ease,color .35s ease">Misión</button>
-        <button id="btn-seg-vision" data-opt="vision" type="button" style="padding:13px 26px;border-radius:13px;font:700 12px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);transition:box-shadow .35s ease,color .35s ease">Visión</button>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:22px;margin-top:40px">
-      <div style="padding:34px 32px;border-radius:26px;background:var(--sunk);box-shadow:var(--nuin)">
-        <p id="seg-title" style="font:400 clamp(19px,2vw,25px)/1.5 'Young Serif',Georgia,serif;color:var(--ink);text-wrap:pretty">Ejecutar obras de movimiento de tierras e infraestructura con equipo propio, cumpliendo el plazo y el estándar técnico que el cliente firmó.</p>
-        <p id="seg-body" style="margin-top:20px;font:400 16px/1.72 Archivo,sans-serif;color:var(--ink2);text-wrap:pretty">Trabajamos con cuadrillas en planilla, maquinaria mantenida en taller propio y control topográfico en cada partida. Esa es toda la fórmula.</p>
-      </div>
-      <ul style="display:grid;gap:14px;align-content:start">
-        <li style="display:flex;align-items:center;gap:16px;padding:22px 24px;border-radius:20px;background:var(--bg);box-shadow:var(--nu1)"><span style="font:400 20px 'Young Serif',Georgia,serif;color:var(--accent-ink)">01</span><span id="seg-p1" style="font:500 15.5px/1.5 Archivo,sans-serif">Plazo y presupuesto sostenidos</span></li>
-        <li style="display:flex;align-items:center;gap:16px;padding:22px 24px;border-radius:20px;background:var(--bg);box-shadow:var(--nu1)"><span style="font:400 20px 'Young Serif',Georgia,serif;color:var(--accent-ink)">02</span><span id="seg-p2" style="font:500 15.5px/1.5 Archivo,sans-serif">Cero accidentes incapacitantes</span></li>
-        <li style="display:flex;align-items:center;gap:16px;padding:22px 24px;border-radius:20px;background:var(--bg);box-shadow:var(--nu1)"><span style="font:400 20px 'Young Serif',Georgia,serif;color:var(--accent-ink)">03</span><span id="seg-p3" style="font:500 15.5px/1.5 Archivo,sans-serif">Conformidad de obra a la primera</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section style="width:min(1300px,calc(100% - 32px));margin:0 auto;padding:clamp(90px,11vw,150px) 0 0">
-  <div data-rv style="max-width:60ch">
-    <div style="display:flex;align-items:center;gap:11px;font:600 11px Archivo,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)"><i style="display:block;width:9px;height:9px;background:var(--brand)"></i>Nuestra cultura</div>
-    <h2 style="margin-top:20px;font:400 clamp(34px,4.4vw,58px)/1.02 'Young Serif',Georgia,serif;letter-spacing:-.018em;text-wrap:balance">La obra la hace la gente que se para en ella.</h2>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:20px;margin-top:52px">
-    <figure data-rv data-rvd="0" class="card-hover" style="padding:16px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div style="position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-eq-1" shape="rect" src="assets/images/eq-topografia.webp" placeholder="Topografía"></image-slot></div>
-      <figcaption style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding:0 4px"><span style="font:600 14.5px Archivo,sans-serif">Topografía</span><span style="padding:6px 10px;border-radius:9px;background:var(--sunk);box-shadow:var(--nuins);font:700 9.5px Archivo,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)">Campo</span></figcaption>
-    </figure>
-    <figure data-rv data-rvd="80" class="card-hover" style="padding:16px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div style="position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-eq-2" shape="rect" src="assets/images/eq-operador.webp" placeholder="Operación de equipos"></image-slot></div>
-      <figcaption style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding:0 4px"><span style="font:600 14.5px Archivo,sans-serif">Operación</span><span style="padding:6px 10px;border-radius:9px;background:var(--sunk);box-shadow:var(--nuins);font:700 9.5px Archivo,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)">Flota</span></figcaption>
-    </figure>
-    <figure data-rv data-rvd="160" class="card-hover" style="padding:16px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div style="position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-eq-3" shape="rect" src="assets/images/eq-ssoma.webp" placeholder="Seguridad y salud"></image-slot></div>
-      <figcaption style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding:0 4px"><span style="font:600 14.5px Archivo,sans-serif">SSOMA</span><span style="padding:6px 10px;border-radius:9px;background:var(--sunk);box-shadow:var(--nuins);font:700 9.5px Archivo,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)">Turno</span></figcaption>
-    </figure>
-    <figure data-rv data-rvd="240" class="card-hover" style="padding:16px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)">
-      <div style="position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-eq-4" shape="rect" src="assets/images/eq-residencia.webp" placeholder="Residencia de obra"></image-slot></div>
-      <figcaption style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding:0 4px"><span style="font:600 14.5px Archivo,sans-serif">Residencia</span><span style="padding:6px 10px;border-radius:9px;background:var(--sunk);box-shadow:var(--nuins);font:700 9.5px Archivo,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)">Oficina</span></figcaption>
-    </figure>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:20px;margin-top:20px">
-    <div data-rv style="padding:30px 28px;border-radius:24px;background:var(--sunk);box-shadow:var(--nuins)"><h4 style="font:400 21px/1.14 'Young Serif',Georgia,serif">Palabra cumplida</h4><p style="margin-top:10px;font:400 15px/1.62 Archivo,sans-serif;color:var(--ink2)">Si la fecha se movió, el cliente se entera antes que nadie y con el plan de recuperación puesto.</p></div>
-    <div data-rv data-rvd="90" style="padding:30px 28px;border-radius:24px;background:var(--sunk);box-shadow:var(--nuins)"><h4 style="font:400 21px/1.14 'Young Serif',Georgia,serif">Gente de la zona</h4><p style="margin-top:10px;font:400 15px/1.62 Archivo,sans-serif;color:var(--ink2)">Contratamos y formamos operadores del distrito donde se ejecuta la obra.</p></div>
-    <div data-rv data-rvd="180" style="padding:30px 28px;border-radius:24px;background:var(--sunk);box-shadow:var(--nuins)"><h4 style="font:400 21px/1.14 'Young Serif',Georgia,serif">Obra limpia</h4><p style="margin-top:10px;font:400 15px/1.62 Archivo,sans-serif;color:var(--ink2)">Se entrega el terreno sin material excedente ni pasivos: así se recibe la conformidad.</p></div>
-  </div>
-</section>
-
-<section id="proyectos" style="width:min(1300px,calc(100% - 32px));margin:0 auto;padding:clamp(90px,11vw,150px) 0 0">
-  <div data-rv style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between">
-    <div style="max-width:56ch">
-      <div style="display:flex;align-items:center;gap:11px;font:600 11px Archivo,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)"><i style="display:block;width:9px;height:9px;background:var(--brand)"></i>Nuestros proyectos</div>
-      <h2 style="margin-top:20px;font:400 clamp(34px,4.4vw,58px)/1.02 'Young Serif',Georgia,serif;letter-spacing:-.018em;text-wrap:balance">Casos entregados y en ejecución.</h2>
-    </div>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:22px;margin-top:52px">
-    <article data-rv data-rvd="0" class="card-hover" style="border-radius:28px;background:var(--bg);box-shadow:var(--nu1);padding:20px">
-      <div style="position:relative;height:260px;border-radius:20px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-pro-1" shape="rect" src="assets/images/pro-ejidos.webp" placeholder="Habilitación urbana — foto de obra"></image-slot></div>
-      <div style="display:flex;gap:8px;margin-top:22px"><span style="padding:7px 12px;border-radius:10px;background:var(--sunk);box-shadow:var(--nuins);font:700 10px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)">Habilitación</span><span style="padding:7px 12px;border-radius:10px;background:var(--sunk);box-shadow:var(--nuins);font:700 10px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)">Piura</span></div>
-      <h3 style="margin-top:18px;font:400 27px/1.1 'Young Serif',Georgia,serif">Los Ejidos, etapa II</h3>
-      <p style="margin-top:12px;font:400 15px/1.65 Archivo,sans-serif;color:var(--ink2)">14 hectáreas lotizadas con vías, veredas y redes de agua ejecutadas en 9 meses.</p>
-      <a href="#contacto" class="btn-secondary" style="display:inline-block;margin-top:22px;padding:14px 22px;border-radius:14px;background:var(--bg);box-shadow:var(--nu1);font:700 11.5px Archivo,sans-serif;letter-spacing:.1em;text-transform:uppercase">Ver caso</a>
-    </article>
-    <article data-rv data-rvd="110" class="card-hover" style="border-radius:28px;background:var(--bg);box-shadow:var(--nu1);padding:20px">
-      <div style="position:relative;height:260px;border-radius:20px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-pro-2" shape="rect" src="assets/images/pro-planta-agro.webp" placeholder="Planta agroindustrial — foto de obra"></image-slot></div>
-      <div style="display:flex;gap:8px;margin-top:22px"><span style="padding:7px 12px;border-radius:10px;background:var(--sunk);box-shadow:var(--nuins);font:700 10px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)">Obra civil</span><span style="padding:7px 12px;border-radius:10px;background:var(--sunk);box-shadow:var(--nuins);font:700 10px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)">Sullana</span></div>
-      <h3 style="margin-top:18px;font:400 27px/1.1 'Young Serif',Georgia,serif">Ampliación planta agro</h3>
-      <p style="margin-top:12px;font:400 15px/1.65 Archivo,sans-serif;color:var(--ink2)">Plataforma, losa industrial y patio de maniobras sin detener la operación de la planta.</p>
-      <a href="#contacto" class="btn-secondary" style="display:inline-block;margin-top:22px;padding:14px 22px;border-radius:14px;background:var(--bg);box-shadow:var(--nu1);font:700 11.5px Archivo,sans-serif;letter-spacing:.1em;text-transform:uppercase">Ver caso</a>
-    </article>
-    <article data-rv data-rvd="220" class="card-hover" style="border-radius:28px;background:var(--bg);box-shadow:var(--nu1);padding:20px">
-      <div style="position:relative;height:260px;border-radius:20px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-pro-3" shape="rect" src="assets/images/pro-via-drenaje.webp" placeholder="Vía y drenaje — foto de obra"></image-slot></div>
-      <div style="display:flex;gap:8px;margin-top:22px"><span style="padding:7px 12px;border-radius:10px;background:var(--sunk);box-shadow:var(--nuins);font:700 10px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)">Vialidad</span><span style="padding:7px 12px;border-radius:10px;background:var(--sunk);box-shadow:var(--nuins);font:700 10px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)">Trujillo</span></div>
-      <h3 style="margin-top:18px;font:400 27px/1.1 'Young Serif',Georgia,serif">Vía de acceso y drenaje</h3>
-      <p style="margin-top:12px;font:400 15px/1.65 Archivo,sans-serif;color:var(--ink2)">1.8 km de vía con cunetas y alcantarillas, diseñada para la temporada de lluvias.</p>
-      <a href="#contacto" class="btn-secondary" style="display:inline-block;margin-top:22px;padding:14px 22px;border-radius:14px;background:var(--bg);box-shadow:var(--nu1);font:700 11.5px Archivo,sans-serif;letter-spacing:.1em;text-transform:uppercase">Ver caso</a>
-    </article>
-  </div>
-</section>
-
-<section id="galeria" style="width:min(1300px,calc(100% - 32px));margin:0 auto;padding:clamp(90px,11vw,150px) 0 0">
-  <div data-rv style="max-width:60ch">
-    <div style="display:flex;align-items:center;gap:11px;font:600 11px Archivo,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)"><i style="display:block;width:9px;height:9px;background:var(--brand)"></i>Galería</div>
-    <h2 style="margin-top:20px;font:400 clamp(34px,4.4vw,58px)/1.02 'Young Serif',Georgia,serif;letter-spacing:-.018em;text-wrap:balance">El avance, semana a semana.</h2>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));grid-auto-rows:118px;gap:20px;margin-top:52px">
-    <div data-rv data-rvd="0" class="card-hover" style="grid-row:span 3;padding:14px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)"><div style="position:relative;height:100%;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-gal-1" shape="rect" src="assets/images/gal-1.webp" placeholder="Foto vertical de obra"></image-slot></div></div>
-    <div data-rv data-rvd="70" class="card-hover" style="grid-row:span 2;padding:14px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)"><div style="position:relative;height:100%;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-gal-2" shape="rect" src="assets/images/gal-2.webp" placeholder="Frente de trabajo"></image-slot></div></div>
-    <div data-rv data-rvd="140" class="card-hover" style="grid-row:span 3;padding:14px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)"><div style="position:relative;height:100%;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-gal-3" shape="rect" src="assets/images/gal-3.webp" placeholder="Equipo en operación"></image-slot></div></div>
-    <div data-rv data-rvd="210" class="card-hover" style="grid-row:span 2;padding:14px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)"><div style="position:relative;height:100%;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-gal-4" shape="rect" src="assets/images/gal-4.webp" placeholder="Detalle de obra"></image-slot></div></div>
-    <div data-rv data-rvd="70" class="card-hover" style="grid-row:span 2;padding:14px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)"><div style="position:relative;height:100%;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-gal-5" shape="rect" src="assets/images/gal-5.webp" placeholder="Cuadrilla en campo"></image-slot></div></div>
-    <div data-rv data-rvd="140" class="card-hover" style="grid-row:span 2;padding:14px;border-radius:26px;background:var(--bg);box-shadow:var(--nu1)"><div style="position:relative;height:100%;border-radius:18px;overflow:hidden;box-shadow:var(--nuin);background:var(--sunk)"><image-slot id="grenco-gal-6" shape="rect" src="assets/images/gal-6.webp" placeholder="Entrega de obra"></image-slot></div></div>
-  </div>
-</section>
-
-<section id="contacto" style="width:min(1300px,calc(100% - 32px));margin:0 auto;padding:clamp(90px,11vw,150px) 0 0">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:clamp(30px,4vw,60px);align-items:start">
-    <div data-rv>
-      <div style="display:flex;align-items:center;gap:11px;font:600 11px Archivo,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)"><i style="display:block;width:9px;height:9px;background:var(--brand)"></i>Conversemos</div>
-      <h2 style="margin-top:20px;font:400 clamp(34px,4.4vw,58px)/1.02 'Young Serif',Georgia,serif;letter-spacing:-.018em;text-wrap:balance">Cuéntanos el terreno. Te respondemos en 24 horas.</h2>
-      <p style="margin-top:22px;max-width:52ch;font:400 16.5px/1.72 Archivo,sans-serif;color:var(--ink2);text-wrap:pretty">Envía la ubicación y el alcance estimado. Si hace falta, vamos a verlo antes de cotizar.</p>
-      <div style="display:grid;gap:14px;margin-top:36px">
-        <div data-sedecard="piura" style="padding:26px 26px;border-radius:22px;background:var(--bg);box-shadow:var(--nu1);transition:box-shadow .5s ease,background-color .6s ease">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><h3 style="white-space:nowrap;font:400 22px/1.14 'Young Serif',Georgia,serif">Sede Piura</h3><span style="flex:0 0 auto;white-space:nowrap;padding:6px 11px;border-radius:9px;background:var(--brand);color:var(--onbrand);font:700 9.5px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase">Principal</span></div>
-          <p style="margin-top:12px;font:400 14.5px/1.6 Archivo,sans-serif;color:var(--ink2)">Oficina y taller · Piura, Perú<br>Lun a sáb · 7:00 – 18:00</p>
-          <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;font:600 14px Archivo,sans-serif"><a href="tel:+51900000000">+51 900 000 000</a><a href="mailto:piura@grenco.pe">piura@grenco.pe</a></div>
-        </div>
-        <div data-sedecard="trujillo" style="padding:26px 26px;border-radius:22px;background:var(--bg);box-shadow:var(--nu1);transition:box-shadow .5s ease,background-color .6s ease">
-          <h3 style="font:400 22px/1.14 'Young Serif',Georgia,serif">Sede Trujillo</h3>
-          <p style="margin-top:12px;font:400 14.5px/1.6 Archivo,sans-serif;color:var(--ink2)">Oficina comercial · Trujillo, La Libertad<br>Lun a vie · 8:00 – 18:00</p>
-          <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;font:600 14px Archivo,sans-serif"><a href="tel:+51900000001">+51 900 000 001</a><a href="mailto:trujillo@grenco.pe">trujillo@grenco.pe</a></div>
-        </div>
-      </div>
-    </div>
-
-    <form id="contact-form" data-rv data-rvd="120" style="padding:clamp(26px,3vw,44px);border-radius:32px;background:var(--bg);box-shadow:var(--nu2);transition:background-color .6s ease">
-      <div style="display:grid;gap:16px">
-        <div data-field style="position:relative">
-          <input id="f-nombre" type="text" name="nombre" placeholder=" " required style="width:100%;padding:28px 22px 12px;border:0;border-radius:16px;background:var(--sunk);box-shadow:var(--nuins);font:500 15px Archivo,sans-serif;outline:none;transition:background-color .6s ease,color .6s ease">
-          <label for="f-nombre" style="position:absolute;left:23px;top:19px;transform-origin:left top;transition:transform .25s ease,color .25s ease;pointer-events:none;white-space:nowrap;font:500 15px Archivo,sans-serif;color:var(--ink3)">Nombre y apellido</label>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:16px">
-          <div data-field style="position:relative">
-            <input id="f-mail" type="email" name="email" placeholder=" " required style="width:100%;padding:28px 22px 12px;border:0;border-radius:16px;background:var(--sunk);box-shadow:var(--nuins);font:500 15px Archivo,sans-serif;outline:none;transition:background-color .6s ease,color .6s ease">
-            <label for="f-mail" style="position:absolute;left:23px;top:19px;transform-origin:left top;transition:transform .25s ease,color .25s ease;pointer-events:none;white-space:nowrap;font:500 15px Archivo,sans-serif;color:var(--ink3)">Correo</label>
-          </div>
-          <div data-field style="position:relative">
-            <input id="f-tel" type="tel" name="telefono" placeholder=" " style="width:100%;padding:28px 22px 12px;border:0;border-radius:16px;background:var(--sunk);box-shadow:var(--nuins);font:500 15px Archivo,sans-serif;outline:none;transition:background-color .6s ease,color .6s ease">
-            <label for="f-tel" style="position:absolute;left:23px;top:19px;transform-origin:left top;transition:transform .25s ease,color .25s ease;pointer-events:none;white-space:nowrap;font:500 15px Archivo,sans-serif;color:var(--ink3)">Teléfono</label>
-          </div>
-        </div>
-        <div style="position:relative;display:flex;align-items:center">
-          <select name="servicio" aria-label="Servicio requerido" style="width:100%;appearance:none;-webkit-appearance:none;padding:20px 46px 20px 22px;border:0;border-radius:16px;background:var(--sunk);box-shadow:var(--nuins);font:500 15px Archivo,sans-serif;color:var(--ink2);cursor:pointer;outline:none;transition:background-color .6s ease,color .6s ease">
-            <option>Movimiento de tierras</option>
-            <option>Obras civiles</option>
-            <option>Alquiler de maquinaria</option>
-            <option>Saneamiento y redes</option>
-            <option>Habilitación urbana</option>
-            <option>Demolición y desbroce</option>
-          </select>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:20px;pointer-events:none"><path d="m6 9 6 6 6-6"/></svg>
-        </div>
-        <div data-field style="position:relative">
-          <textarea id="f-msg" name="mensaje" rows="4" placeholder=" " style="width:100%;padding:30px 22px 14px;border:0;border-radius:16px;background:var(--sunk);box-shadow:var(--nuins);font:500 15px/1.6 Archivo,sans-serif;resize:vertical;outline:none;transition:background-color .6s ease,color .6s ease"></textarea>
-          <label for="f-msg" style="position:absolute;left:23px;top:19px;transform-origin:left top;transition:transform .25s ease,color .25s ease;pointer-events:none;white-space:nowrap;font:500 15px Archivo,sans-serif;color:var(--ink3)">Ubicación y alcance de la obra</label>
-        </div>
-        <button type="submit" class="btn-primary" style="margin-top:6px;padding:19px 28px;border-radius:16px;background:var(--brand);color:var(--onbrand);font:700 13px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;box-shadow:var(--nu1)">Enviar solicitud</button>
-        <p id="form-success" role="status" style="display:none;align-items:center;gap:10px;padding:16px 18px;border-radius:14px;background:var(--sunk);box-shadow:var(--nuins);font:500 14px Archivo,sans-serif;color:var(--ink2)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg>Solicitud registrada. Te escribimos dentro de 24 horas hábiles.</p>
-      </div>
-    </form>
-  </div>
-</section>
-
-<footer style="width:min(1300px,calc(100% - 32px));margin:clamp(90px,11vw,150px) auto 0;padding:clamp(34px,4vw,52px) 0 40px;border-top:1px solid var(--line)">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:36px;align-items:start">
-    <div>
-      <img src="assets/grenco-lockup-light.png" alt="GRENCO" style="display:var(--logoL);height:46px;width:auto">
-      <img src="assets/grenco-lockup-dark.png" alt="GRENCO" style="display:var(--logoD);height:46px;width:auto">
-      <p style="margin-top:18px;max-width:34ch;font:400 14.5px/1.65 Archivo,sans-serif;color:var(--ink2)">Movimiento de tierras, obra civil y maquinaria pesada. Piura y Trujillo, Perú.</p>
-    </div>
-    <div>
-      <h4 style="font:600 10.5px Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3)">Servicios</h4>
-      <ul style="display:grid;gap:9px;margin-top:16px;font:400 14.5px Archivo,sans-serif"><li><a href="#servicios" style="color:var(--ink2)">Movimiento de tierras</a></li><li><a href="#servicios" style="color:var(--ink2)">Obras civiles</a></li><li><a href="#maquinaria" style="color:var(--ink2)">Alquiler de maquinaria</a></li><li><a href="#servicios" style="color:var(--ink2)">Habilitación urbana</a></li></ul>
-    </div>
-    <div>
-      <h4 style="font:600 10.5px Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3)">Empresa</h4>
-      <ul style="display:grid;gap:9px;margin-top:16px;font:400 14.5px Archivo,sans-serif"><li><a href="#nosotros" style="color:var(--ink2)">Nosotros</a></li><li><a href="#proyectos" style="color:var(--ink2)">Proyectos</a></li><li><a href="#galeria" style="color:var(--ink2)">Galería</a></li><li><a href="#contacto" style="color:var(--ink2)">Contacto</a></li></ul>
-    </div>
-    <div>
-      <h4 style="font:600 10.5px Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3)">Sedes</h4>
-      <ul style="display:grid;gap:9px;margin-top:16px;font:400 14.5px/1.5 Archivo,sans-serif;color:var(--ink2)"><li>Piura · Oficina y taller</li><li>Trujillo · Oficina comercial</li><li><a href="mailto:contacto@grenco.pe">contacto@grenco.pe</a></li></ul>
-    </div>
-  </div>
-  <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);font:400 12.5px Archivo,sans-serif;color:var(--ink3)">
-    <span>© 2026 Grupo Enriquez Construcciones S.A.C.</span>
-    <span>Piura — Trujillo, Perú</span>
-  </div>
-</footer>
-
-</div>
-
-<div data-stickycta style="position:fixed;left:50%;bottom:26px;z-index:70;max-width:calc(100vw - 32px);transition:opacity .5s ease,transform .5s ease">
-  <div style="display:flex;align-items:center;gap:16px;padding:12px 12px 12px 26px;border-radius:20px;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--nu2)">
-    <span data-hidesm style="font:500 14px Archivo,sans-serif;color:var(--ink2)">¿Tienes un terreno por mover?</span>
-    <a href="#contacto" class="btn-primary" style="padding:14px 24px;border-radius:14px;background:var(--brand);color:var(--onbrand);font:700 12px Archivo,sans-serif;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;box-shadow:var(--nu1)">Cotizar obra</a>
-  </div>
-</div>
-
-<a data-wa href="https://wa.me/51900000000" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" style="position:fixed;right:24px;bottom:24px;z-index:80;width:62px;height:62px;display:grid;place-items:center;border-radius:50%;background:var(--bg);box-shadow:var(--nu1);color:#25D366;transition:box-shadow .3s ease,transform .3s ease,background-color .6s ease">
-  <span style="position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:wapulse 2.6s cubic-bezier(.2,.7,.3,1) infinite;pointer-events:none"></span>
-  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
-  <span data-watip style="position:absolute;right:74px;white-space:nowrap;padding:11px 16px;border-radius:12px;background:var(--bg);box-shadow:var(--nu1);font:600 12.5px Archivo,sans-serif;color:var(--ink);opacity:0;transform:translateX(8px);transition:opacity .3s ease,transform .3s ease;pointer-events:none">Escríbenos por WhatsApp</span>
-</a>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const root = document.documentElement;
-  root.setAttribute('data-anim', '1');
-
-  /* ================= 1. CAMBIO DE SEDE Y MODO OSCURO ================= */
-  const sedeSelect = document.getElementById('sede-select');
-  
-  function applySede(sede) {
-    const validSede = (sede === 'trujillo') ? 'trujillo' : 'piura';
-    root.setAttribute('data-sede', validSede);
-    if (sedeSelect) {
-      sedeSelect.value = validSede;
-    }
-    try {
-      localStorage.setItem('grenco.sede', validSede);
-    } catch (e) { /* ignore */ }
-  }
-
-  let savedSede = null;
-  try {
-    savedSede = localStorage.getItem('grenco.sede');
-  } catch (e) { savedSede = null; }
-
-  applySede(savedSede || 'piura');
-
-  if (sedeSelect) {
-    sedeSelect.addEventListener('change', (e) => {
-      applySede(e.target.value);
-    });
-  }
-
-  /* ================= 2. MISIÓN Y VISIÓN ================= */
-  const SEG_DATA = {
-    mision: {
-      title: 'Ejecutar obras de movimiento de tierras e infraestructura con equipo propio, cumpliendo el plazo y el estándar técnico que el cliente firmó.',
-      body: 'Trabajamos con cuadrillas en planilla, maquinaria mantenida en taller propio y control topográfico en cada partida. Esa es toda la fórmula.',
-      p: ['Plazo y presupuesto sostenidos', 'Cero accidentes incapacitantes', 'Conformidad de obra a la primera']
-    },
-    vision: {
-      title: 'Ser la constructora de referencia del norte peruano para obras de tierra e infraestructura urbana hacia 2030.',
-      body: 'Crecer sin perder el control del frente de trabajo: más equipos propios, más operadores formados en la zona y una tercera sede en el norte.',
-      p: ['Flota renovada cada 5 años', 'Operadores formados en casa', 'Tercera sede operativa']
-    }
-  };
-
-  const segContainer = document.getElementById('seg-container');
-  const btnMision = document.getElementById('btn-seg-mision');
-  const btnVision = document.getElementById('btn-seg-vision');
-  const segTitle = document.getElementById('seg-title');
-  const segBody = document.getElementById('seg-body');
-  const segP1 = document.getElementById('seg-p1');
-  const segP2 = document.getElementById('seg-p2');
-  const segP3 = document.getElementById('seg-p3');
-
-  function setSegment(segKey) {
-    const data = SEG_DATA[segKey] || SEG_DATA.mision;
-    if (segContainer) segContainer.setAttribute('data-on', segKey);
-    if (segTitle) segTitle.textContent = data.title;
-    if (segBody) segBody.textContent = data.body;
-    if (segP1) segP1.textContent = data.p[0];
-    if (segP2) segP2.textContent = data.p[1];
-    if (segP3) segP3.textContent = data.p[2];
-  }
-
-  if (btnMision) btnMision.addEventListener('click', () => setSegment('mision'));
-  if (btnVision) btnVision.addEventListener('click', () => setSegment('vision'));
-
-  /* ================= 3. ENTRADA ESCALONADA (REVEAL) ================= */
-  const rvEls = Array.from(document.querySelectorAll('[data-rv]'));
-  
-  function fillBars(scope) {
-    const bars = Array.from(scope.querySelectorAll('[data-fill]'));
-    if (!bars.length) return;
-    setTimeout(() => {
-      bars.forEach(b => { b.style.width = b.dataset.fill + '%'; });
-    }, 260);
-  }
-
-  if (!('IntersectionObserver' in window)) {
-    rvEls.forEach(el => el.setAttribute('data-rv', 'in'));
-    fillBars(document);
-  } else {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        el.style.transitionDelay = (parseInt(el.dataset.rvd || '0', 10)) + 'ms';
-        el.setAttribute('data-rv', 'in');
-        fillBars(el);
-        io.unobserve(el);
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
-
-    rvEls.forEach(el => io.observe(el));
-  }
-
-  /* ================= 4. HERO SLIDER ================= */
-  const sliderRoot = document.getElementById('hero-slider');
-  if (sliderRoot) {
-    const slides = Array.from(sliderRoot.querySelectorAll('[data-slide]'));
-    const inds = Array.from(sliderRoot.querySelectorAll('[data-ind]'));
-    const bars = inds.map(b => b.firstElementChild);
-    const caption = sliderRoot.querySelector('[data-caption]');
-    const labels = [
-      'Habilitación urbana · Piura',
-      'Movimiento de tierras · Sullana',
-      'Obra civil · Trujillo',
-      'Flota y taller propio'
-    ];
-    const DUR = 5000;
-    let index = 0, progress = 0, last = 0;
-    let paused = false;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function showSlide(n) {
-      index = n;
-      progress = 0;
-      slides.forEach((s, k) => s.setAttribute('data-slide', k === n ? 'on' : 'off'));
-      bars.forEach((b, k) => { if (b) b.style.width = '0%'; });
-      if (caption) caption.textContent = labels[n] || '';
-    }
-
-    showSlide(0);
-
-    inds.forEach((btn, k) => {
-      btn.addEventListener('click', () => {
-        showSlide(k);
-        paused = false;
-      });
-    });
-
-    sliderRoot.addEventListener('mouseenter', () => { paused = true; });
-    sliderRoot.addEventListener('mouseleave', () => { paused = false; });
-    sliderRoot.addEventListener('focusin', () => { paused = true; });
-    sliderRoot.addEventListener('focusout', () => { paused = false; });
-
-    function tickSlider(now) {
-      if (!last) last = now;
-      const dt = Math.min(now - last, 80);
-      last = now;
-      if (!paused && !reducedMotion) {
-        progress += dt / DUR;
-        if (progress >= 1) {
-          showSlide((index + 1) % slides.length);
-        } else {
-          const b = bars[index];
-          if (b) b.style.width = (progress * 100).toFixed(2) + '%';
+          var sede = localStorage.getItem('grenco.sede');
+          if (sede === 'piura' || sede === 'trujillo') root.setAttribute('data-sede', sede);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
         }
-      }
-      requestAnimationFrame(tickSlider);
-    }
-    requestAnimationFrame(tickSlider);
-  }
-
-  /* ================= 5. SCROLL & PARALLAX ================= */
-  const mark = document.getElementById('bg-mark');
-  const pxEls = Array.from(document.querySelectorAll('[data-px]'));
-  let smooth = 0, target = 0;
-  let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-  let navHidden = false;
-
-  function onScrollRead() {
-    const top = window.pageYOffset || document.documentElement.scrollTop || 0;
-    const view = window.innerHeight || document.documentElement.clientHeight;
-    const max = Math.max(1, (document.documentElement.scrollHeight || document.body.scrollHeight) - view);
-    target = Math.min(1, Math.max(0, top / max));
-    root.setAttribute('data-scrolled', top > 24 ? '1' : '0');
-    root.setAttribute('data-past', top > view * 0.75 ? '1' : '0');
-
-    // Ocultar al bajar, mostrar al subir
-    const diff = top - lastScrollY;
-    if (top <= 25) {
-      if (navHidden) {
-        navHidden = false;
-        root.setAttribute('data-nav-hidden', '0');
-      }
-    } else if (diff > 6 && top > 80) {
-      if (!navHidden) {
-        navHidden = true;
-        root.setAttribute('data-nav-hidden', '1');
-      }
-    } else if (diff < -6) {
-      if (navHidden) {
-        navHidden = false;
-        root.setAttribute('data-nav-hidden', '0');
-      }
-    }
-    lastScrollY = Math.max(0, top);
-  }
-
-  window.addEventListener('scroll', onScrollRead, { passive: true });
-  window.addEventListener('resize', onScrollRead);
-  onScrollRead();
-
-  function applyMark(p) {
-    if (!mark) return;
-    const e = p < 0.12 ? (p / 0.12) * 0.12 : p;
-    mark.style.transform = 'translateY(' + (72 - e * 80).toFixed(2) + 'vh) scale(' + (0.55 + e * 3.05).toFixed(3) + ') rotate(' + (e * 7).toFixed(2) + 'deg)';
-  }
-  applyMark(0);
-
-  function frameLoop() {
-    onScrollRead();
-    smooth += (target - smooth) * 0.08;
-    applyMark(smooth);
-    const view = window.innerHeight;
-    pxEls.forEach(el => {
-      const f = parseFloat(el.dataset.px) || 0;
-      const r = el.getBoundingClientRect();
-      const mid = Math.max(-1, Math.min(1, (r.top + r.height / 2 - view / 2) / view));
-      el.style.transform = 'translate3d(0,' + (-mid * f * 320).toFixed(2) + 'px,0)';
-    });
-    requestAnimationFrame(frameLoop);
-  }
-  requestAnimationFrame(frameLoop);
-
-  /* ================= 6. FORMULARIO DE CONTACTO ================= */
-  const contactForm = document.getElementById('contact-form');
-  const formSuccess = document.getElementById('form-success');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (formSuccess) {
-        formSuccess.style.display = 'flex';
-        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-      contactForm.reset();
-    });
-  }
-});
-</script>
-</body>
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding: 24px; font: 400 16px/1.6 system-ui, sans-serif">
+        Esta página necesita JavaScript. Escríbenos a
+        <a href="mailto:contacto@grenco.pe">contacto@grenco.pe</a> o al
+        <a href="https://wa.me/51900000000">WhatsApp +51 900 000 000</a>.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

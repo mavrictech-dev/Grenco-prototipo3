@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Tokens de diseno
+   El tema (claro/oscuro) y la sede (Piura/Trujillo) son ejes independientes:
+   data-theme controla la paleta, data-sede controla que contenido se resalta.
+   ========================================================================== */
+
+:root,
+html[data-theme='light'] {
+  --bg: #e9e6e0;
+  --sunk: #e3dfd8;
+  --hl: #ffffff;
+  --sh: #bcb5a8;
+  --ink: #1b1a17;
+  --ink2: #5e574d;
+  --ink3: #8b8478;
+  --brand: #e5a11c;
+  --accent-ink: #8a5a00;
+  --onbrand: #191712;
+  --line: rgba(27, 26, 23, 0.1);
+  --markop: 0.085;
+}
+
+html[data-theme='dark'] {
+  --bg: #1e2024;
+  --sunk: #191b1e;
+  --hl: #2c2f36;
+  --sh: #0e0f11;
+  --ink: #eeece7;
+  --ink2: #a6a29a;
+  --ink3: #7c786f;
+  --brand: #f0ad2a;
+  --accent-ink: #f0ad2a;
+  --onbrand: #17150f;
+  --line: rgba(255, 255, 255, 0.09);
+  --markop: 0.07;
+}
+
+/* ==========================================================================
+   Ambiente por sede
+   La sede define el CARACTER del cielo (Piura = dia despejado, Trujillo =
+   atardecer) y el tema define su LUMINOSIDAD. Asi las cuatro combinaciones
+   son coherentes: Piura de noche es un cielo nocturno despejado, y Trujillo
+   de dia es una luz dorada de tarde.
+
+   Ojo: --bg NO puede ser un degradado. Las tarjetas neumorficas se pintan con
+   `background: var(--bg)` y necesitan un color solido para que el relieve
+   funcione. El cielo va en una capa aparte (.ambient) que termina fundiendose
+   justo en ese mismo --bg.
+   ========================================================================== */
+
+/* --- Piura: dia soleado ---------------------------------------------------
+   Azul de cielo abierto, sol alto y pequeno, nubes blancas.
+   -------------------------------------------------------------------------- */
+html[data-sede='piura'] {
+  --amb-alto: #3d9ade;
+  --amb-medio: #8fc9ec;
+  --amb-bajo: #d6e9f2;
+  --amb-nube: #ffffff;
+  --amb-nube-op: 0.92;
+  --amb-nube-sombra: rgba(120, 160, 190, 0.28);
+
+  --sol-x: 78%;
+  --sol-y: 74%;
+  --sol-tam: 96px;
+  --sol-nucleo: #fffdf0;
+  --sol-halo: rgba(255, 244, 190, 0.8);
+  --sol-alcance: 380px;
+  --sol-op: 1;
+
+  /* Tinte del hero. Es lo unico del ambiente que se ve en la primera pantalla:
+     el cielo queda detras del hero, asi que el cambio de sede tiene que
+     notarse aqui. */
+  --amb-tinte: rgba(74, 158, 220, 0.2);
+}
+
+/* Piura de noche: el mismo cielo despejado, sin sol. */
+html[data-sede='piura'][data-theme='dark'] {
+  --amb-alto: #060c18;
+  --amb-medio: #0e1a2e;
+  --amb-bajo: #172234;
+  --amb-nube: #7f9dc0;
+  --amb-nube-op: 0.1;
+  --amb-nube-sombra: rgba(0, 0, 0, 0.2);
+
+  --sol-x: 74%;
+  --sol-y: 75%;
+  --sol-tam: 62px;
+  --sol-nucleo: #e8eef7;
+  --sol-halo: rgba(180, 205, 235, 0.24);
+  --sol-alcance: 240px;
+  --sol-op: 0.85;
+
+  --amb-tinte: rgba(24, 54, 104, 0.34);
+}
+
+/* --- Trujillo: atardecer --------------------------------------------------
+   El sol baja, crece y se enrojece; las nubes se iluminan por debajo.
+   -------------------------------------------------------------------------- */
+html[data-sede='trujillo'] {
+  --amb-alto: #6b4a8f;
+  --amb-medio: #f08a5d;
+  --amb-bajo: #fbd9a5;
+  --amb-nube: #ffd9b0;
+  --amb-nube-op: 0.78;
+  --amb-nube-sombra: rgba(150, 70, 60, 0.3);
+
+  --sol-x: 72%;
+  --sol-y: 78%;
+  --sol-tam: 190px;
+  --sol-nucleo: #fff3c4;
+  --sol-halo: rgba(255, 150, 60, 0.62);
+  --sol-alcance: 680px;
+  --sol-op: 1;
+
+  --amb-tinte: rgba(244, 132, 54, 0.26);
+}
+
+/* Trujillo de noche: ya se puso, queda la brasa en el horizonte. */
+html[data-sede='trujillo'][data-theme='dark'] {
+  --amb-alto: #140b22;
+  --amb-medio: #3d1630;
+  --amb-bajo: #6b2a1e;
+  --amb-nube: #d9764a;
+  --amb-nube-op: 0.16;
+  --amb-nube-sombra: rgba(0, 0, 0, 0.28);
+
+  --sol-x: 70%;
+  --sol-y: 80%;
+  --sol-tam: 132px;
+  --sol-nucleo: #ff9d52;
+  --sol-halo: rgba(226, 92, 40, 0.42);
+  --sol-alcance: 560px;
+  --sol-op: 0.9;
+
+  --amb-tinte: rgba(158, 52, 26, 0.32);
+}
+
+:root {
+  /* Relieve neumorfico: par de sombras opuestas derivadas de --sh / --hl */
+  --nu1: 7px 7px 16px var(--sh), -7px -7px 16px var(--hl);
+  --nu2: 16px 16px 34px var(--sh), -12px -12px 26px var(--hl);
+  --nu3: 24px 24px 48px var(--sh), -16px -16px 34px var(--hl);
+  --nuin: inset 6px 6px 12px var(--sh), inset -6px -6px 12px var(--hl);
+  --nuins: inset 3px 3px 7px var(--sh), inset -3px -3px 7px var(--hl);
+
+  --shell: min(1300px, calc(100% - 32px));
+  --gap-section: clamp(90px, 11vw, 150px);
+  --ease-out: cubic-bezier(0.16, 0.84, 0.28, 1);
+
+  --font-sans: Archivo, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Young Serif', Georgia, 'Times New Roman', serif;
+}
