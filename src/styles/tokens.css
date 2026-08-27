@@ -54,7 +54,7 @@ html[data-theme='dark'] {
 html[data-sede='piura'] {
   --amb-alto: #3d9ade;
   --amb-medio: #8fc9ec;
-  --amb-bajo: #d6e9f2;
+  --amb-bajo: #a8d2ea;
   --amb-nube: #ffffff;
   --amb-nube-op: 1;
 
@@ -76,7 +76,7 @@ html[data-sede='piura'] {
 html[data-sede='piura'][data-theme='dark'] {
   --amb-alto: #060c18;
   --amb-medio: #0e1a2e;
-  --amb-bajo: #172234;
+  --amb-bajo: #1c2b45;
   --amb-nube: #7f9dc0;
   --amb-nube-op: 0.26;
 
@@ -97,8 +97,8 @@ html[data-sede='piura'][data-theme='dark'] {
 html[data-sede='trujillo'] {
   --amb-alto: #6b4a8f;
   --amb-medio: #f08a5d;
-  --amb-bajo: #fbd9a5;
-  --amb-nube: #ffd9b0;
+  --amb-bajo: #efa054;
+  --amb-nube: #fff0d8;
   --amb-nube-op: 0.92;
 
   --sol-x: 72%;
@@ -116,7 +116,7 @@ html[data-sede='trujillo'] {
 html[data-sede='trujillo'][data-theme='dark'] {
   --amb-alto: #140b22;
   --amb-medio: #3d1630;
-  --amb-bajo: #6b2a1e;
+  --amb-bajo: #7d3520;
   --amb-nube: #d9764a;
   --amb-nube-op: 0.34;
 

@@ -28,12 +28,16 @@
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  /* Las paradas estan corridas hacia abajo respecto a la version anterior
+     (32/62/88). El cielo llegaba a su tono mas claro ya al 62% y ahi una nube
+     blanca no tiene contra que contrastar: el contraste se perdia antes de que
+     entrara siquiera el desvanecido. */
   background: linear-gradient(
     to bottom,
     var(--amb-alto) 0%,
-    var(--amb-medio) 32%,
-    var(--amb-bajo) 62%,
-    transparent 88%
+    var(--amb-medio) 40%,
+    var(--amb-bajo) 74%,
+    transparent 96%
   );
   transition: background 0.9s ease;
 }
@@ -163,8 +167,11 @@
    el, o se quedarian flotando sobre el fondo plano. Este degradado se aplica
    al conjunto, por encima del de cada banda. */
 .nubes {
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 74%, transparent 92%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 74%, transparent 92%);
+  /* El desvanecido arranca al 84% y no al 74%: antes apagaba las nubes justo
+     en la franja donde todavia hay cielo de color, y la parte de abajo se veia
+     lavada. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 84%, transparent 97%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 84%, transparent 97%);
 }
 
 /* En movil la capa es mucho mas estrecha, asi que el mismo 10% de recorrido

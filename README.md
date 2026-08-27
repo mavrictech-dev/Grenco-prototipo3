@@ -129,6 +129,29 @@ Dos trampas mas que ya estan resueltas y conviene no reintroducir:
 La deriva va a 13-23px/s en escritorio y 10px/s en movil. Antes eran 150-210s
 para un recorrido del 6%: menos de 1px por segundo, o sea invisible.
 
+**Contraste en la parte baja del cielo.** Las nubes se veian lavadas segun
+bajaba la pagina, por dos motivos a la vez:
+
+1. El degradado llegaba a su tono mas claro ya al 62%, y contra un cielo casi
+   blanco una nube blanca no tiene contra que contrastar. Se corrieron las
+   paradas a 40/74/96% y se saturaron los `--amb-bajo`.
+2. El desvanecido de `.nubes` arrancaba al 74%, justo donde todavia queda cielo
+   de color. Ahora empieza al 84%.
+
+En Trujillo habia ademas un tercer problema propio: la nube (`#ffd9b0`) y el
+`--bg` beige tenian casi la misma luminancia, asi que al fundirse el cielo la
+nube desaparecia. Se aclaro a `#fff0d8`.
+
+Contraste de luminancia medido (60 / 70 / 78 / 85% de la capa):
+
+| | antes | ahora |
+|---|---|---|
+| Piura dia | 21 / 19 / 15 / 7 | **43 / 40 / 35 / 27** |
+| Trujillo dia | 35 / 30 / 21 / 10 | **53 / 50 / 41 / 26** |
+
+La caida por debajo del 90% es intencionada: ahi el cielo ya termino y las
+nubes tienen que apagarse, o se quedarian flotando sobre el fondo plano.
+
 ### Textos por sede
 
 `src/data/sede-contenido.js` tiene el relato de cada sede: titular del hero,
