@@ -78,117 +78,103 @@
 }
 
 /* --- Nubes ----------------------------------------------------------------
-   Formas de verdad (un ovalo con dos bultos), no manchas desenfocadas: a este
-   tamano una mancha se lee como suciedad en la pantalla.
+   Las formas las genera un filtro SVG de ruido fractal (ver Nubes.jsx), no
+   figuras CSS: un ovalo con border-radius siempre se lee como algo solido y
+   de canto duro, y lo que se busca aqui es una mancha de acuarela.
+
+   Aqui solo van la colocacion, el color y el desvanecido. El color sale de
+   `currentColor` dentro del SVG, que hereda de este `color`.
    -------------------------------------------------------------------------- */
 
-.nube {
+.nubes {
   position: absolute;
-  background: var(--amb-nube);
-  border-radius: 999px;
+  inset: 0;
+  color: var(--amb-nube);
   opacity: var(--amb-nube-op);
-  filter: drop-shadow(0 10px 14px var(--amb-nube-sombra));
-  transition: background 0.9s ease, opacity 0.9s ease;
+  pointer-events: none;
+  transition: color 0.9s ease, opacity 0.9s ease;
 }
 
-.nube::before,
-.nube::after {
-  content: '';
+/* Cada banda cubre el 31% del alto y arranca cada 23%, asi que se solapan un
+   8%: es lo que borra la costura entre una y otra. Las cuatro juntas van del
+   0% al 100% del cielo. */
+.nubes__capa {
   position: absolute;
-  background: inherit;
-  border-radius: 50%;
+
+  /* Vez y media el ancho de la pantalla, desbordando por los dos lados. Con
+     una deriva de +-10% el borde del lienzo nunca llega a asomar: en el peor
+     momento el canto izquierdo se queda en -10% y el derecho en 110%.
+
+     `max-width: none` NO es opcional. El reset de base.css pone
+     `svg { max-width: 100% }` para que ninguna imagen desborde su caja, y esa
+     regla recortaba este 150% a exactamente 100%: las nubes se cortaban en
+     seco antes del borde derecho. */
+  --deriva: 10%;
+  left: -25%;
+  width: 150%;
+  max-width: none;
+  height: 31%;
+  display: block;
+
+  /* Cada banda se difumina por arriba y por abajo para fundirse con la de al
+     lado. Sin esto se veria el canto de cada lienzo. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 26%, #000 74%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 26%, #000 74%, transparent 100%);
 }
 
-/* Los bultos van en porcentaje del propio ovalo, asi una sola regla sirve
-   para las cuatro nubes con solo cambiarles el ancho. */
-.nube::before {
-  width: 52%;
-  aspect-ratio: 1;
-  top: -58%;
-  left: 12%;
-}
+/* Deriva. Cada banda lleva su propia duracion y sentido: si compartieran
+   tiempos el cielo entero se moveria como un bloque y se notaria que es una
+   sola pieza.
 
-.nube::after {
-  width: 38%;
-  aspect-ratio: 1;
-  top: -34%;
-  right: 14%;
-}
-
-/* Todas entre el 69% y el 88%: por encima las tapa el hero, por debajo el
-   cielo ya es transparente y estarian flotando sobre la G. */
-.nube--1 {
-  width: 190px;
-  height: 46px;
-  top: 71%;
-  left: 8%;
-}
-.nube--2 {
-  width: 130px;
-  height: 32px;
-  top: 78%;
-  left: 30%;
-}
-.nube--3 {
-  width: 220px;
-  height: 52px;
-  top: 73%;
-  left: 52%;
-}
-.nube--4 {
-  width: 150px;
-  height: 36px;
-  top: 82%;
-  left: 74%;
-}
-
+   Las duraciones anteriores (150-210s para un recorrido de +-6%) daban menos
+   de 1px por segundo: la animacion corria, pero era imposible verla. */
 @media (prefers-reduced-motion: no-preference) {
-  .nube {
-    animation: deriva linear infinite;
+  .nubes__capa:nth-child(1) {
+    animation: deriva-nube 54s ease-in-out infinite alternate;
   }
-  .nube--1 { animation-duration: 190s; }
-  .nube--2 { animation-duration: 145s; animation-delay: -40s; }
-  .nube--3 { animation-duration: 230s; animation-delay: -90s; }
-  .nube--4 { animation-duration: 170s; animation-delay: -20s; }
+  .nubes__capa:nth-child(2) {
+    animation: deriva-nube 38s ease-in-out infinite alternate-reverse;
+  }
+  .nubes__capa:nth-child(3) {
+    animation: deriva-nube 67s ease-in-out infinite alternate;
+  }
+  .nubes__capa:nth-child(4) {
+    animation: deriva-nube 45s ease-in-out infinite alternate-reverse;
+  }
 }
 
-/* Deriva muy lenta de lado a lado. Va en vw para que no se salga del encuadre
-   en pantallas anchas. */
-@keyframes deriva {
+/* Vaiven de lado a lado. El filtro se calcula una vez y el navegador solo
+   desplaza el resultado, asi que animar `transform` sale barato.
+
+   El recorrido sale de --deriva en vez de ir escrito en los keyframes: asi
+   basta cambiar esa variable para ajustarlo por tamano de pantalla. Con un
+   segundo @keyframes habria que sobrescribir `animation-name`, y eso pierde
+   contra las reglas :nth-child de arriba, que tienen mas especificidad. */
+@keyframes deriva-nube {
   from {
-    transform: translateX(-14vw);
+    transform: translateX(calc(-1 * var(--deriva)));
   }
   to {
-    transform: translateX(114vw);
+    transform: translateX(var(--deriva));
   }
 }
 
+/* El cielo se apaga en `transparent` al 88%; las nubes tienen que apagarse con
+   el, o se quedarian flotando sobre el fondo plano. Este degradado se aplica
+   al conjunto, por encima del de cada banda. */
+.nubes {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 74%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 74%, transparent 92%);
+}
+
+/* En movil la capa es mucho mas estrecha, asi que el mismo 10% de recorrido
+   daba 5px/s y no se percibia. Se ensancha la capa para poder subir la deriva
+   sin llegar a descubrir los bordes. */
 @media (max-width: 700px) {
-  /* La banda de cielo visible en movil es estrecha: las nubes se encogen y se
-     reparten dentro de ella. La cuarta sobra, satura. */
-  .nube--4 {
-    display: none;
-  }
-
-  .nube--1 {
-    width: 118px;
-    height: 28px;
-    top: 68%;
-    left: 4%;
-  }
-
-  .nube--2 {
-    width: 84px;
-    height: 21px;
-    top: 78%;
-    left: 40%;
-  }
-
-  .nube--3 {
-    width: 132px;
-    height: 31px;
-    top: 72%;
-    left: 62%;
+  .nubes__capa {
+    --deriva: 18%;
+    left: -45%;
+    width: 190%;
   }
 }
 

@@ -89,6 +89,46 @@ El tamano del sol va en `clamp(min, vw, max)` por el mismo motivo: un disco de
 190px se comia la banda entera en un movil. Queda en 62/44/108/82px segun sede
 y tema en movil, y 95/62/187/132px en escritorio.
 
+### Nubes
+
+Las formas las genera un filtro SVG de **ruido fractal** (`Nubes.jsx`), no
+figuras CSS. Un ovalo con `border-radius` siempre se lee como algo solido y de
+canto duro; el ruido fractal da manchas de acuarela que se deshilachan.
+
+Dos detalles que costaron y conviene no deshacer:
+
+- **`preserveAspectRatio="xMidYMid slice"`.** El cielo es casi cuadrado en
+  escritorio y muy alto y estrecho en movil. Estirando el SVG (`none`) el ruido
+  se deformaba hasta salir como chorretones verticales. Con `slice` el SVG
+  conserva su proporcion y recorta lo que sobra, asi que la nube tiene la misma
+  forma en cualquier pantalla.
+- **El realce de gamma (`feComponentTransfer`) va despues del corte de alfa.**
+  `fractalNoise` reparte sus valores muy cerca del medio y casi nunca toca los
+  extremos, asi que el cuerpo de la nube salia lavado. Subir el umbral en su
+  lugar parece equivalente pero no lo es: engorda la nube hasta cubrir el cielo
+  entero (se probo, dejaba un 93% tapado y se leia como bruma).
+
+Van en cuatro bandas solapadas que cubren el cielo entero, cada una con su
+semilla para que no se note el patron. El color sale de `currentColor`, que
+hereda de `--amb-nube`: blancas en Piura, durazno en el atardecer de Trujillo,
+sin duplicar el SVG.
+
+Dos trampas mas que ya estan resueltas y conviene no reintroducir:
+
+- **`max-width: none` en `.nubes__capa`.** El reset de `base.css` pone
+  `svg { max-width: 100% }`, y esa regla recortaba el `width: 150%` de las
+  bandas a exactamente 100%: las nubes se cortaban en seco antes del borde
+  derecho. Las bandas TIENEN que desbordar para que la deriva no descubra el
+  canto del lienzo.
+- **El recorrido de la deriva sale de `--deriva`, no de los keyframes.** Las
+  reglas `:nth-child` que asignan duracion usan el atajo `animation`, que
+  incluye `animation-name`; sobrescribirlo desde `.nubes__capa` no funciona
+  porque `:nth-child` tiene mas especificidad. Con una variable dentro de
+  `translateX(var(--deriva))` basta cambiarla por media query.
+
+La deriva va a 13-23px/s en escritorio y 10px/s en movil. Antes eran 150-210s
+para un recorrido del 6%: menos de 1px por segundo, o sea invisible.
+
 ### Textos por sede
 
 `src/data/sede-contenido.js` tiene el relato de cada sede: titular del hero,

@@ -16,6 +16,7 @@ import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { StickyCta, WhatsappFab, VolverArriba } from './components/Floating';
+import Nubes from './components/Nubes';
 
 import { useSettings } from './hooks/useSettings';
 import { useScrollFx } from './hooks/useScrollFx';
@@ -61,7 +62,7 @@ export default function App() {
         Saltar al contenido
       </a>
 
-{/* Isotipo transparentado, fijo y del mismo tamano en toda la pagina.
+      {/* Isotipo transparentado, fijo y del mismo tamano en toda la pagina.
           Sin transform ligado al scroll: se queda quieto. */}
       <div className="marca-fondo" aria-hidden="true">
         <img src={mark} alt="" width="760" height="1035" decoding="async" />
@@ -71,10 +72,7 @@ export default function App() {
           Trujillo = atardecer) y su luminosidad el tema. */}
       <div className="ambient" aria-hidden="true">
         <div className="ambient__sol" />
-        <span className="nube nube--1" />
-        <span className="nube nube--2" />
-        <span className="nube nube--3" />
-        <span className="nube nube--4" />
+        <Nubes />
       </div>
 
       <div className="progreso" style={{ width: `${progreso}%` }} aria-hidden="true" />
