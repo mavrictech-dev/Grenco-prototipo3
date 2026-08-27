@@ -8,8 +8,8 @@
 html[data-theme='light'] {
   --bg: #e9e6e0;
   --sunk: #e3dfd8;
-  --hl: #ffffff;
-  --sh: #bcb5a8;
+  --hl: rgba(255, 255, 255, 0.72);
+  --sh: rgba(88, 76, 56, 0.28);
   --ink: #1b1a17;
   --ink2: #5e574d;
   --ink3: #8b8478;
@@ -23,8 +23,8 @@ html[data-theme='light'] {
 html[data-theme='dark'] {
   --bg: #1e2024;
   --sunk: #191b1e;
-  --hl: #2c2f36;
-  --sh: #0e0f11;
+  --hl: rgba(255, 255, 255, 0.085);
+  --sh: rgba(0, 0, 0, 0.62);
   --ink: #eeece7;
   --ink2: #a6a29a;
   --ink3: #7c786f;
@@ -132,10 +132,22 @@ html[data-sede='trujillo'][data-theme='dark'] {
 }
 
 :root {
-  /* Relieve neumorfico: par de sombras opuestas derivadas de --sh / --hl */
-  --nu1: 7px 7px 16px var(--sh), -7px -7px 16px var(--hl);
-  --nu2: 16px 16px 34px var(--sh), -12px -12px 26px var(--hl);
-  --nu3: 24px 24px 48px var(--sh), -16px -16px 34px var(--hl);
+  /* Relieve neumorfico: par de sombras opuestas derivadas de --sh / --hl.
+
+     --hl y --sh son SEMITRANSPARENTES a proposito, no colores solidos. El
+     neumorfismo clasico asume que el elemento y su entorno comparten el mismo
+     fondo, y aqui no es asi: la barra, el hero y las tarjetas flotan sobre el
+     cielo de color. Con un blanco opaco la mitad clara de la sombra pintaba un
+     halo brillante alrededor de cada caja.
+
+     La solucion no fue solo bajarles el alfa —eso apagaba tambien el relieve
+     sobre el fondo plano— sino mover la luz DENTRO del elemento: --nu1/2/3
+     llevan la mitad clara como `inset`, pintada sobre el propio fondo de la
+     caja. Fuera solo queda la sombra oscura. Asi el relieve puede ser fuerte
+     sin derramar ni un pixel de blanco sobre el cielo. */
+  --nu1: 6px 7px 15px var(--sh), inset 0 1px 0 var(--hl);
+  --nu2: 12px 16px 32px var(--sh), inset 0 1px 0 var(--hl);
+  --nu3: 18px 22px 44px var(--sh), inset 0 1px 0 var(--hl);
   --nuin: inset 6px 6px 12px var(--sh), inset -6px -6px 12px var(--hl);
   --nuins: inset 3px 3px 7px var(--sh), inset -3px -3px 7px var(--hl);
 

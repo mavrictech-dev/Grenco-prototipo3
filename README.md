@@ -401,3 +401,69 @@ con un breakpoint de 700px se quedaba fuera.
 Lo unico que sigue por debajo de 11px es el texto de dentro de la maqueta del
 telefono (10-10.5px). Ahi es deliberado: representa la interfaz de una app a
 escala pequena, y subirlo la haria parecer una captura ampliada.
+
+## Neumorfismo sobre fondo de color
+
+El neumorfismo clasico da por hecho que el elemento y su entorno comparten el
+mismo color de fondo: la sombra clara simula una luz que rebota en esa misma
+superficie. Aqui esa premisa **no se cumple** — la barra, el hero, las tarjetas
+y el boton de WhatsApp flotan sobre el cielo de la sede.
+
+Con la formula de manual (`-7px -7px 16px #ffffff`) esa mitad clara pintaba
+blanco opaco fuera de cada caja, y sobre el cielo se leia como un halo: +64
+niveles de luminancia en Piura y +99 en el atardecer de Trujillo.
+
+**La luz va dentro, no fuera.** `--nu1/2/3` llevan la mitad clara como `inset`,
+pintada sobre el propio fondo de la caja; fuera solo queda la sombra oscura:
+
+```css
+--nu1: 6px 7px 15px var(--sh), inset 0 1px 0 var(--hl);
+```
+
+Bajar simplemente el alfa de `--hl` no servia: apagaba por igual el halo y el
+relieve sobre el fondo plano (de +25 a +6 niveles, las tarjetas quedaban
+planas). Moviendola a `inset` el relieve puede ser fuerte —`--hl` esta al 72%—
+sin derramar un solo pixel de luz sobre el cielo.
+
+`--hl` y `--sh` son ademas **semitransparentes** y no colores solidos, por lo
+mismo: una sombra opaca sobre un fondo de color lo tine en vez de oscurecerlo.
+
+Comprobado con un barrido de todo el DOM en los dos temas: **ninguna sombra
+exterior clara ni ningun borde claro**. Si al anadir un componente aparece un
+halo, casi seguro es una sombra clara sin `inset`.
+
+## Rendimiento al cambiar de tema o de sede
+
+Cambiar claro/oscuro dejaba la pagina pillada casi un segundo. La causa no era
+una sola cosa, sino tres sumandose:
+
+| | coste |
+|---|---|
+| 114 elementos transicionando `box-shadow` | el desenfoque se rasteriza en CPU, no hay GPU que valga |
+| `.ambient` transicionando `background` | interpolar un degradado de 4 paradas sobre 2,2 Mpx |
+| `.nubes` transicionando `color` | **el peor**: el `<rect>` usa `fill="currentColor"`, asi que el filtro de ruido fractal (5 octavas x 4 bandas, 4,1 Mpx) se recalculaba en CADA frame |
+
+Entre todo, unos 26 Mpx repintandose durante 900ms sobre una pantalla de 1,3.
+
+**La solucion es no animar el cambio.** `hooks/aplicarSinTransicion.js` apaga
+las transiciones, aplica el atributo, fuerza un recalculo sincrono para que el
+navegador lo consolide sin animar, y las vuelve a encender en la siguiente
+tarea. El cambio pasa a ser instantaneo y no cuesta nada.
+
+Dos detalles de esa funcion que importan:
+
+- Usa `setTimeout` y **no** `requestAnimationFrame` para restaurar: con la
+  pestana en segundo plano rAF no se ejecuta, la clase se quedaria pegada y la
+  pagina volveria sin ninguna transicion.
+- El `void root.offsetHeight` no es decorativo. Fuerza el recalculo de estilo
+  ahi mismo; sin el, el navegador podria agrupar el cambio de atributo con la
+  retirada de la clase y animar igualmente.
+
+De paso, `.reveal` dejo de transicionar `box-shadow` y `background-color`
+—estaban solo para suavizar el cambio de tema, que ya no se anima— y se quedo
+con `opacity` y `transform`, las dos compuestas por GPU. Revelar decenas de
+bloques al hacer scroll pasa a no costar repintado.
+
+Resultado en el escenario base: los elementos con alguna propiedad cara en
+transicion bajan de **114 a 77**, y el area afectada de **19,4 a 6,9 Mpx**. Los
+77 que quedan se disparan solo con el hover, o sea de uno en uno.

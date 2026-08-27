@@ -701,13 +701,13 @@ html[data-theme='dark'] .hero__agua img {
      interior, que era lo que le daba el aspecto de cristal. */
   background: color-mix(in oklab, var(--bg) 80%, transparent);
   border: 1px solid color-mix(in oklab, var(--ink) 9%, transparent);
-  box-shadow: 0 18px 44px -20px rgba(0, 0, 0, 0.32);
+  box-shadow: var(--nu2);
   transition: background-color 0.6s ease, border-color 0.6s ease;
 }
 
 html[data-theme='dark'] .hero__centro {
   background: color-mix(in oklab, var(--bg) 84%, transparent);
-  border-color: color-mix(in oklab, var(--hl) 34%, transparent);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Ya no hace falta la reserva de @supports: al no usar backdrop-filter, el
@@ -751,7 +751,8 @@ html[data-theme='dark'] .hero__centro {
   padding: 8px 14px;
   border-radius: 11px;
   background: color-mix(in oklab, var(--bg) 78%, transparent);
-  border: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
+  border: 0;
+  box-shadow: var(--nu1);
   font: 500 12px var(--font-sans);
   letter-spacing: 0.04em;
   color: var(--ink2);
@@ -822,7 +823,8 @@ html[data-theme='dark'] .hero__hint {
   padding: 12px 9px 14px;
   border-radius: 13px;
   background: color-mix(in oklab, var(--bg) 78%, transparent);
-  border: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
+  border: 0;
+  box-shadow: var(--nu1);
   transition: background-color 0.6s ease;
 }
 

@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { aplicarSinTransicion } from './aplicarSinTransicion';
+
 /**
  * Tema y sede son dos ejes independientes.
  *
@@ -49,14 +51,24 @@ export function useSettings() {
 
   const [sede, setSede] = useState(() => read(SEDE_KEY, SEDES, 'piura'));
 
+  // Cambiar el tema reescribe casi todos los tokens de color de golpe. Sin
+  // apagar las transiciones la pagina se queda pillada casi un segundo
+  // repintando sombras y recalculando el filtro de las nubes: el porque
+  // detallado esta en aplicarSinTransicion.js.
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.style.colorScheme = theme;
+    aplicarSinTransicion(() => {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.style.colorScheme = theme;
+    });
     write(THEME_KEY, theme);
   }, [theme]);
 
+  // Igual con la sede: cambia el cielo, el sol y el color de las nubes, que es
+  // justo lo que dispara el recalculo del ruido fractal.
   useEffect(() => {
-    document.documentElement.setAttribute('data-sede', sede);
+    aplicarSinTransicion(() => {
+      document.documentElement.setAttribute('data-sede', sede);
+    });
     write(SEDE_KEY, sede);
   }, [sede]);
 

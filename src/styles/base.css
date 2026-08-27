@@ -242,9 +242,13 @@ button {
     transform: none;
   }
 
+  /* Solo `opacity` y `transform`: las dos las compone la GPU, asi que revelar
+     decenas de bloques al hacer scroll no cuesta repintado.
+     Antes arrastraba tambien `box-shadow` y `background-color`, que estaban
+     ahi para suavizar el cambio de tema. Ya no hacen falta —ese cambio es
+     instantaneo— y eran las dos propiedades caras de la lista. */
   .reveal {
-    transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out),
-      box-shadow 0.4s ease, background-color 0.6s ease;
+    transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
   }
 }
 
@@ -270,4 +274,25 @@ button {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* --- Cambio de tema y de sede ---------------------------------------------
+   Se activa un instante mientras se reescriben los tokens de color, y se
+   quita en la siguiente tarea (ver hooks/aplicarSinTransicion.js).
+
+   Sin esto, alternar claro/oscuro dispara a la vez las transiciones de 152
+   elementos —114 de ellos animando `box-shadow`, que se rasteriza en CPU— mas
+   el degradado del cielo y el filtro de ruido de las nubes. Casi un segundo de
+   repintado continuo sobre unos 26 Mpx: la pagina se queda pillada.
+
+   `!important` y el selector universal son deliberados: hay que ganarle a
+   cualquier transicion declarada en cualquier componente, incluidos los
+   pseudoelementos.
+   -------------------------------------------------------------------------- */
+
+html.sin-transiciones,
+html.sin-transiciones *,
+html.sin-transiciones *::before,
+html.sin-transiciones *::after {
+  transition: none !important;
 }
