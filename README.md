@@ -170,6 +170,33 @@ El hero es el triptico de video, una marca de agua, y en la **esquina inferior
 izquierda** un panel compacto (300px) con el logo, la sede y "Ver proyectos".
 Nada mas: deja libre el 77% del ancho para las tomas.
 
+**Nada del hero puede entrar en la franja que solapan las tarjetas.** Las
+destacadas suben `--solape-tarjetas` (58px) sobre el borde inferior del hero y
+son opacas, asi que tapaban la fila de pistas y, entera, la etiqueta que sale
+al pasar el cursor sobre un panel de video.
+
+Esa medida esta en un token precisamente porque la usan tres reglas que tienen
+que moverse juntas: el margen negativo de `.highlights`, el `padding-bottom` de
+`.hero__body` y el de `.hero__panel-tag`. En movil vale `0` porque alli las
+tarjetas se apartan para dejar ver el cielo.
+
+**Ojo con la etiqueta del hover (`.hero__panel-tag`):** lo que sube por encima
+del solape es su `padding-bottom`, NO su `bottom`. Su degradado va de opaco
+abajo a transparente arriba, asi que si la caja termina antes del fondo del
+panel su canto inferior se queda en el punto mas oscuro y aparece una linea
+dura contra el video. Anclada con `bottom: 0`, esa zona la tapan las tarjetas y
+la transicion no se ve.
+
+Los textos del pie del hero (la pista y el indicador "Scroll") van sobre
+pastillas mate. Iban sueltos sobre el video con `color: var(--ink3)`, y sobre
+un fotograma de arena o de cielo claro un gris medio no se ve.
+
+El panel tiene acabado **mate**, no de vidrio: superficie plana y translucida,
+sin `backdrop-filter` ni brillo interior. Al no haber desenfoque el video se ve
+nitido a traves, asi que el tinte es mas opaco de lo que seria con vidrio —80%
+en claro y 84% en oscuro, frente al 42%/60% de la version anterior— o el texto
+no se leeria sobre las zonas claras del clip.
+
 El titular y el parrafo que antes iban encima del video estan ahora en la
 seccion **Manifiesto**, justo despues de las tarjetas destacadas. Encima del
 video competian con las tomas y obligaban a una tarjeta de vidrio tan ancha que
@@ -352,3 +379,25 @@ Lo que se hizo al migrar desde el export del canvas de diseño:
 - **El carrusel y el parallax escriben en el DOM por referencia, no por estado.**
   Corren a 60 fps: pasarlos a estado de React re-renderizaria el arbol entero en
   cada frame.
+
+## Responsive: criterios y minimos
+
+Se audito en 360, 768, 1024, 1440 y 1920px buscando desbordes, solapes, texto
+demasiado pequeno y objetivos tactiles cortos. Lo que quedo fijado:
+
+- **Sin scroll horizontal en ningun ancho.** Las capas que desbordan a
+  proposito (cielo, nubes, marca de fondo, triptico) las recorta su contenedor
+  con `overflow: hidden`.
+- **Objetivos tactiles de 40px minimo**: enlaces del menu, del pie, telefono y
+  correo. Los puntos del selector de video miden 6px de alto pero amplian su
+  area a 44px con un `::after`.
+- **Suelo tipografico de 11px** en las micro-etiquetas en mayusculas. Bajaban
+  hasta 8px y en un movil real no se leen.
+
+Los dos ultimos van en `@media (max-width: 900px), (pointer: coarse)` y **no**
+solo por ancho: una tablet de 768px se toca con el dedo igual que un movil, y
+con un breakpoint de 700px se quedaba fuera.
+
+Lo unico que sigue por debajo de 11px es el texto de dentro de la maqueta del
+telefono (10-10.5px). Ahi es deliberado: representa la interfaz de una app a
+escala pequena, y subirlo la haria parecer una captura ampliada.

@@ -445,18 +445,34 @@ html[data-scrolled='1'] .nav {
   position: absolute;
   left: 0;
   right: 0;
+  /* El degradado llega hasta el fondo del panel, y lo que sube es el TEXTO,
+     via padding inferior.
+     Separarlo asi no es un capricho: el degradado va de opaco abajo a
+     transparente arriba, asi que si la caja termina antes del fondo su canto
+     inferior queda en el punto mas oscuro y se ve una linea dura contra el
+     video. Anclado abajo, esa zona la tapan las tarjetas y no hay corte. */
   bottom: 0;
-  padding: 40px 16px 14px;
+  padding: 44px 16px calc(var(--solape-tarjetas) + 20px);
   text-align: left;
   font: 600 11px var(--font-sans);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #fff;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.66), rgba(0, 0, 0, 0.34) 46%, transparent);
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s var(--ease-out);
   pointer-events: none;
+}
+
+/* El lugar iba pegado a la actividad ("CUADRILLAS EN PLANILLATRUJILLO"): son
+   dos datos distintos y necesitan su propia linea. */
+.hero__panel-tag b {
+  display: block;
+  margin-top: 4px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  opacity: 0.82;
 }
 
 .hero__panel:hover .hero__panel-tag,
@@ -600,7 +616,10 @@ html[data-theme='dark'] .hero__panel img {
   justify-content: flex-end;
   gap: clamp(10px, 1.4vh, 18px);
   padding: clamp(18px, 4vw, 64px);
-  padding-bottom: clamp(40px, 4.5vh, 58px);
+  /* Deja libre la franja que solapan las tarjetas destacadas. Con el padding
+     anterior (40-58px) la fila de pistas caia justo dentro de esa franja y
+     quedaba medio tapada. */
+  padding-bottom: calc(var(--solape-tarjetas) + clamp(22px, 2.6vh, 34px));
   pointer-events: none;
 }
 
@@ -673,34 +692,31 @@ html[data-theme='dark'] .hero__agua img {
   border-radius: 22px;
   text-align: left;
 
-  /* Panel de vidrio, ahora compacto: solo tiene que sostener el logo y el
-     boton, no medio hero. */
-  background: color-mix(in oklab, var(--bg) 42%, transparent);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  border: 1px solid color-mix(in oklab, var(--hl) 52%, transparent);
-  box-shadow:
-    0 22px 60px -18px rgba(0, 0, 0, 0.42),
-    inset 0 1px 0 color-mix(in oklab, var(--hl) 68%, transparent);
+  /* Acabado MATE, no vidrio: superficie plana y translucida, sin desenfoque ni
+     reflejos.
+     Sin `backdrop-filter` el video de detras se ve nitido a traves del panel,
+     asi que el tinte tiene que ser mas opaco que en la version de vidrio (80%
+     frente al 42% de antes) para que el texto siga legible. La sombra exterior
+     se queda —es lo que despega el panel del fondo— pero desaparece el brillo
+     interior, que era lo que le daba el aspecto de cristal. */
+  background: color-mix(in oklab, var(--bg) 80%, transparent);
+  border: 1px solid color-mix(in oklab, var(--ink) 9%, transparent);
+  box-shadow: 0 18px 44px -20px rgba(0, 0, 0, 0.32);
   transition: background-color 0.6s ease, border-color 0.6s ease;
 }
 
 html[data-theme='dark'] .hero__centro {
-  background: color-mix(in oklab, var(--bg) 60%, transparent);
-  border-color: color-mix(in oklab, var(--hl) 40%, transparent);
+  background: color-mix(in oklab, var(--bg) 84%, transparent);
+  border-color: color-mix(in oklab, var(--hl) 34%, transparent);
 }
 
-/* Sin backdrop-filter el panel se queda transparente y el logo se pierde. */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .hero__centro {
-    background: color-mix(in oklab, var(--bg) 88%, transparent);
-  }
-}
+/* Ya no hace falta la reserva de @supports: al no usar backdrop-filter, el
+   panel se pinta igual en cualquier navegador. */
 
 .hero__marca {
-  width: 46px;
+  width: 84px;
   height: auto;
-  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.26));
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.24));
 }
 
 .hero__sede {
@@ -724,14 +740,26 @@ html[data-theme='dark'] .hero__centro {
   }
 
   .hero__marca {
-    width: 40px;
+    width: 68px;
   }
 }
 
+/* Estos textos van encima del video, asi que NO pueden ir sueltos: sobre un
+   fotograma de arena o de cielo un gris medio desaparece. Cada uno se apoya en
+   una pastilla mate, el mismo acabado del panel de marca. */
 .hero__hint {
+  padding: 8px 14px;
+  border-radius: 11px;
+  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  border: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
   font: 500 12px var(--font-sans);
   letter-spacing: 0.04em;
-  color: var(--ink3);
+  color: var(--ink2);
+  transition: background-color 0.6s ease;
+}
+
+html[data-theme='dark'] .hero__hint {
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
 }
 
 .hero__foot {
@@ -791,6 +819,15 @@ html[data-theme='dark'] .hero__centro {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  padding: 12px 9px 14px;
+  border-radius: 13px;
+  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  border: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
+  transition: background-color 0.6s ease;
+}
+
+html[data-theme='dark'] .hero__scroll {
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
 }
 
 .hero__scroll > span {
@@ -823,7 +860,7 @@ html[data-theme='dark'] .hero__centro {
 
 .highlights {
   width: var(--shell);
-  margin: -58px auto 0;
+  margin: calc(-1 * var(--solape-tarjetas)) auto 0;
   position: relative;
   z-index: 2;
 }
@@ -834,6 +871,12 @@ html[data-theme='dark'] .hero__centro {
    cielo entre el hero y las tarjetas. La altura del cielo baja a 148vh para
    que el sol (74% de la capa) caiga justo en el centro de esa banda. */
 @media (max-width: 700px) {
+  /* En movil no hay solape: las tarjetas se apartan para dejar ver el cielo,
+     asi que el hero no necesita reservar la franja. */
+  :root {
+    --solape-tarjetas: 0px;
+  }
+
   .highlights {
     margin-top: 200px;
   }
@@ -1793,8 +1836,14 @@ html[data-theme='dark'] .hero__centro {
   }
 
   .nav__links a {
-    padding: 8px 10px;
+    /* 40px de alto minimo. Con 8px de padding se quedaban en 33px y no llegan
+       al tamano recomendado para pulsar con el dedo. */
+    padding: 11px 12px;
     font-size: 12.5px;
+  }
+
+  .nav__logo {
+    padding-block: 6px;
   }
 
   .stats,

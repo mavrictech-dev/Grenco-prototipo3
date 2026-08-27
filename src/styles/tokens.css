@@ -56,7 +56,7 @@ html[data-sede='piura'] {
   --amb-medio: #8fc9ec;
   --amb-bajo: #a8d2ea;
   --amb-nube: #ffffff;
-  --amb-nube-op: 1;
+  --amb-nube-op: 1;
 
   --sol-x: 78%;
   --sol-y: 74%;
@@ -78,7 +78,7 @@ html[data-sede='piura'][data-theme='dark'] {
   --amb-medio: #0e1a2e;
   --amb-bajo: #1c2b45;
   --amb-nube: #7f9dc0;
-  --amb-nube-op: 0.26;
+  --amb-nube-op: 0.26;
 
   --sol-x: 74%;
   --sol-y: 75%;
@@ -99,7 +99,7 @@ html[data-sede='trujillo'] {
   --amb-medio: #f08a5d;
   --amb-bajo: #efa054;
   --amb-nube: #fff0d8;
-  --amb-nube-op: 0.92;
+  --amb-nube-op: 0.92;
 
   --sol-x: 72%;
   --sol-y: 78%;
@@ -118,7 +118,7 @@ html[data-sede='trujillo'][data-theme='dark'] {
   --amb-medio: #3d1630;
   --amb-bajo: #7d3520;
   --amb-nube: #d9764a;
-  --amb-nube-op: 0.34;
+  --amb-nube-op: 0.34;
 
   --sol-x: 70%;
   --sol-y: 80%;
@@ -141,6 +141,13 @@ html[data-sede='trujillo'][data-theme='dark'] {
 
   --shell: min(1300px, calc(100% - 32px));
   --gap-section: clamp(90px, 11vw, 150px);
+
+  /* Cuanto solapan las tarjetas destacadas sobre el borde inferior del hero.
+     Lo usan tres reglas a la vez —el margen negativo de .highlights, el
+     padding inferior de .hero__body y la posicion de .hero__panel-tag— y
+     tienen que moverse juntas: si el hero coloca algo dentro de esta franja,
+     las tarjetas lo tapan. */
+  --solape-tarjetas: 58px;
   --ease-out: cubic-bezier(0.16, 0.84, 0.28, 1);
 
   --font-sans: Archivo, system-ui, -apple-system, 'Segoe UI', sans-serif;

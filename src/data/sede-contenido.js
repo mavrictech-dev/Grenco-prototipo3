@@ -17,7 +17,7 @@ const CONTENIDO = {
       eyebrow: 'Sede Piura · Oficina y taller',
       title: ['Movemos tierra.', 'Levantamos', 'el norte.'],
       text: 'Movimiento de tierras, habilitación urbana y alquiler de maquinaria pesada en Piura y Sullana. Flota propia, taller propio y cuadrillas en planilla.',
-      hint: 'Tomas reales de obra en Piura · pasa el cursor sobre una',
+      hint: 'Tomas reales de obra · Piura y Sullana',
       // Foto que acompana al titular en Manifiesto. Se elige por sede para que
       // la imagen diga lo mismo que el texto.
       foto: 'obra-0082',
@@ -42,7 +42,7 @@ const CONTENIDO = {
       eyebrow: 'Sede Trujillo · La Libertad',
       title: ['Abrimos vía.', 'Ordenamos', 'La Libertad.'],
       text: 'Obra civil, vialidad y drenaje para proyectos públicos y privados en Trujillo y La Libertad. Equipos mantenidos en taller propio y residencia permanente en obra.',
-      hint: 'Tomas reales de obra en La Libertad · pasa el cursor sobre una',
+      hint: 'Tomas reales de obra · Trujillo y La Libertad',
       foto: 'obra-1096',
       fotoAlt: 'Motoniveladora conformando la subrasante de una vía',
     },

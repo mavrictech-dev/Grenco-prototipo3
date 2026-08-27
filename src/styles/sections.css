@@ -506,9 +506,11 @@
 @media (max-width: 560px) {
   .arriba {
     right: 20px;
-    bottom: 92px;
-    width: 42px;
-    height: 42px;
+    /* WhatsApp ocupa de 24px a 86px desde abajo. A 92px los dos botones se
+       tocaban por 4px; 104px deja holgura real. */
+    bottom: 104px;
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -689,5 +691,86 @@
   .hero__centro {
     align-items: center;
     text-align: center;
+  }
+}
+
+/* ==========================================================================
+   Movil: minimo tipografico y de objetivo tactil
+   Las micro-etiquetas en mayusculas con mucho tracking bajaban hasta 8px, que
+   en un movil real no se leen. Se les pone un suelo de 11px.
+
+   Las de dentro de la maqueta del telefono suben menos (a 10px): ahi el texto
+   pequeno es parte de lo que se representa —una interfaz de app— y subirlo al
+   mismo nivel que el resto la haria parecer una captura ampliada.
+   ========================================================================== */
+
+@media (max-width: 900px), (pointer: coarse) {
+  .hero__sede,
+  .badge-pronto,
+  .tag,
+  .sede__badge,
+  .post__tags li,
+  .culture__cap span,
+  .footer h4,
+  .panel__kicker,
+  .stat__label,
+  .minitile > span,
+  .project__meta,
+  .post__meta {
+    font-size: 11px;
+  }
+
+  /* Interior de la maqueta: legible, pero sin dejar de parecer una app */
+  .chip--sm {
+    font-size: 10px;
+  }
+
+  .mock-cuadrillas b,
+  .mock-cuadrillas__ini {
+    font-size: 10.5px;
+  }
+
+  .mock-cuadrillas em,
+  .mock-tel__seccion,
+  .mock-tel__barra,
+  .mock-tel__cuerpo .panel__kicker {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  /* 40px de alto real para pulsar con el dedo: con 11px de padding se
+     quedaban en 38. */
+  .nav__links a {
+    padding-block: 12px;
+  }
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  /* Enlaces de texto que son objetivos tactiles reales (telefono, correo y el
+     menu del pie). Median 19-20px de alto; se les da area suficiente sin
+     cambiar como se ven, solo con padding vertical. */
+  .sede__links a,
+  .footer ul a {
+    display: inline-block;
+    padding-block: 11px;
+  }
+
+  /* El padding nuevo ya separa las filas: se recorta el hueco para que no
+     queden demasiado sueltas. */
+  .sede__links {
+    gap: 0 18px;
+    margin-top: 6px;
+  }
+
+  .footer ul {
+    gap: 0;
+  }
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  /* El logo tambien es un enlace (lleva al inicio) y median 38px de alto. */
+  .nav__logo {
+    padding-block: 6px;
   }
 }
