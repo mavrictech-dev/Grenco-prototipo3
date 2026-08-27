@@ -77,7 +77,7 @@ export const hero = {
       video: '/video/obra-2.mp4',
       poster: '/video/obra-2.webp',
       alt: 'Excavadora CAT posicionada en obra',
-      tag: 'Flota propia',
+      tag: 'Maquinaria pesada',
       lugar: 'Sullana',
     },
     {
