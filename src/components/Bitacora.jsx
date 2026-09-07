@@ -24,11 +24,18 @@ function fotoDe(post, indice) {
   return fotosObra[indice % fotosObra.length].url;
 }
 
-export default function Bitacora() {
+export default function Bitacora({ sede }) {
   const [estado, setEstado] = useState('cargando'); // cargando | listo | error
   const [posts, setPosts] = useState([]);
-  const [filtro, setFiltro] = useState('todas');
+  const [filtro, setFiltro] = useState(sede ?? 'todas');
   const [visibles, setVisibles] = useState(POR_PAGINA);
+
+  useEffect(() => {
+    if (sede) {
+      setFiltro(sede);
+      setVisibles(POR_PAGINA);
+    }
+  }, [sede]);
 
   useEffect(() => {
     let vigente = true;

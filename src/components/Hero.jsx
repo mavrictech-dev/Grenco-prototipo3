@@ -19,15 +19,10 @@ export default function Hero({ sede }) {
   return (
     <section id="inicio" className="hero">
       <div className="hero__frame">
-        <HeroWall />
+        <HeroWall sede={sede} />
 
         {/* Lavado de legibilidad + tinte de sede */}
         <div className="hero__overlay" />
-
-        {/* Marca de agua sobre las tomas */}
-        <div className="hero__agua" aria-hidden="true">
-          <img src={mark} alt="" loading="lazy" decoding="async" />
-        </div>
 
         <div className="hero__body">
           <div className="hero__centro">

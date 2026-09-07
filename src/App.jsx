@@ -96,7 +96,7 @@ export default function App() {
           <MissionVision />
           <Culture />
           <Projects sede={sede} />
-          <Bitacora />
+          <Bitacora sede={sede} />
           <Gallery />
           <Contact sede={sede} />
         </main>

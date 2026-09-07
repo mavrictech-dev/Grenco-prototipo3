@@ -62,6 +62,28 @@ const POSTS = [
     etiquetas: ['Vialidad', 'Drenaje'],
   },
   {
+    id: 'trujillo-pavimentacion-frente',
+    fecha: '2026-07-30',
+    lugar: 'Víctor Larco, Trujillo',
+    sede: 'trujillo',
+    titulo: 'Conformación de rasante y pavimentación flexible',
+    resumen:
+      'Se culminó el tramo de subbase granular y compactación con rodillo en el acceso principal.',
+    foto: 'obra-1718',
+    etiquetas: ['Pavimentos', 'Obra civil'],
+  },
+  {
+    id: 'trujillo-redes-sanitarias',
+    fecha: '2026-07-18',
+    lugar: 'Huanchaco, Trujillo',
+    sede: 'trujillo',
+    titulo: 'Tendido de redes y colectores de saneamiento',
+    resumen:
+      'Zanjeo con retroexcavadora e instalación de tubería con pruebas de presión hidráulica conformes.',
+    foto: 'obra-3178-B',
+    etiquetas: ['Saneamiento', 'Redes'],
+  },
+  {
     id: 'taller-mantenimiento',
     fecha: '2026-07-28',
     lugar: 'Taller central, Piura',

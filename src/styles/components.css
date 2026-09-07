@@ -602,41 +602,7 @@ html[data-theme='dark'] .hero__panel img {
   pointer-events: none;
 }
 
-/* --- Marca de agua sobre las tomas ---------------------------------------
-   Grande, centrada y muy tenue. `mix-blend-mode: overlay` la funde con el
-   video en vez de posarse encima: sube donde el fotograma es oscuro y baja
-   donde es claro, que es como se comporta una marca de agua de verdad.
-   -------------------------------------------------------------------------- */
 
-.hero__agua {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hero__agua img {
-  width: min(64%, 520px);
-  height: auto;
-  opacity: 0.14;
-  mix-blend-mode: overlay;
-}
-
-/* En oscuro `overlay` casi desaparece: sobre un video ya apagado no tiene
-   contra que reaccionar. */
-html[data-theme='dark'] .hero__agua img {
-  mix-blend-mode: soft-light;
-  opacity: 0.22;
-}
-
-@supports not (mix-blend-mode: overlay) {
-  .hero__agua img {
-    mix-blend-mode: normal;
-    opacity: 0.1;
-  }
-}
 
 /* --- Composicion central del hero -----------------------------------------
    Solo el logo, la sede y un boton. El titular y el parrafo se fueron a la
