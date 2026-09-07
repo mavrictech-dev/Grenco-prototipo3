@@ -91,44 +91,26 @@ html[data-sede='piura'][data-theme='dark'] {
   --amb-tinte: rgba(24, 54, 104, 0.34);
 }
 
-/* --- Trujillo: atardecer --------------------------------------------------
-   El sol baja, crece y se enrojece; las nubes se iluminan por debajo.
+/* --- Trujillo: noche azul (modo oscuro) -----------------------------------
+   Cielo azul noche (el mismo cielo nocturno de Piura en modo oscuro).
+   Se descarta el modo atardecer.
    -------------------------------------------------------------------------- */
 html[data-sede='trujillo'] {
-  --amb-alto: #6b4a8f;
-  --amb-medio: #f08a5d;
-  --amb-bajo: #efa054;
-  --amb-nube: #fff0d8;
-  --amb-nube-op: 0.92;
+  --amb-alto: #060c18;
+  --amb-medio: #0e1a2e;
+  --amb-bajo: #1c2b45;
+  --amb-nube: #7f9dc0;
+  --amb-nube-op: 0.26;
 
-  --sol-x: 72%;
-  --sol-y: 78%;
-  --sol-tam: clamp(108px, 13vw, 190px);
-  --sol-nucleo: #fff3c4;
-  --sol-halo: rgba(255, 150, 60, 0.62);
-  --sol-alcance: clamp(360px, 47vw, 680px);
-  --sol-op: 1;
+  --sol-x: 74%;
+  --sol-y: 75%;
+  --sol-tam: clamp(44px, 4.3vw, 62px);
+  --sol-nucleo: #e8eef7;
+  --sol-halo: rgba(180, 205, 235, 0.24);
+  --sol-alcance: clamp(160px, 17vw, 240px);
+  --sol-op: 0.85;
 
-  --amb-tinte: rgba(244, 132, 54, 0.26);
-}
-
-/* Trujillo de noche: ya se puso, queda la brasa en el horizonte. */
-html[data-sede='trujillo'][data-theme='dark'] {
-  --amb-alto: #140b22;
-  --amb-medio: #3d1630;
-  --amb-bajo: #7d3520;
-  --amb-nube: #d9764a;
-  --amb-nube-op: 0.34;
-
-  --sol-x: 70%;
-  --sol-y: 80%;
-  --sol-tam: clamp(82px, 9.2vw, 132px);
-  --sol-nucleo: #ff9d52;
-  --sol-halo: rgba(226, 92, 40, 0.42);
-  --sol-alcance: clamp(300px, 39vw, 560px);
-  --sol-op: 0.9;
-
-  --amb-tinte: rgba(158, 52, 26, 0.32);
+  --amb-tinte: rgba(24, 54, 104, 0.34);
 }
 
 :root {

@@ -25,7 +25,7 @@ import { nav } from './data/site';
 import { fotosObra, mark } from './assets/images';
 
 export default function App() {
-  const { theme, toggleTheme, sede, setSede } = useSettings();
+  const { theme, sede, setSede } = useSettings();
   const { navHidden, pastHero, progreso } = useScrollFx();
 
   const ids = useMemo(() => nav.map((n) => n.id), []);
@@ -68,8 +68,7 @@ export default function App() {
         <img src={mark} alt="" width="760" height="1035" decoding="async" />
       </div>
 
-      {/* Cielo ambiental. Su caracter lo marca la sede (Piura = dia soleado,
-          Trujillo = atardecer) y su luminosidad el tema. */}
+      {/* Cielo ambiental: Piura = dia soleado (cielo azul), Trujillo = noche (cielo azul noche). */}
       <div className="ambient" aria-hidden="true">
         <div className="ambient__sol" />
         <Nubes />
@@ -80,7 +79,6 @@ export default function App() {
       <Navbar
         hidden={navHidden}
         theme={theme}
-        toggleTheme={toggleTheme}
         sede={sede}
         setSede={setSede}
         seccionActiva={seccionActiva}

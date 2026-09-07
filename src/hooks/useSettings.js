@@ -3,19 +3,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { aplicarSinTransicion } from './aplicarSinTransicion';
 
 /**
- * Tema y sede son dos ejes independientes.
- *
- *   data-theme  light | dark   -> paleta de color
- *   data-sede   piura | trujillo -> que sede se resalta en contacto
- *
- * En el export original venian acoplados ("Sede Trujillo" forzaba modo oscuro),
- * lo que impedia ver Piura de noche o Trujillo de dia.
+ * Tema y sede acoplados por diseño:
+ *   Piura    -> data-theme="light" (cielo azul despejado)
+ *   Trujillo -> data-theme="dark"  (cielo azul noche)
  */
 
-const THEME_KEY = 'grenco.theme';
 const SEDE_KEY = 'grenco.sede';
 const SEDES = ['piura', 'trujillo'];
-const THEMES = ['light', 'dark'];
 
 /** localStorage puede lanzar en modo privado o con cookies bloqueadas. */
 function read(key, allowed, fallback) {
@@ -35,63 +29,30 @@ function write(key, value) {
   }
 }
 
-function systemTheme() {
-  if (typeof matchMedia !== 'function') return 'light';
-  return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
-
 export function useSettings() {
-  // El script en index.html ya escribio data-theme antes del primer pintado.
-  // Leerlo de ahi evita que React repinte con un valor distinto.
-  const [theme, setTheme] = useState(() => {
-    const attr = document.documentElement.getAttribute('data-theme');
-    if (THEMES.includes(attr)) return attr;
-    return read(THEME_KEY, THEMES, systemTheme());
+  const [sede, setSedeState] = useState(() => {
+    const attr = document.documentElement.getAttribute('data-sede');
+    if (SEDES.includes(attr)) return attr;
+    return read(SEDE_KEY, SEDES, 'piura');
   });
 
-  const [sede, setSede] = useState(() => read(SEDE_KEY, SEDES, 'piura'));
+  const theme = sede === 'trujillo' ? 'dark' : 'light';
 
-  // Cambiar el tema reescribe casi todos los tokens de color de golpe. Sin
-  // apagar las transiciones la pagina se queda pillada casi un segundo
-  // repintando sombras y recalculando el filtro de las nubes: el porque
-  // detallado esta en aplicarSinTransicion.js.
-  useEffect(() => {
-    aplicarSinTransicion(() => {
-      document.documentElement.setAttribute('data-theme', theme);
-      document.documentElement.style.colorScheme = theme;
-    });
-    write(THEME_KEY, theme);
-  }, [theme]);
-
-  // Igual con la sede: cambia el cielo, el sol y el color de las nubes, que es
-  // justo lo que dispara el recalculo del ruido fractal.
   useEffect(() => {
     aplicarSinTransicion(() => {
       document.documentElement.setAttribute('data-sede', sede);
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.style.colorScheme = theme;
     });
     write(SEDE_KEY, sede);
-  }, [sede]);
+  }, [sede, theme]);
 
-  // Seguir al sistema mientras el usuario no haya elegido tema a mano.
-  useEffect(() => {
-    if (typeof matchMedia !== 'function') return;
-    let userPicked = false;
-    try {
-      userPicked = localStorage.getItem(THEME_KEY) !== null;
-    } catch {
-      /* sin storage no hay eleccion previa que respetar */
+  const setSede = useCallback((nuevaSede) => {
+    if (SEDES.includes(nuevaSede)) {
+      setSedeState(nuevaSede);
     }
-    if (userPicked) return;
-
-    const mq = matchMedia('(prefers-color-scheme: dark)');
-    const onChange = (e) => setTheme(e.matches ? 'dark' : 'light');
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
   }, []);
 
-  const toggleTheme = useCallback(() => {
-    setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
-  }, []);
-
-  return { theme, setTheme, toggleTheme, sede, setSede };
+  return { theme, sede, setSede };
 }
+

@@ -19,7 +19,7 @@
  *
  * El paso 4 es lo que permite que el color venga de CSS: `currentColor` hereda
  * el `color` de .nubes, que sale de `--amb-nube`. Asi las mismas nubes salen
- * blancas en Piura y color durazno en el atardecer de Trujillo, sin duplicar
+ * blancas en Piura y azul noche en Trujillo, sin duplicar
  * nada.
  *
  * POR QUE VA EN BANDAS Y CON `slice`:

@@ -8,7 +8,7 @@ import { lockupDark, lockupLight } from '../assets/images';
  * El logotipo se elige en JS en vez de alternar dos <img> con display:none,
  * que es lo que hacia el original: asi solo se descarga el que se ve.
  */
-export default function Navbar({ hidden, theme, toggleTheme, sede, setSede, seccionActiva }) {
+export default function Navbar({ hidden, theme, sede, setSede, seccionActiva }) {
   return (
     <div className={hidden ? 'navwrap is-hidden' : 'navwrap'}>
       <nav className="nav" aria-label="Principal">
@@ -50,16 +50,6 @@ export default function Navbar({ hidden, theme, toggleTheme, sede, setSede, secc
             </select>
             <Icon name="chevron" size={15} strokeWidth={2} className="select__chevron" />
           </div>
-
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label={theme === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'}
-            title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
-          >
-            <Icon name={theme === 'dark' ? 'sun' : 'moon'} size={18} strokeWidth={1.8} />
-          </button>
 
           <a className="btn btn--sm btn--primary hide-sm" href="#contacto">
             Cotizar obra

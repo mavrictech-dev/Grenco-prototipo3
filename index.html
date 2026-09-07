@@ -62,24 +62,19 @@
     </script>
 
     <script>
-      // Aplica el tema antes del primer pintado. Sin esto la pagina parpadea
-      // en claro durante un frame antes de que React monte y ponga el oscuro.
+      // Aplica la sede y su tema correspondiente antes del primer pintado:
+      // Piura = claro (cielo azul), Trujillo = oscuro (cielo azul noche).
       (function () {
         try {
-          var saved = localStorage.getItem('grenco.theme');
-          var theme =
-            saved === 'light' || saved === 'dark'
-              ? saved
-              : matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light';
+          var sede = localStorage.getItem('grenco.sede');
+          if (sede !== 'piura' && sede !== 'trujillo') sede = 'piura';
+          var theme = sede === 'trujillo' ? 'dark' : 'light';
           var root = document.documentElement;
+          root.setAttribute('data-sede', sede);
           root.setAttribute('data-theme', theme);
           root.style.colorScheme = theme;
-
-          var sede = localStorage.getItem('grenco.sede');
-          if (sede === 'piura' || sede === 'trujillo') root.setAttribute('data-sede', sede);
         } catch (e) {
+          document.documentElement.setAttribute('data-sede', 'piura');
           document.documentElement.setAttribute('data-theme', 'light');
         }
       })();

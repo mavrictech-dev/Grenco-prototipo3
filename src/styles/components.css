@@ -331,28 +331,7 @@ html[data-scrolled='1'] .nav {
   color: var(--ink3);
 }
 
-/* Interruptor de tema */
-.theme-toggle {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  flex: 0 0 auto;
-  border-radius: 14px;
-  background: var(--bg);
-  box-shadow: var(--nu1);
-  color: var(--ink2);
-}
 
-.theme-toggle:hover {
-  box-shadow: var(--nuins);
-  color: var(--accent-ink);
-}
-
-.theme-toggle:active {
-  box-shadow: var(--nuins);
-  transform: translateY(1px);
-}
 
 /* --- Hero ---------------------------------------------------------------- */
 
