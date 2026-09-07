@@ -1048,36 +1048,98 @@ html[data-theme='dark'] .hero__scroll {
 }
 
 .service {
-  padding: 34px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 26px;
   border-radius: 26px;
-}
-
-.service__icon {
-  width: 58px;
-  height: 58px;
-  display: grid;
-  place-items: center;
-  border-radius: 18px;
   background: var(--bg);
   box-shadow: var(--nu1);
-  color: var(--ink);
-  transition: box-shadow 0.45s ease, color 0.45s ease;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease;
+  cursor: default;
 }
 
-.service:hover .service__icon {
-  box-shadow: var(--nuin);
+.service:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--nu2);
+}
+
+.service__thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--sunk);
+  box-shadow: var(--nuins);
+}
+
+.service__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+  transform: scale(1.01);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  filter: saturate(1.05) brightness(0.96);
+}
+
+.service:hover .service__video {
+  transform: scale(1.07);
+  filter: saturate(1.15) brightness(1.02);
+}
+
+.service__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), inset 0 1px 0 var(--hl);
+  color: var(--ink);
+  transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.service:hover .service__badge {
   color: var(--accent-ink);
+  background: var(--bg);
+  box-shadow: var(--nuin);
+  transform: scale(1.06);
+}
+
+.service__body {
+  padding: 18px 10px 4px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .service h3 {
-  margin-top: 24px;
-  font: 400 25px/1.14 var(--font-serif);
+  margin: 0;
+  font: 400 23px/1.18 var(--font-serif);
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.service:hover h3 {
+  color: var(--brand);
 }
 
 .service p {
-  margin-top: 12px;
-  font: 400 15px/1.65 var(--font-sans);
+  margin-top: 10px;
+  font: 400 14.5px/1.6 var(--font-sans);
   color: var(--ink2);
+  transition: color 0.3s ease;
+}
+
+.service:hover p {
+  color: var(--ink);
 }
 
 /* --- Maquinaria ----------------------------------------------------------- */
