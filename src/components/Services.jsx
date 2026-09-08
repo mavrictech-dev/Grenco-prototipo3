@@ -26,18 +26,20 @@ function ServiceCard({ item, delay }) {
       as="article"
       delay={delay}
       className="card card--lift service"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onTouchStart={() => {
-        const v = videoRef.current;
-        if (v) {
-          if (v.paused) v.play().catch(() => {});
-          else v.pause();
-        }
-      }}
     >
       {item.video && (
-        <div className="service__thumb">
+        <div
+          className="service__thumb"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={() => {
+            const v = videoRef.current;
+            if (v) {
+              if (v.paused) v.play().catch(() => {});
+              else v.pause();
+            }
+          }}
+        >
           <video
             ref={videoRef}
             src={item.video}

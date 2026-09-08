@@ -545,38 +545,9 @@ html[data-scrolled='1'] .nav {
   }
 }
 
-/* Overlay de legibilidad. Son dos capas: un lavado del color de fondo por el
-   lado del texto, y un oscurecido inferior que sostiene el contraste cuando el
-   clip pasa por una zona clara (arena, cielo quemado). Sin la segunda, el
-   titular se pierde en los frames luminosos. */
+/* Filtros de hero eliminados a solicitud: tomas 100% limpias, luminosas y nitidas tanto en Piura como en Trujillo */
 .hero__overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  /* El lavado se cierra antes (52% en vez de 78%) ahora que la tarjeta es mas
-     estrecha: solo tiene que sostener el contraste bajo el vidrio, no medio
-     hero. */
-  background:
-    linear-gradient(
-      100deg,
-      color-mix(in oklab, var(--bg) 82%, transparent) 0%,
-      color-mix(in oklab, var(--bg) 42%, transparent) 30%,
-      transparent 52%
-    ),
-    linear-gradient(to top, color-mix(in oklab, var(--bg) 46%, transparent) 0%, transparent 34%),
-    /* Tinte de sede sobre el video: azul de dia en Piura, naranja de atardecer
-       en Trujillo. El cielo de fondo queda tapado por el propio hero, asi que
-       este lavado es lo que hace visible el cambio de sede en la primera
-       pantalla. Va el ultimo, o sea debajo de los otros dos. */
-    linear-gradient(to bottom, var(--amb-tinte) 0%, var(--amb-tinte) 100%);
-  transition: background 0.9s ease;
-}
-
-/* En modo oscuro el video queda ademas amortiguado, para que no compita con el
-   rescoldo del cielo ambiental. */
-html[data-theme='dark'] .hero__panel video,
-html[data-theme='dark'] .hero__panel img {
-  filter: saturate(0.9) brightness(0.74);
+  display: none;
 }
 
 /* El isotipo del hero se movio al fondo de la pagina (.marca-fondo): dentro
@@ -1103,6 +1074,7 @@ html[data-theme='dark'] .hero__scroll {
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), inset 0 1px 0 var(--hl);
   color: var(--ink);
+  pointer-events: none;
   transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
 }
 

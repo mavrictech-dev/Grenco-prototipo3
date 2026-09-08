@@ -35,9 +35,9 @@ export default function HeroWall({ sede = 'piura' }) {
     setActivo(0);
   }, [sede]);
 
-  // Sincronización continua de los tres paneles (especialmente útil en Trujillo donde forman una sola toma)
+  // Sincronización continua de los tres paneles (en Trujillo donde forman una sola toma continua)
   useEffect(() => {
-    if (!conVideo) return;
+    if (!conVideo || sede !== 'trujillo') return;
 
     const syncVideos = () => {
       const v0 = videosRef.current[0];
