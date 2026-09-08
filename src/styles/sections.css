@@ -514,23 +514,9 @@
   }
 }
 
-/* Enlace de navegacion de la seccion en la que estas. El punto es mas discreto
-   que colorear el texto y no compite con el hover. */
-.nav__links a[aria-current='page'] {
-  color: var(--ink);
-  position: relative;
-}
-
+/* Enlace de navegacion activo: el relieve neumorfico de profundidad vive en components.css */
 .nav__links a[aria-current='page']::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 2px;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--brand);
+  display: none;
 }
 
 /* ==========================================================================

@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
  * @param {string[]} ids ids de las secciones, en orden de aparicion
  */
 export function useScrollSpy(ids) {
-  const [activa, setActiva] = useState('');
+  const [activa, setActiva] = useState(ids[0] ?? 'inicio');
 
   useEffect(() => {
     if (typeof IntersectionObserver === 'undefined') return;
@@ -23,9 +23,16 @@ export function useScrollSpy(ids) {
     const secciones = ids.map((id) => document.getElementById(id)).filter(Boolean);
     if (!secciones.length) return;
 
-    // Se guarda que secciones cruzan la franja; la activa es la primera en
-    // orden de documento, para que al bajar no parpadee entre dos.
+    // Se guarda qué secciones cruzan la franja
     const cruzando = new Set();
+
+    const handleScrollTop = () => {
+      if (window.scrollY < 120 && ids[0]) {
+        setActiva(ids[0]);
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollTop, { passive: true });
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -33,14 +40,21 @@ export function useScrollSpy(ids) {
           if (e.isIntersecting) cruzando.add(e.target.id);
           else cruzando.delete(e.target.id);
         }
+        if (window.scrollY < 120 && ids[0]) {
+          setActiva(ids[0]);
+          return;
+        }
         const primera = ids.find((id) => cruzando.has(id));
         if (primera) setActiva(primera);
       },
-      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+      { rootMargin: '-30% 0px -50% 0px', threshold: 0 }
     );
 
     for (const s of secciones) io.observe(s);
-    return () => io.disconnect();
+    return () => {
+      window.removeEventListener('scroll', handleScrollTop);
+      io.disconnect();
+    };
   }, [ids]);
 
   return activa;

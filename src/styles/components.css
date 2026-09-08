@@ -278,21 +278,36 @@ html[data-scrolled='1'] .nav {
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   margin-left: auto;
 }
 
 .nav__links a {
   display: block;
-  padding: 10px 14px;
+  padding: 9px 15px;
   border-radius: 12px;
-  font: 500 13.5px var(--font-sans);
+  font: 500 13px var(--font-sans);
   color: var(--ink2);
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid transparent;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, transform 0.2s ease;
 }
 
-.nav__links a:hover {
+.nav__links a:not([aria-current='page']):hover {
   box-shadow: var(--nu1);
   color: var(--ink);
+  transform: translateY(-1px);
+}
+
+/* Efecto neumórfico de profundidad en la sección activa */
+.nav__links a[aria-current='page'] {
+  background: var(--sunk);
+  box-shadow: var(--nuins);
+  color: var(--accent-ink);
+  font-weight: 600;
+  border-color: color-mix(in oklab, var(--sh) 16%, transparent);
+  transform: translateY(0);
 }
 
 .nav__actions {
