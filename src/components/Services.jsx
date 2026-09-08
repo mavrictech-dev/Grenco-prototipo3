@@ -72,7 +72,7 @@ export default function Services() {
         <h2 className="h2">{services.title}</h2>
       </Reveal>
 
-      <div className="grid-auto services__grid">
+      <div className="services__grid">
         {services.items.map((item, i) => (
           <ServiceCard key={item.title} item={item} delay={(i % 3) * 80} />
         ))}
