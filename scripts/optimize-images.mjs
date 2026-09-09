@@ -105,9 +105,8 @@ await emit(
   'assets/grenco-mark.png',
   'public/favicon.png',
   sharp('assets/grenco-mark.png')
-    .resize({ width: 180, height: 180, fit: 'contain', background: { r: 233, g: 230, b: 224, alpha: 1 } })
-    .flatten({ background: '#e9e6e0' })
-    .png({ compressionLevel: 9, palette: true })
+    .resize({ width: 180, height: 180, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png({ compressionLevel: 9 })
 );
 await emit(
   'assets/images/hero-1.webp',
