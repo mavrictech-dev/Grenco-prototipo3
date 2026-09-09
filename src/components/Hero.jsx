@@ -43,13 +43,6 @@ export default function Hero({ sede }) {
 
           <div className="hero__foot">
             <span className="hero__hint hide-sm">{hero.hint}</span>
-
-            <div className="hero__scroll hide-sm" aria-hidden="true">
-              <span>Scroll</span>
-              <div className="hero__scrollrail">
-                <i />
-              </div>
-            </div>
           </div>
         </div>
       </div>

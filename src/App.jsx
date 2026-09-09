@@ -16,7 +16,6 @@ import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { StickyCta, WhatsappFab, VolverArriba } from './components/Floating';
-import Nubes from './components/Nubes';
 
 import { useSettings } from './hooks/useSettings';
 import { useScrollFx } from './hooks/useScrollFx';
@@ -68,11 +67,8 @@ export default function App() {
         <img src={mark} alt="" width="760" height="1035" decoding="async" />
       </div>
 
-      {/* Cielo ambiental: Piura = dia soleado (cielo azul), Trujillo = noche (cielo azul noche). */}
-      <div className="ambient" aria-hidden="true">
-        <div className="ambient__sol" />
-        <Nubes />
-      </div>
+      {/* Cielo ambiental: gradiente suave y limpio, sin nubes ni sol/luna */}
+      <div className="ambient" aria-hidden="true" />
 
       <div className="progreso" style={{ width: `${progreso}%` }} aria-hidden="true" />
 

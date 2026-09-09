@@ -420,6 +420,196 @@ html[data-scrolled='1'] .nav {
   background: var(--sunk);
 }
 
+/* --- Banner completo continuo (Piura) ------------------------------------
+   Video panorámico completo sin cortes de tríptico ni costuras verticales.
+   Las 4 partes rotan automáticamente cada 8 segundos con fundido suave.
+   -------------------------------------------------------------------------- */
+
+.hero__wall--full {
+  display: block;
+  gap: 0;
+  overflow: hidden;
+}
+
+.hero__full-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.75s;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__full-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.hero__full-slide video,
+.hero__full-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 8s ease-out;
+}
+
+.hero__full-slide.is-active video,
+.hero__full-slide.is-active img {
+  transform: scale(1);
+}
+
+/* Selector y progreso de capítulos (8 segundos) */
+.hero__full-nav {
+  position: absolute;
+  right: clamp(18px, 4vw, 64px);
+  bottom: calc(var(--solape-tarjetas) + clamp(16px, 2.2vh, 28px));
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.hero__full-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(14, 20, 30, 0.52);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--r-md);
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero__full-tab:hover {
+  background: rgba(14, 20, 30, 0.75);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.hero__full-tab.is-active {
+  background: rgba(10, 16, 26, 0.85);
+  border-color: rgba(230, 168, 34, 0.5);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.hero__full-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero__full-tab.is-active .hero__full-bar {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.hero__full-progress {
+  height: 100%;
+  width: 0%;
+  background: var(--brand);
+  border-radius: inherit;
+  animation: heroPartProgress 8s linear forwards;
+}
+
+@keyframes heroPartProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.hero__full-label {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-sans);
+}
+
+.hero__full-index {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: 0.08em;
+}
+
+.hero__full-tag {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.88;
+  white-space: nowrap;
+}
+
+.hero__full-tab.is-active .hero__full-tag {
+  opacity: 1;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .hero__full-nav {
+    right: 20px;
+    gap: 6px;
+  }
+  .hero__full-tag {
+    display: none;
+  }
+  .hero__full-tab {
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero__full-nav {
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .hero__full-tab {
+    padding: 0;
+    width: 44px;
+    height: 8px;
+    border: 0;
+    background: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  .hero__full-tab.is-active {
+    width: 58px;
+    background: none;
+    box-shadow: none;
+  }
+
+  .hero__full-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.42);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  }
+
+  .hero__full-label {
+    display: none;
+  }
+}
+
 .hero__panel {
   position: relative;
   flex: 1 1 0;
