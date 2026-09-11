@@ -437,8 +437,9 @@ export const gallery = {
     // Obras viales
     { id: 'vial-1', img: 'gal-3', w: 800, h: 1066, alt: 'Operación de maquinaria pesada en Piura', tag: 'Obras viales', span: 3 },
     { id: 'vial-2', img: 'vial-apertura', w: 1000, h: 1333, alt: 'Apertura de trocha y explanaciones viales', tag: 'Obras viales', span: 3 },
-    { id: 'vial-3', img: 'vial-rasante', w: 1000, h: 1333, alt: 'Nivelación y conformación de rasante vial', tag: 'Obras viales', span: 2 },
-    { id: 'vial-4', img: 'gal-6', w: 1000, h: 700, alt: 'Superficie compactada y entrega de obra vial', tag: 'Obras viales', span: 2 },
+    { id: 'vial-3', img: 'gal-4', w: 1000, h: 700, alt: 'Motoniveladora Komatsu en conformación de rasante urbana', tag: 'Obras viales', span: 2 },
+    { id: 'vial-4', img: 'vial-rasante', w: 1000, h: 1333, alt: 'Nivelación y rasante vial en frente de obra', tag: 'Obras viales', span: 3 },
+    { id: 'vial-5', img: 'gal-6', w: 1000, h: 700, alt: 'Superficie compactada y entrega de obra vial', tag: 'Obras viales', span: 2 },
 
     // Edificaciones
     { id: 'edif-1', img: 'gal-2', w: 1000, h: 700, alt: 'Frente de trabajo estructural y cuadrilla en campo', tag: 'Edificaciones', span: 2 },
@@ -446,10 +447,10 @@ export const gallery = {
     { id: 'edif-3', img: 'edif-estructura-2', w: 1000, h: 1333, alt: 'Armado de tijerales y cerramientos industriales', tag: 'Edificaciones', span: 3 },
     { id: 'edif-4', img: 'pro-planta-agro', w: 1200, h: 2134, alt: 'Plataforma estructural y patio de maniobras', tag: 'Edificaciones', span: 2 },
 
-    // Grenco Soldadura
-    { id: 'sold-1', img: 'gal-4', w: 1000, h: 700, alt: 'Detalle de armadura y uniones metálicas soldadas', tag: 'Grenco Soldadura', span: 2 },
-    { id: 'sold-2', img: 'sold-entubado-1', w: 1000, h: 1778, alt: 'Soldadura y trabajos en fierro para entubados hidráulicos', tag: 'Grenco Soldadura', span: 3 },
-    { id: 'sold-3', img: 'sold-entubado-2', w: 1000, h: 1778, alt: 'Fabricación y fijación de soportes metálicos', tag: 'Grenco Soldadura', span: 3 },
+    // Grenco Soldadura (fotos reales únicas sin repeticiones)
+    { id: 'sold-1', img: 'sold-3128', w: 1000, h: 1778, alt: 'Trabajos de corte, soldadura y armado de estructuras metálicas', tag: 'Grenco Soldadura', span: 3 },
+    { id: 'sold-2', img: 'sold-0191', w: 1000, h: 1333, alt: 'Montaje y fijación de elementos de acero estructural en obra', tag: 'Grenco Soldadura', span: 2 },
+    { id: 'sold-3', img: 'sold-entubado-1', w: 1000, h: 1778, alt: 'Soldadura y habilitación en fierro para entubados hidráulicos', tag: 'Grenco Soldadura', span: 3 },
 
     // SSOMA
     { id: 'ssoma-1', img: 'gal-5', w: 1000, h: 700, alt: 'Supervisión de seguridad y charla técnica de inicio de jornada', tag: 'SSOMA', span: 2 },
