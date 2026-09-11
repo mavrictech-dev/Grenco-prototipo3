@@ -2,9 +2,23 @@
    GRENCO Tracking — adelanto de la app / portal del cliente
    ========================================================================== */
 
+.tracking__header-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(28px, 4.5vw, 60px);
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .tracking__header-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
 .tracking__titulo {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
   flex-wrap: wrap;
 }
@@ -14,21 +28,119 @@
   min-width: min(100%, 18ch);
 }
 
-/* Insignia de "producto que aun no existe". Va deliberadamente marcada, con
-   borde discontinuo: la seccion muestra una maqueta y no debe leerse como algo
-   ya disponible. */
+/* Insignia neumórfica táctil: relieve grabado en la superficie, sobrio y libre de clichés */
 .badge-pronto {
   flex: 0 0 auto;
-  margin-top: 24px;
-  padding: 9px 15px;
+  margin-top: 10px;
+  padding: 7px 15px;
   border-radius: 99px;
-  background: color-mix(in oklab, var(--brand) 18%, transparent);
-  border: 1px dashed color-mix(in oklab, var(--brand) 62%, transparent);
+  background: var(--bg);
+  box-shadow: var(--nuins);
   color: var(--accent-ink);
-  font: 700 10.5px var(--font-sans);
-  letter-spacing: 0.16em;
+  font: 700 11px var(--font-sans);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+}
+
+.badge-pronto::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 6px var(--brand);
+}
+
+/* Ficha neumórfica de la app al costado del texto para llenar el espacio */
+.tracking__app-card {
+  padding: clamp(22px, 2.5vw, 30px);
+  border-radius: 20px;
+  background: var(--bg);
+  box-shadow: var(--nu1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid var(--line);
+}
+
+.tracking__app-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tracking__app-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--sunk);
+  box-shadow: var(--nuins);
+  display: grid;
+  place-items: center;
+  color: var(--brand);
+  flex-shrink: 0;
+}
+
+.tracking__app-card-title {
+  font: 600 16px/1.25 var(--font-sans);
+  color: var(--ink);
+  margin: 0;
+}
+
+.tracking__app-card-sub {
+  font: 400 12.5px/1.4 var(--font-sans);
+  color: var(--ink3);
+  display: block;
+  margin-top: 3px;
+}
+
+.tracking__app-pills {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.tracking__app-pills li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--sunk);
+  box-shadow: var(--nuins);
+  font: 500 13px/1.4 var(--font-sans);
+  color: var(--ink2);
+}
+
+.tracking__app-pills li svg {
+  color: var(--brand);
+  flex-shrink: 0;
+}
+
+.tracking__app-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-top: 10px;
+  font: 600 11.5px var(--font-sans);
+  color: var(--ink3);
+  border-top: 1px solid var(--line);
+}
+
+.tracking__app-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
 }
 
 .tracking__mocks {
@@ -570,21 +682,21 @@
    —relieve fuera, hueco dentro— es lo que da la sensacion de que la imagen
    esta encajada en el material, en vez de pegada encima. */
 .manifiesto__foto {
-  padding: clamp(14px, 1.6vw, 20px);
-  border-radius: clamp(26px, 2.6vw, 34px);
+  padding: clamp(12px, 1.4vw, 18px);
+  border-radius: clamp(18px, 2vw, 24px);
   background: var(--bg);
   box-shadow: var(--nu2);
-  transition: box-shadow 0.4s ease, transform 0.4s ease, background-color 0.6s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.4s ease;
 }
 
 .manifiesto__foto:hover {
   box-shadow: var(--nu3);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 .manifiesto__foto .media {
   aspect-ratio: 4 / 5;
-  border-radius: clamp(16px, 1.8vw, 22px);
+  border-radius: clamp(12px, 1.4vw, 16px);
   box-shadow: var(--nuin);
 }
 

@@ -88,7 +88,7 @@ const POSTS = [
     fecha: '2026-07-28',
     lugar: 'Base de operaciones, Piura',
     sede: 'piura',
-    titulo: 'Mantenimiento preventivo de equipos en alquiler',
+    titulo: 'Mantenimiento preventivo de flota pesada en base',
     resumen:
       'Cambio de tren de rodamiento y revisión hidráulica completa. Los equipos vuelven a frente sin generar demoras en obra.',
     foto: 'obra-1096',

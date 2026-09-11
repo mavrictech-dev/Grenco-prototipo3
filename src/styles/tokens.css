@@ -8,8 +8,8 @@
 html[data-theme='light'] {
   --bg: #e9e6e0;
   --sunk: #e3dfd8;
-  --hl: rgba(255, 255, 255, 0.72);
-  --sh: rgba(88, 76, 56, 0.28);
+  --hl: rgba(255, 255, 255, 0.78);
+  --sh: rgba(32, 28, 22, 0.14);
   --ink: #1b1a17;
   --ink2: #5e574d;
   --ink3: #8b8478;
@@ -24,7 +24,7 @@ html[data-theme='dark'] {
   --bg: #1e2024;
   --sunk: #191b1e;
   --hl: rgba(255, 255, 255, 0.085);
-  --sh: rgba(0, 0, 0, 0.62);
+  --sh: rgba(0, 0, 0, 0.55);
   --ink: #eeece7;
   --ink2: #a6a29a;
   --ink3: #7c786f;
@@ -55,83 +55,34 @@ html[data-sede='piura'] {
   --amb-alto: #3d9ade;
   --amb-medio: #8fc9ec;
   --amb-bajo: #a8d2ea;
-  --amb-nube: #ffffff;
-  --amb-nube-op: 1;
-
-  --sol-x: 78%;
-  --sol-y: 74%;
-  --sol-tam: clamp(62px, 6.6vw, 96px);
-  --sol-nucleo: #fffdf0;
-  --sol-halo: rgba(255, 244, 190, 0.8);
-  --sol-alcance: clamp(230px, 26vw, 380px);
-  --sol-op: 1;
-
-  /* Tinte del hero. Es lo unico del ambiente que se ve en la primera pantalla:
-     el cielo queda detras del hero, asi que el cambio de sede tiene que
-     notarse aqui. */
   --amb-tinte: rgba(74, 158, 220, 0.2);
 }
 
-/* Piura de noche: el mismo cielo despejado, sin sol. */
+/* Piura de noche */
 html[data-sede='piura'][data-theme='dark'] {
   --amb-alto: #060c18;
   --amb-medio: #0e1a2e;
   --amb-bajo: #1c2b45;
-  --amb-nube: #7f9dc0;
-  --amb-nube-op: 0.26;
-
-  --sol-x: 74%;
-  --sol-y: 75%;
-  --sol-tam: clamp(44px, 4.3vw, 62px);
-  --sol-nucleo: #e8eef7;
-  --sol-halo: rgba(180, 205, 235, 0.24);
-  --sol-alcance: clamp(160px, 17vw, 240px);
-  --sol-op: 0.85;
-
   --amb-tinte: rgba(24, 54, 104, 0.34);
 }
 
-/* --- Trujillo: noche azul (modo oscuro) -----------------------------------
-   Cielo azul noche (el mismo cielo nocturno de Piura en modo oscuro).
-   Se descarta el modo atardecer.
-   -------------------------------------------------------------------------- */
+/* --- Trujillo: noche azul (modo oscuro) --- */
 html[data-sede='trujillo'] {
   --amb-alto: #060c18;
   --amb-medio: #0e1a2e;
   --amb-bajo: #1c2b45;
-  --amb-nube: #7f9dc0;
-  --amb-nube-op: 0.26;
-
-  --sol-x: 74%;
-  --sol-y: 75%;
-  --sol-tam: clamp(44px, 4.3vw, 62px);
-  --sol-nucleo: #e8eef7;
-  --sol-halo: rgba(180, 205, 235, 0.24);
-  --sol-alcance: clamp(160px, 17vw, 240px);
-  --sol-op: 0.85;
-
   --amb-tinte: rgba(24, 54, 104, 0.34);
 }
 
 :root {
-  /* Relieve neumorfico: par de sombras opuestas derivadas de --sh / --hl.
-
-     --hl y --sh son SEMITRANSPARENTES a proposito, no colores solidos. El
-     neumorfismo clasico asume que el elemento y su entorno comparten el mismo
-     fondo, y aqui no es asi: la barra, el hero y las tarjetas flotan sobre el
-     cielo de color. Con un blanco opaco la mitad clara de la sombra pintaba un
-     halo brillante alrededor de cada caja.
-
-     La solucion no fue solo bajarles el alfa —eso apagaba tambien el relieve
-     sobre el fondo plano— sino mover la luz DENTRO del elemento: --nu1/2/3
-     llevan la mitad clara como `inset`, pintada sobre el propio fondo de la
-     caja. Fuera solo queda la sombra oscura. Asi el relieve puede ser fuerte
-     sin derramar ni un pixel de blanco sobre el cielo. */
-  --nu1: 6px 7px 15px var(--sh), inset 0 1px 0 var(--hl);
-  --nu2: 12px 16px 32px var(--sh), inset 0 1px 0 var(--hl);
-  --nu3: 18px 22px 44px var(--sh), inset 0 1px 0 var(--hl);
-  --nuin: inset 6px 6px 12px var(--sh), inset -6px -6px 12px var(--hl);
-  --nuins: inset 3px 3px 7px var(--sh), inset -3px -3px 7px var(--hl);
+  /* Profundidad y relieve arquitectónico limpio:
+     Elimina el barrizal y la plastilina diagonal, ofreciendo sombras nítidas,
+     elegantes y de alto contraste acordes a ingeniería civil. */
+  --nu1: 0 3px 10px var(--sh), 0 1px 3px var(--sh), inset 0 1px 0 var(--hl);
+  --nu2: 0 8px 22px var(--sh), 0 2px 6px var(--sh), inset 0 1px 0 var(--hl);
+  --nu3: 0 16px 36px var(--sh), 0 4px 10px var(--sh), inset 0 1px 0 var(--hl);
+  --nuin: inset 0 2px 6px var(--sh), inset 0 1px 2px var(--sh);
+  --nuins: inset 0 1px 3px var(--sh);
 
   --shell: min(1300px, calc(100% - 32px));
   --gap-section: clamp(90px, 11vw, 150px);

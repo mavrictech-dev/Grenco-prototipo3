@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documento Técnico y Descriptivo - Landing Page GRENCO</title>
+  <style>
+    @media print {
+      body { padding: 0; background: #fff; }
+      .page-break { page-break-before: always; }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #000000;
+      background: #ffffff;
+      padding: 40px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    h1, h2, h3, h4 {
+      color: #000000;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    h1 {
+      font-size: 24px;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    h2 {
+      font-size: 18px;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 6px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    h3 {
+      font-size: 15px;
+      margin-top: 24px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    p {
+      margin-bottom: 14px;
+      color: #000000;
+    }
+    ul, ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+      color: #000000;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    .header-box {
+      border: 1px solid #000000;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      background: #fafafa;
+    }
+    .header-box p {
+      margin-bottom: 4px;
+    }
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 16px 0 24px;
+    }
+    .img-card {
+      border: 1px solid #000000;
+      padding: 8px;
+      background: #ffffff;
+      text-align: center;
+    }
+    .img-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .img-card span {
+      font-size: 12px;
+      font-weight: 600;
+      color: #000000;
+      display: block;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 30px;
+      font-size: 13px;
+    }
+    th, td {
+      border: 1px solid #000000;
+      padding: 8px 10px;
+      text-align: left;
+      color: #000000;
+    }
+    th {
+      background: #f0f0f0;
+      font-weight: 700;
+    }
+    a {
+      color: #000000;
+      text-decoration: underline;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #000000;
+      margin: 30px 0;
+    }
+    .footer-note {
+      margin-top: 40px;
+      border-top: 1px solid #000000;
+      padding-top: 12px;
+      font-size: 12px;
+      text-align: center;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Documento Técnico y Descriptivo de la Landing Page</h1>
+
+  <div class="header-box">
+    <p><strong>Empresa:</strong> GRENCO · Grupo Enriquez Construcciones S.A.C.</p>
+    <p><strong>Proyecto:</strong> Landing Page Institucional y Comercial</p>
+    <p><strong>Versión:</strong> 2.0 (Producción)</p>
+    <p><strong>Fecha de Emisión:</strong> 2026</p>
+    <p><strong>Formato:</strong> Formal institucional en escala sobria (sin texto azul, tipografía neutra y limpia)</p>
+  </div>
+
+  <h2>1. Introducción y Objetivo</h2>
+  <p>
+    El presente informe documenta en detalle todos los componentes, secciones, funcionalidades y material multimedia (fotografías de obra y registros en video) implementados en la plataforma web de <strong>GRENCO (Grupo Enriquez Construcciones S.A.C.)</strong>.
+  </p>
+  <p>
+    La web ha sido estructurada para consolidar la presencia comercial e institucional de la empresa en las regiones de <strong>Piura</strong> y <strong>La Libertad (Trujillo)</strong>, comunicando capacidad técnica, flota propia, formalidad laboral y cumplimiento garantizado en obras civiles, movimiento de tierras, defensas ribereñas, edificaciones y soldadura industrial.
+  </p>
+
+  <h2>2. Arquitectura de Diseño y Estándares Técnicos</h2>
+  <ul>
+    <li><strong>Diseño Neumórfico Satinado:</strong> Interfaz con relieves y hendiduras suaves que evocan concreto industrial y maquinaria pesada, sin estridencias visuales.</li>
+    <li><strong>Selector de Modo Claro y Modo Oscuro:</strong> Esquema cromático dual con persistencia en el navegador del visitante (localStorage).</li>
+    <li><strong>Sistema Multi-Sede (Piura y Trujillo):</strong> Conmutador instantáneo que adapta el video de portada, las obras emblemáticas y los canales de contacto de acuerdo a la región seleccionada.</li>
+    <li><strong>Optimización Fotográfica WebP:</strong> Reducción de más de 80% en peso de imágenes sin pérdida de nitidez, permitiendo visualización nítida y carga en menos de 1 segundo.</li>
+    <li><strong>Derechos de Autor Dinámicos:</strong> En el pie de página, el año fiscal se actualiza de forma automática en tiempo real mediante <code>new Date().getFullYear()</code>, pasando a 2027 y años sucesivos sin mantenimiento manual.</li>
+  </ul>
+
+  <h2>3. Depuración de Diseño y Eliminación de "AI Slop"</h2>
+  <p>
+    Para asegurar que la plataforma refleje el estándar técnico y la rigurosidad de una empresa constructora de obras públicas y privadas, se realizó un proceso de auditoría visual para erradicar vicios de diseño artificial ("AI Slop") generados en prototipos iniciales:
+  </p>
+  <ul>
+    <li><strong>Eliminación de Simulación Climática Procedural:</strong> Supresión del componente huérfano <code>Nubes.jsx</code> y más de 140 líneas de estilos CSS asociadas a sol y nubes fractales por software, optimizando el rendimiento y consumo de memoria.</li>
+    <li><strong>Refinamiento de Sombras Neumórficas:</strong> Eliminación de sombras oscuras con tinte marrón en modo claro; transición hacia elevaciones neutras, nítidas y arquitectónicas (<code>--nu1</code>, <code>--nu2</code>, <code>--nu3</code>, <code>--nuin</code>) que transmiten la solidez del concreto y el acero en vez de un aspecto de plastilina.</li>
+    <li><strong>Ajuste de Geometría y Radios:</strong> Moderación de radios de curvatura excesivos (de 24px-34px a 14px-18px en tarjetas y marcos de fotografía de obra) para un aspecto más técnico y aplomado.</li>
+    <li><strong>Supresión de Micro-Animaciones Invasivas:</strong> Retiro del pulso de onda expansiva continua en el botón flotante de WhatsApp (<code>.wa__pulse</code>), logrando una interacción limpia y sin distracciones.</li>
+    <li><strong>Preservación de Componentes Clave Validados:</strong> Se conservaron activas la barra fija superior de 3px vinculada al scroll (indicador de lectura) y la sección <em>GRENCO Tracking</em> (mockups de app móvil y portal web con reporte de avance y cuadrillas).</li>
+  </ul>
+
+  <h2>4. Desglose Detallado de Secciones</h2>
+
+  <h3>Sección 1: Barra de Navegación (Navbar)</h3>
+  <p>
+    Cabecera fija superior con seguimiento de desplazamiento en tiempo real y barra fija dorada de 3px indicadora de scroll. Incluye el logotipo oficial en versión clara y oscura, enlaces a las secciones principales (Inicio, Nosotros, Servicios, Proyectos, Bitácora, Galería, Contacto), interruptor de sede (Piura / Trujillo), conmutador de tema visual (claro / oscuro) y botón de cotización directa.
+  </p>
+  <div class="img-grid">
+    <div class="img-card">
+      <img src="src/assets/brand/grenco-lockup-light.webp" alt="Logotipo GRENCO Claro">
+      <span>Logotipo GRENCO (Modo Claro)</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/brand/grenco-lockup-dark.webp" alt="Logotipo GRENCO Oscuro">
+      <span>Logotipo GRENCO (Modo Oscuro)</span>
+    </div>
+  </div>
+
+  <h3>Sección 2: Portada Principal (Hero Wall)</h3>
+  <p>
+    Pantalla de bienvenida cinematográfica con video de fondo a pantalla completa, marca de agua central del isotipo GRENCO y botón de acceso a proyectos.
+  </p>
+  <ul>
+    <li><strong>Video Hero Piura (<code>/video/piura-hero.mp4</code> - 12.0 Segundos):</strong> Toma aérea cinematográfica registrada en resolución 4K y adaptada a 720p 30fps para carga web inmediata (3.36 MB). Muestra un vuelo de dron sobre el puente vehicular del Río Piura, el tránsito en marcha, el cauce del río y el horizonte de la ciudad. Se reproduce en bucle continuo y sin cortes ni pestañas. Incluye póster WebP companion (<code>/video/piura-hero.webp</code>).</li>
+    <li><strong>Video Hero Trujillo (<code>/video/trujillo.mp4</code> - 14.0 Segundos):</strong> Registro aéreo de obras viales y maquinaria pesada en frente de trabajo en La Libertad, con póster WebP (<code>/video/trujillo.webp</code>).</li>
+  </ul>
+
+  <h3>Sección 3: Indicadores de Confianza (Highlights)</h3>
+  <p>
+    Fichas informativas con las credenciales operativas de la empresa:
+  </p>
+  <ul>
+    <li><strong>Cuadrillas en Planilla:</strong> Todo el personal en planilla formal con seguro SCTR y capacitación periódica.</li>
+    <li><strong>Flota Propia Certificada:</strong> Maquinaria pesada propia de marcas líderes (CAT, Volvo, Komatsu) con operadores homologados.</li>
+    <li><strong>Cumplimiento de Plazos:</strong> Cronogramas de avance valorizado con compromisos de entrega por contrato.</li>
+    <li><strong>Seguridad SSOMA:</strong> Estándares de seguridad y salud en el trabajo con meta de cero accidentes.</li>
+  </ul>
+
+  <h3>Sección 4: Manifiesto Institucional</h3>
+  <p>
+    Declaración de principios de ingeniería que aloja el encabezado H1 principal para posicionamiento en Google: <em>"Movemos tierra. Levantamos el norte."</em> Acompañado de fotografía real de cuadrilla en frente de trabajo.
+  </p>
+  <div class="img-grid">
+    <div class="img-card">
+      <img src="src/assets/obra/obra-0082.webp" alt="Cuadrilla en Obra">
+      <span>Cuadrilla y Maquinaria en Terreno (obra-0082)</span>
+    </div>
+  </div>
+
+  <h3>Sección 5: Sobre la Empresa (About)</h3>
+  <p>
+    Detalle de la capacidad operativa y cobertura de talleres y frentes de trabajo en Piura y Trujillo, respaldado con tomas de supervisión técnica.
+  </p>
+  <div class="img-grid">
+    <div class="img-card">
+      <img src="src/assets/obra/obra-1718.webp" alt="Supervisión en Campo">
+      <span>Supervisión de Movimiento de Tierras (obra-1718)</span>
+    </div>
+  </div>
+
+  <h3>Sección 6: Portal de Seguimiento (Tracking)</h3>
+  <p>
+    Adelanto del sistema digital de supervisión de obra. Incorpora una insignia táctil neumórfica <em>"Próximamente"</em> con relieve grabado y punto de estado, acompañada de una ficha técnica de la aplicación (curva S valorizada, reporte de horas de maquinaria y cuadrillas en frente) que complementa armónicamente el encabezado. Se presentan maquetas interactivas del aplicativo móvil y portal web con una tira continua de fotografías de campo georreferenciadas.
+  </p>
+  <div class="img-grid">
+    <div class="img-card">
+      <img src="src/assets/obra/obra-1012.webp" alt="Operación en Campo">
+      <span>Verificación de Eje de Obra (obra-1012)</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/obra/obra-1844.webp" alt="Inspección de Suelos">
+      <span>Inspección de Suelos y Rasante (obra-1844)</span>
+    </div>
+  </div>
+
+  <h3>Sección 7: Servicios Especializados</h3>
+  <p>
+    Seis tarjetas neumórficas con fichas técnicas y videos en bucle continuo:
+  </p>
+  <ul>
+    <li><strong>Movimiento de Tierras (<code>servicio-movimiento.mp4</code>):</strong> Corte masivo, perfilado de taludes y carguío a volquetes.</li>
+    <li><strong>Habilitación Urbana y Rasantes (<code>servicio-habilitacion.mp4</code>):</strong> Nivelación, motoniveladoras y compactación de subrasante.</li>
+    <li><strong>Obras Civiles y Edificaciones (<code>servicio-obras-civiles.mp4</code>):</strong> Encofrado, vaciado de concreto y zapatas.</li>
+    <li><strong>Soldadura y Estructuras Metálicas (<code>servicio-soldadura.mp4</code>):</strong> Fabricación de vigas, estructuras reticuladas y tuberías.</li>
+    <li><strong>Saneamiento y Redes Hidráulicas (<code>servicio-saneamiento.mp4</code>):</strong> Apertura de zanjas y tendido de redes de agua y desagüe.</li>
+    <li><strong>Demoliciones Técnicas y Eliminación (<code>servicio-demolicion.mp4</code>):</strong> Demolición controlada y desalojo de desmonte.</li>
+  </ul>
+
+  <h3>Sección 8: Misión, Visión y Valores</h3>
+  <p>
+    Fundamentos institucionales de compromiso con la seguridad del personal, la puntualidad en la entrega y la calidad de la ingeniería.
+  </p>
+
+  <h3>Sección 9: Cultura y Equipo Humano</h3>
+  <p>
+    Presentación de los perfiles clave de la empresa:
+  </p>
+  <div class="img-grid">
+    <div class="img-card">
+      <img src="src/assets/images/eq-residencia.webp" alt="Ingeniero Residente">
+      <span>Ingeniería Residente</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/eq-topografia.webp" alt="Topógrafo">
+      <span>Topografía de Precisión</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/eq-operador.webp" alt="Operador de Maquinaria">
+      <span>Operadores Homologados</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/eq-ssoma.webp" alt="Supervisor SSOMA">
+      <span>Supervisión SSOMA</span>
+    </div>
+  </div>
+
+  <h3>Sección 10: Proyectos Emblemáticos</h3>
+  <p>
+    Obras representativas ejecutadas en el norte del Perú:
+  </p>
+  <div class="img-grid">
+    <div class="img-card">
+      <img src="src/assets/images/pro-planta-agro.webp" alt="Planta Agroindustrial">
+      <span>Planta Agroindustrial (Piura)</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/pro-ejidos.webp" alt="Los Ejidos">
+      <span>Defensas Ribereñas Los Ejidos</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/pro-via-drenaje.webp" alt="Vía Drenaje">
+      <span>Vía Canal y Drenaje Pluvial</span>
+    </div>
+  </div>
+
+  <h3>Sección 11: Bitácora de Obra</h3>
+  <p>
+    Registro cronológico de avances de campo con fechas formales, descripciones técnicas y soporte fotográfico.
+  </p>
+  <div class="img-grid">
+    <div class="img-card">
+      <img src="src/assets/obra/obra-1096.webp" alt="Bitácora 1">
+      <span>Avance de Plataforma (obra-1096)</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/obra/obra-4827.webp" alt="Bitácora 2">
+      <span>Nivelación de Terreno (obra-4827)</span>
+    </div>
+  </div>
+
+  <h3>Sección 12: Galería Fotográfica Profesional con Sistema de Zoom 2D</h3>
+  <p>
+    Módulo fotográfico clasificado en categorías (Todas, Topografía, Maquinaria, Obras viales, Edificaciones, Grenco Soldadura). Cuenta con vista compacta de 6 fotos y botón con relieve neumorfista <em>"Ver más fotos"</em>.
+  </p>
+  <p>
+    <strong>Sistema de Zoom y Paneo en el Visor (Lightbox):</strong>
+  </p>
+  <ul>
+    <li><strong>Zoom por Clic:</strong> Clic directo sobre la foto aumenta al 240% hacia la zona seleccionada.</li>
+    <li><strong>Zoom por Rueda:</strong> Ampliación continua desde 100% hasta 400% con la rueda del ratón.</li>
+    <li><strong>Arrastre y Paneo 2D:</strong> Con el cursor en modo agarre (grab), se puede mover la foto con fluidez para examinar detalles finos de soldadura o topografía.</li>
+    <li><strong>Barra Neumórfica:</strong> Botones de alejar (-), badge de porcentaje interactivo, botón de acercar (+) y botón de restablecer (↺).</li>
+    <li><strong>Bloqueo de Fondo:</strong> Congela el scroll de fondo y oscurece con desenfoque de 20px.</li>
+  </ul>
+  <div class="img-grid">
+    <div class="img-card">
+      <img src="src/assets/images/topo-lomas-4.webp" alt="Topografía GNSS">
+      <span>Topografía GNSS Las Lomas</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/topo-1.webp" alt="Estación Leica">
+      <span>Estación Total Leica en Hito</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/topo-lomas-extra.webp" alt="Detalle Leica">
+      <span>Detalle Digital Leica PinPoint</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/gal-4.webp" alt="Motoniveladora">
+      <span>Motoniveladora Komatsu (Vial)</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/sold-3128.webp" alt="Soldadura Estructural">
+      <span>Soldadura Estructural Pesada</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/sold-0191.webp" alt="Montaje de Acero">
+      <span>Montaje de Acero Estructural</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/sold-entubado-1.webp" alt="Soldadura Tubería">
+      <span>Soldadura de Tubería Hidráulica</span>
+    </div>
+    <div class="img-card">
+      <img src="src/assets/images/edif-estructura-1.webp" alt="Estructura Concreto">
+      <span>Columnas de Concreto Armado</span>
+    </div>
+  </div>
+
+  <h3>Sección 13: Contacto y Cotizaciones</h3>
+  <p>
+    Formulario de solicitud técnica, números directos de WhatsApp para Piura y Trujillo, y direcciones físicas de bases operativas.
+  </p>
+
+  <h3>Sección 14: Pie de Página (Footer) y Flotantes</h3>
+  <p>
+    Redes sociales, botón flotante de WhatsApp permanente, botón volver arriba al hacer scroll y año dinámico sin dependencias manuales.
+  </p>
+
+  <h2>5. Tabla Resumen de Recursos Multimedia</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Archivo</th>
+        <th>Formato</th>
+        <th>Sección</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Video</td>
+        <td>piura-hero.mp4</td>
+        <td>H.264 720p</td>
+        <td>Hero Piura</td>
+        <td>Toma aérea 12s sobre puente vehicular Río Piura en bucle infinito.</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>trujillo.mp4</td>
+        <td>H.264 720p</td>
+        <td>Hero Trujillo</td>
+        <td>Toma aérea 14s sobre frente de obra y maquinaria en La Libertad.</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>servicio-movimiento.mp4</td>
+        <td>H.264 720p</td>
+        <td>Servicios</td>
+        <td>Excavadoras en corte y carguío de material a volquetes.</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>servicio-habilitacion.mp4</td>
+        <td>H.264 720p</td>
+        <td>Servicios</td>
+        <td>Motoniveladora y rodillo compactador perfilando rasante.</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>servicio-obras-civiles.mp4</td>
+        <td>H.264 720p</td>
+        <td>Servicios</td>
+        <td>Encofrado y vaciado de concreto estructural para zapatas.</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>servicio-soldadura.mp4</td>
+        <td>H.264 720p</td>
+        <td>Servicios</td>
+        <td>Operadores soldando vigas reticuladas y tuberías de conducción.</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>servicio-saneamiento.mp4</td>
+        <td>H.264 720p</td>
+        <td>Servicios</td>
+        <td>Zanjeo con retroexcavadora e instalación de redes matrices.</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>servicio-demolicion.mp4</td>
+        <td>H.264 720p</td>
+        <td>Servicios</td>
+        <td>Demolición controlada de estructuras y retiro de desmonte.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>topo-lomas-4.webp</td>
+        <td>WebP</td>
+        <td>Galería</td>
+        <td>Cuadrilla de topografía con receptor GNSS diferencial en Las Lomas.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>topo-1.webp</td>
+        <td>WebP</td>
+        <td>Galería</td>
+        <td>Estación total Leica calibrada sobre hito geodésico en canal.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>topo-lomas-extra.webp</td>
+        <td>WebP</td>
+        <td>Galería</td>
+        <td>Detalle macro de pantalla digital Leica PinPoint y nivel electrónico.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>gal-4.webp</td>
+        <td>WebP</td>
+        <td>Galería</td>
+        <td>Motoniveladora Komatsu nivelando rasante urbana en obras viales.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>sold-3128.webp</td>
+        <td>WebP</td>
+        <td>Galería</td>
+        <td>Corte y soldadura de perfiles pesados de acero estructural en obra.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>sold-0191.webp</td>
+        <td>WebP</td>
+        <td>Galería</td>
+        <td>Fijación y armado de elementos de acero estructural en altura.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>sold-entubado-1.webp</td>
+        <td>WebP</td>
+        <td>Galería</td>
+        <td>Habilitación y soldadura en zanja para tubería hidráulica.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>maq-excavadora.webp</td>
+        <td>WebP</td>
+        <td>Galería (Maquinaria)</td>
+        <td>Excavadora sobre orugas CAT 20T en frente de excavación.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>maq-cargador.webp</td>
+        <td>WebP</td>
+        <td>Galería (Maquinaria)</td>
+        <td>Cargador frontal CAT para carguío de agregados a volquete.</td>
+      </tr>
+      <tr>
+        <td>Fotografía</td>
+        <td>maq-retro-obra.webp</td>
+        <td>WebP</td>
+        <td>Galería (Maquinaria)</td>
+        <td>Retroexcavadora CAT 420F en zanja de alcantarillado.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-note">
+    Documento técnico emitido formalmente para la gerencia y equipo de ingeniería de GRENCO (Grupo Enriquez Construcciones S.A.C.).
+  </div>
+
+</body>
+</html>

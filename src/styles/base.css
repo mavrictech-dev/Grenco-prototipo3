@@ -198,21 +198,21 @@ button {
 /* --- Tarjetas ------------------------------------------------------------ */
 
 .card {
-  border-radius: 24px;
+  border-radius: 18px;
   background: var(--bg);
   box-shadow: var(--nu1);
-  transition: box-shadow 0.4s ease, transform 0.4s ease, background-color 0.6s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.4s ease;
 }
 
 .card--lift:hover {
-  box-shadow: var(--nu3);
-  transform: translateY(-6px);
+  box-shadow: var(--nu2);
+  transform: translateY(-3px);
 }
 
 .media {
   position: relative;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 14px;
   box-shadow: var(--nuin);
   background: var(--sunk);
 }
@@ -226,7 +226,7 @@ button {
 /* Formato vertical, para la foto que acompana a Nosotros. */
 .media--retrato {
   aspect-ratio: 4 / 5;
-  border-radius: 24px;
+  border-radius: 18px;
 }
 
 /* --- Animaciones --------------------------------------------------------- */

@@ -140,14 +140,46 @@ export default function Tracking({ fotos = [] }) {
 
   return (
     <section id="tracking" className="section">
-      <Reveal style={{ maxWidth: '62ch' }}>
-        <div className="eyebrow">{tracking.eyebrow}</div>
-        <div className="tracking__titulo">
-          <h2 className="h2">{tracking.title}</h2>
-          <span className="badge-pronto">{tracking.badge}</span>
-        </div>
-        <p className="lead">{tracking.text}</p>
-      </Reveal>
+      <div className="tracking__header-grid">
+        <Reveal className="tracking__header-info">
+          <div className="eyebrow">{tracking.eyebrow}</div>
+          <div className="tracking__titulo">
+            <h2 className="h2">{tracking.title}</h2>
+            <span className="badge-pronto">{tracking.badge}</span>
+          </div>
+          <p className="lead">{tracking.text}</p>
+        </Reveal>
+
+        <Reveal delay={120} className="tracking__app-card">
+          <div className="tracking__app-card-head">
+            <div className="tracking__app-icon-wrap">
+              <Icon name="chart" size={22} strokeWidth={1.8} />
+            </div>
+            <div>
+              <h3 className="tracking__app-card-title">Portal & App de Supervisión</h3>
+              <span className="tracking__app-card-sub">Acceso directo a la información de obra</span>
+            </div>
+          </div>
+          <ul className="tracking__app-pills">
+            <li>
+              <Icon name="check" size={16} strokeWidth={2.2} />
+              <span>Avance físico valorizado y curva S actualizada</span>
+            </li>
+            <li>
+              <Icon name="check" size={16} strokeWidth={2.2} />
+              <span>Reporte de horas de maquinaria y cuadrillas en campo</span>
+            </li>
+            <li>
+              <Icon name="check" size={16} strokeWidth={2.2} />
+              <span>Trazabilidad de ensayos de densidad y calidad</span>
+            </li>
+          </ul>
+          <div className="tracking__app-card-footer">
+            <span className="tracking__app-status-dot" aria-hidden="true" />
+            <span>Multiplataforma: Web responsive y aplicativo móvil</span>
+          </div>
+        </Reveal>
+      </div>
 
       <div ref={rv.ref} className={`${rv.className} tracking__mocks`} style={rv.style}>
         <Telefono llenas={llenas} />

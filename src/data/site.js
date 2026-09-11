@@ -8,7 +8,7 @@ export const company = {
   name: 'GRENCO',
   legal: 'Grupo Enriquez Construcciones S.A.C.',
   full: 'GRENCO · Grupo Enriquez Construcciones',
-  tagline: 'Movimiento de tierras, obras viales, edificaciones y alquiler de maquinaria pesada. Piura y Trujillo, Perú.',
+  tagline: 'Movimiento de tierras, obras viales, edificaciones y saneamiento. Piura y Trujillo, Perú.',
   email: 'contacto@grenco.pe',
   whatsapp: '51900000000',
   url: 'https://grenco.pe',
@@ -25,7 +25,6 @@ export const nav = [
   { id: 'inicio', label: 'Inicio' },
   { id: 'nosotros', label: 'Nosotros' },
   { id: 'servicios', label: 'Servicios' },
-  { id: 'maquinaria', label: 'Maquinaria' },
   { id: 'proyectos', label: 'Proyectos' },
   { id: 'bitacora', label: 'Bitácora' },
   { id: 'galeria', label: 'Galería' },
@@ -59,30 +58,14 @@ export const sedes = [
 export const hero = {
   eyebrow: 'Grupo Enriquez Construcciones',
   title: ['Movemos tierra.', 'Levantamos', 'el norte.'],
-  text: 'Movimiento de tierras, obras viales, edificaciones y alquiler de maquinaria pesada para proyectos públicos y privados en Piura y La Libertad. Equipos certificados, cuadrillas especializadas y plazos firmados.',
+  text: 'Movimiento de tierras, obras viales, edificaciones y saneamiento para proyectos públicos y privados en Piura y La Libertad. Equipos certificados, cuadrillas especializadas y plazos firmados.',
   paneles: [
     {
-      id: 'piura-1',
-      video: '/video/piura-1.mp4',
-      poster: '/video/piura-1.webp',
-      alt: 'Rodillo compactador y cuadrilla en conformación de terraplén, Río Piura',
-      tag: 'Compactación de acceso',
-      lugar: 'Río Piura',
-    },
-    {
-      id: 'piura-2',
-      video: '/video/piura-2.mp4',
-      poster: '/video/piura-2.webp',
-      alt: 'Vista aérea de infraestructura vial y puente carrozable sobre el Río Piura',
-      tag: 'Puente y defensas',
-      lugar: 'Río Piura',
-    },
-    {
-      id: 'piura-3',
-      video: '/video/piura-3.mp4',
-      poster: '/video/piura-3.webp',
-      alt: 'Motoniveladora CAT nivelando terraplén de acceso en el Río Piura',
-      tag: 'Frente de nivelación',
+      id: 'piura-hero',
+      video: '/video/piura-hero.mp4',
+      poster: '/video/piura-hero.webp',
+      alt: 'Vista aérea cinematográfica de infraestructura vial y puente sobre el Río Piura',
+      tag: 'Infraestructura Río Piura',
       lugar: 'Río Piura',
     },
   ],
@@ -281,47 +264,6 @@ export const services = {
   ],
 };
 
-export const machinery = {
-  eyebrow: 'Alquiler de maquinaria pesada',
-  title: 'Equipos certificados listos para operar en tu frente de obra.',
-  text: 'Modalidades de alquiler flexibles por hora, día, mes o partida de obra. Todos los equipos incluyen operador calificado y soporte técnico preventivo para garantizar cero tiempos muertos.',
-  items: [
-    {
-      id: 'excavadora',
-      name: 'Excavadora sobre orugas',
-      tag: '20 T · Alquiler',
-      specs: [
-        ['Alcance de excavación', '9.9 m'],
-        ['Capacidad de cuchara', '1.0 m³'],
-        ['Operador certificado', 'Incluido'],
-        ['Modalidad de servicio', 'Por hora / mes'],
-      ],
-    },
-    {
-      id: 'retroexcavadora',
-      name: 'Retroexcavadora 4×4',
-      tag: '7 T · Alquiler',
-      specs: [
-        ['Profundidad de zanja', '4.4 m'],
-        ['Cuchara frontal', '1.0 m³'],
-        ['Ideal para', 'Zanjas y redes'],
-        ['Modalidad de servicio', 'Por hora / mes'],
-      ],
-    },
-    {
-      id: 'cargador',
-      name: 'Cargador frontal',
-      tag: '3 m³ · Alquiler',
-      specs: [
-        ['Carga de operación', '5.4 t'],
-        ['Altura de descarga', '3.3 m'],
-        ['Ideal para', 'Acopio y carga'],
-        ['Modalidad de servicio', 'Por hora / mes'],
-      ],
-    },
-  ],
-};
-
 export const missionVision = {
   eyebrow: 'Misión y visión',
   title: 'Hacer obra seria, con plazos que se respetan.',
@@ -329,7 +271,7 @@ export const missionVision = {
     label: 'Misión',
     title: 'Construir con rigor técnico y palabra empeñada.',
     body:
-      'Brindar soluciones integrales en movimiento de tierras, obras viales, edificaciones y alquiler de maquinaria pesada en el norte del Perú, operando con estándares de seguridad, personal calificado y cumplimiento estricto de cronogramas.',
+      'Brindar soluciones integrales en movimiento de tierras, obras viales, edificaciones y saneamiento en el norte del Perú, operando con estándares de seguridad, personal calificado y cumplimiento estricto de cronogramas.',
     pillars: [
       'Plazo y presupuesto sostenidos',
       'Cero accidentes incapacitantes',
@@ -342,7 +284,7 @@ export const missionVision = {
     body:
       'Consolidarnos como el socio estratégico más confiable para proyectos de infraestructura pública y privada, reconocidos por nuestra capacidad técnica, soporte operativo continuo y honestidad en cada metro cúbico movido.',
     pillars: [
-      'Equipos certificados en alquiler',
+      'Equipos y maquinaria pesada propia',
       'Operadores homologados en casa',
       'Soporte técnico directo en campo',
     ],
@@ -467,7 +409,6 @@ export const contact = {
     'Obras viales',
     'Edificaciones',
     'Grenco Soldadura',
-    'Alquiler de maquinaria pesada',
     'Saneamiento y redes',
     'Demolición y desbroce',
   ],
@@ -491,7 +432,6 @@ export const footer = {
       links: [
         { label: 'Nosotros', href: '#nosotros' },
         { label: 'Servicios', href: '#servicios' },
-        { label: 'Maquinaria', href: '#maquinaria' },
         { label: 'Proyectos', href: '#proyectos' },
         { label: 'Bitácora', href: '#bitacora' },
         { label: 'Galería', href: '#galeria' },

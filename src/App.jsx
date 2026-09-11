@@ -7,7 +7,6 @@ import Manifiesto from './components/Manifiesto';
 import About from './components/About';
 import Tracking from './components/Tracking';
 import Services from './components/Services';
-import Machinery from './components/Machinery';
 import MissionVision from './components/MissionVision';
 import Culture from './components/Culture';
 import Projects from './components/Projects';
@@ -88,7 +87,6 @@ export default function App() {
           <About sede={sede} />
           <Tracking fotos={fotosPortal} />
           <Services />
-          <Machinery sede={sede} />
           <MissionVision />
           <Culture />
           <Projects sede={sede} />

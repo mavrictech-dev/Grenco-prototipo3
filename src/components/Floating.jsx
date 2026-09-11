@@ -40,7 +40,6 @@ export function WhatsappFab() {
       rel="noopener noreferrer"
       aria-label="Escribir por WhatsApp"
     >
-      <span className="wa__pulse" />
       <WhatsappIcon />
       <span className="wa__tip">Escríbenos por WhatsApp</span>
     </a>
