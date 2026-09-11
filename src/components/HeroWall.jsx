@@ -9,7 +9,7 @@ function conexionAhorra() {
   return Boolean(c.saveData) || /(^|-)2g$/.test(c.effectiveType ?? '');
 }
 
-const DURACION_PARTE_MS = 8000;
+const DURACION_PARTE_MS = 14000;
 
 export default function HeroWall({ sede = 'piura' }) {
   const wallRef = useRef(null);
@@ -22,7 +22,7 @@ export default function HeroWall({ sede = 'piura' }) {
   const [cycleKey, setCycleKey] = useState(0);
 
   const paneles = contenidoDeSede(sede)?.hero?.paneles ?? hero.paneles;
-  const esFull = sede === 'piura'; // Piura se muestra completo (sin cortes de tríptico)
+  const tieneMultiplesPartes = paneles.length > 1;
 
   useEffect(() => {
     const reducido =
@@ -37,7 +37,7 @@ export default function HeroWall({ sede = 'piura' }) {
     setCycleKey((k) => k + 1);
   }, [sede]);
 
-  // Función para avanzar a la siguiente parte de 8s
+  // Función para avanzar a la siguiente parte
   const siguiente = useCallback(() => {
     setActivo((prev) => (prev + 1) % paneles.length);
     setCycleKey((k) => k + 1);
@@ -54,9 +54,9 @@ export default function HeroWall({ sede = 'piura' }) {
     }
   }, []);
 
-  // Temporizador de 8 segundos para auto-avance continuo en Piura
+  // Temporizador de 14 segundos para auto-avance continuo si hay múltiples partes
   useEffect(() => {
-    if (!esFull) return;
+    if (!tieneMultiplesPartes) return;
 
     if (timerRef.current) clearInterval(timerRef.current);
 
@@ -69,11 +69,11 @@ export default function HeroWall({ sede = 'piura' }) {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [esFull, siguiente, cycleKey]);
+  }, [tieneMultiplesPartes, siguiente, cycleKey]);
 
-  // Al cambiar 'activo' en modo completo, arranca el video activo
+  // Al cambiar 'activo', reproduce el video activo
   useEffect(() => {
-    if (!conVideo || !esFull) return;
+    if (!conVideo) return;
 
     paneles.forEach((_, idx) => {
       const v = videosRef.current[idx];
@@ -87,28 +87,7 @@ export default function HeroWall({ sede = 'piura' }) {
         v.pause();
       }
     });
-  }, [activo, conVideo, esFull, paneles]);
-
-  // Sincronización continua de los paneles en Trujillo (toma continua dividida)
-  useEffect(() => {
-    if (!conVideo || sede !== 'trujillo') return;
-
-    const syncVideos = () => {
-      const v0 = videosRef.current[0];
-      if (!v0 || v0.paused) return;
-      const t = v0.currentTime;
-
-      for (let j = 1; j < videosRef.current.length; j++) {
-        const vj = videosRef.current[j];
-        if (vj && Math.abs(vj.currentTime - t) > 0.12) {
-          vj.currentTime = t;
-        }
-      }
-    };
-
-    const interval = setInterval(syncVideos, 500);
-    return () => clearInterval(interval);
-  }, [conVideo, sede]);
+  }, [activo, conVideo, paneles]);
 
   // Pausa fuera de viewport para ahorrar batería y CPU
   useEffect(() => {
@@ -119,23 +98,12 @@ export default function HeroWall({ sede = 'piura' }) {
     const io = new IntersectionObserver(
       ([entry]) => {
         isVisibleRef.current = entry.isIntersecting;
-        if (esFull) {
-          const vActivo = videosRef.current[activo];
-          if (vActivo) {
-            if (entry.isIntersecting) {
-              vActivo.play().catch(() => {});
-            } else {
-              vActivo.pause();
-            }
-          }
-        } else {
-          for (const v of videosRef.current) {
-            if (!v) continue;
-            if (entry.isIntersecting) {
-              v.play().catch(() => {});
-            } else {
-              v.pause();
-            }
+        const vActivo = videosRef.current[activo];
+        if (vActivo) {
+          if (entry.isIntersecting) {
+            vActivo.play().catch(() => {});
+          } else {
+            vActivo.pause();
           }
         }
       },
@@ -144,46 +112,46 @@ export default function HeroWall({ sede = 'piura' }) {
 
     io.observe(el);
     return () => io.disconnect();
-  }, [conVideo, esFull, activo]);
+  }, [conVideo, activo]);
 
-  // Si es Piura: renderizado completo panorámico (sin tríptico)
-  if (esFull) {
-    return (
-      <div className="hero__wall hero__wall--full" ref={wallRef}>
-        {paneles.map((panel, i) => {
-          const isCurrent = i === activo;
-          return (
-            <div
-              key={panel.id}
-              className={`hero__full-slide ${isCurrent ? 'is-active' : ''}`}
-              aria-hidden={!isCurrent}
-            >
-              {conVideo ? (
-                <video
-                  ref={(el) => (videosRef.current[i] = el)}
-                  src={panel.video}
-                  poster={panel.poster}
-                  autoPlay={isCurrent}
-                  muted
-                  playsInline
-                  preload={i === 0 || isCurrent ? 'auto' : 'metadata'}
-                  tabIndex={-1}
-                  aria-hidden="true"
-                />
-              ) : (
-                <img
-                  src={panel.poster}
-                  alt={panel.alt}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                />
-              )}
-            </div>
-          );
-        })}
+  return (
+    <div className="hero__wall hero__wall--full" ref={wallRef}>
+      {paneles.map((panel, i) => {
+        const isCurrent = i === activo;
+        return (
+          <div
+            key={panel.id}
+            className={`hero__full-slide ${isCurrent ? 'is-active' : ''}`}
+            aria-hidden={!isCurrent}
+          >
+            {conVideo ? (
+              <video
+                ref={(el) => (videosRef.current[i] = el)}
+                src={panel.video}
+                poster={panel.poster}
+                autoPlay={isCurrent}
+                loop={!tieneMultiplesPartes}
+                muted
+                playsInline
+                preload={i === 0 || isCurrent ? 'auto' : 'metadata'}
+                tabIndex={-1}
+                aria-hidden="true"
+              />
+            ) : (
+              <img
+                src={panel.poster}
+                alt={panel.alt}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            )}
+          </div>
+        );
+      })}
 
-        {/* Navegador de capítulos de 8 segundos con indicador de progreso continuo */}
-        <div className="hero__full-nav" role="tablist" aria-label="Partes de la toma aérea">
+      {/* Navegador de capítulos de 14 segundos (solo si hay más de 1 panel) */}
+      {tieneMultiplesPartes && (
+        <div className="hero__full-nav" role="tablist" aria-label="Partes de la toma de obra">
           {paneles.map((panel, i) => {
             const isCurrent = i === activo;
             return (
@@ -194,13 +162,14 @@ export default function HeroWall({ sede = 'piura' }) {
                 aria-selected={isCurrent}
                 className={`hero__full-tab ${isCurrent ? 'is-active' : ''}`}
                 onClick={() => elegir(i)}
-                aria-label={`Parte ${i + 1} de 4: ${panel.tag} en ${panel.lugar}`}
+                aria-label={`Parte ${i + 1} de ${paneles.length}: ${panel.tag} en ${panel.lugar}`}
               >
                 <div className="hero__full-bar">
                   {isCurrent && (
                     <div
                       key={`prog-${activo}-${cycleKey}`}
                       className="hero__full-progress"
+                      style={{ animationDuration: `${DURACION_PARTE_MS}ms` }}
                     />
                   )}
                 </div>
@@ -212,56 +181,7 @@ export default function HeroWall({ sede = 'piura' }) {
             );
           })}
         </div>
-      </div>
-    );
-  }
-
-  // Si es Trujillo: mantiene el formato tríptico sincronizado
-  return (
-    <div className="hero__wall" ref={wallRef}>
-      {paneles.map((panel, i) => (
-        <a
-          key={panel.id}
-          className={i === activo ? 'hero__panel is-activo' : 'hero__panel'}
-          href="#bitacora"
-          aria-label={`${panel.tag} en ${panel.lugar}. Ver la bitácora de obra`}
-        >
-          {conVideo ? (
-            <video
-              ref={(el) => (videosRef.current[i] = el)}
-              src={panel.video}
-              poster={panel.poster}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-hidden="true"
-              tabIndex={-1}
-            />
-          ) : (
-            <img src={panel.poster} alt={panel.alt} loading="eager" decoding="async" />
-          )}
-
-          <span className="hero__panel-tag">
-            {panel.tag}
-            <b>{panel.lugar}</b>
-          </span>
-        </a>
-      ))}
-
-      <div className="hero__selector" role="group" aria-label="Elegir toma de obra">
-        {paneles.map((panel, i) => (
-          <button
-            key={panel.id}
-            type="button"
-            className={i === activo ? 'hero__punto is-activo' : 'hero__punto'}
-            aria-label={`Ver ${panel.tag} en ${panel.lugar}`}
-            aria-pressed={i === activo}
-            onClick={() => elegir(i)}
-          />
-        ))}
-      </div>
+      )}
     </div>
   );
 }

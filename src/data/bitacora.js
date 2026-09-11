@@ -37,7 +37,7 @@ const POSTS = [
     resumen:
       'Se completó el 92% del corte y relleno de las 14 hectáreas. Ensayos de densidad conformes en los tres sectores.',
     foto: 'obra-0082',
-    etiquetas: ['Movimiento de tierras', 'Habilitación urbana'],
+    etiquetas: ['Movimiento de tierras', 'Obras viales'],
   },
   {
     id: 'planta-agro-losa',
@@ -48,7 +48,7 @@ const POSTS = [
     resumen:
       'Se ejecutó por paños alternos y en turno nocturno para no interrumpir el despacho de la agroindustrial.',
     foto: 'obra-4827',
-    etiquetas: ['Obra civil'],
+    etiquetas: ['Edificaciones'],
   },
   {
     id: 'via-drenaje-cunetas',
@@ -59,7 +59,7 @@ const POSTS = [
     resumen:
       'Se adelantó el drenaje de 1.8 km de vía para que la temporada no comprometa la subrasante ya conformada.',
     foto: 'obra-7678',
-    etiquetas: ['Vialidad', 'Drenaje'],
+    etiquetas: ['Obras viales', 'Drenaje'],
   },
   {
     id: 'trujillo-pavimentacion-frente',
@@ -70,7 +70,7 @@ const POSTS = [
     resumen:
       'Se culminó el tramo de subbase granular y compactación con rodillo en el acceso principal.',
     foto: 'obra-1718',
-    etiquetas: ['Pavimentos', 'Obra civil'],
+    etiquetas: ['Obras viales', 'Pavimentos'],
   },
   {
     id: 'trujillo-redes-sanitarias',
@@ -86,13 +86,13 @@ const POSTS = [
   {
     id: 'taller-mantenimiento',
     fecha: '2026-07-28',
-    lugar: 'Taller central, Piura',
+    lugar: 'Base de operaciones, Piura',
     sede: 'piura',
-    titulo: 'Mantenimiento preventivo de la flota de excavadoras',
+    titulo: 'Mantenimiento preventivo de equipos en alquiler',
     resumen:
-      'Cambio de tren de rodamiento y revisión hidráulica completa. Los equipos vuelven a frente sin parar la obra.',
+      'Cambio de tren de rodamiento y revisión hidráulica completa. Los equipos vuelven a frente sin generar demoras en obra.',
     foto: 'obra-1096',
-    etiquetas: ['Flota', 'Taller propio'],
+    etiquetas: ['Maquinaria', 'Soporte técnico'],
   },
   {
     id: 'ssoma-charla',
@@ -110,11 +110,11 @@ const POSTS = [
     fecha: '2026-07-14',
     lugar: 'Sullana, Piura',
     sede: 'piura',
-    titulo: 'Montaje de estructura metálica y cobertura',
+    titulo: 'Montaje de estructura metálica y soldadura calificada',
     resumen:
-      'Se cerró la nave con cobertura termoacústica. Siguiente partida: piso pulido y patio de maniobras.',
+      'Se cerró la nave con cobertura termoacústica y soldaduras inspeccionadas. Siguiente partida: piso pulido y patio de maniobras.',
     foto: 'obra-0190',
-    etiquetas: ['Obra civil', 'Estructuras'],
+    etiquetas: ['Grenco Soldadura', 'Edificaciones'],
   },
 ];
 

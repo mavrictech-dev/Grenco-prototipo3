@@ -75,8 +75,11 @@ export default function Bitacora({ sede }) {
     <section id="bitacora" className="section">
       <Reveal className="headrow">
         <div>
-          <div className="eyebrow">Bitácora de obra</div>
+          <div className="eyebrow">Bitácora técnica & soporte</div>
           <h2 className="h2">Lo que pasó esta semana en campo.</h2>
+          <p className="lead" style={{ marginTop: '10px', maxWidth: '58ch' }}>
+            Blog técnico y espacio de colaboración: reportes semanales de avance, lecciones aprendidas de suelo y soporte continuo para contratistas y residentes de obra.
+          </p>
         </div>
 
         <div className="segment" role="group" aria-label="Filtrar por sede">

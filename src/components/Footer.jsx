@@ -1,3 +1,4 @@
+import Icon from './Icon';
 import { company, footer, sedes } from '../data/site';
 import { lockupDark, lockupLight } from '../assets/images';
 
@@ -39,6 +40,33 @@ export default function Footer({ theme }) {
               <a href={`mailto:${company.email}`}>{company.email}</a>
             </li>
           </ul>
+
+          <h4 style={{ marginTop: '20px' }}>Redes Oficiales</h4>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
+            {company.socials.map((s) => (
+              <a
+                key={s.name}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`GRENCO en ${s.name}`}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '10px',
+                  background: 'var(--sunk)',
+                  boxShadow: 'var(--nuins)',
+                  color: 'var(--ink)',
+                  transition: 'color 0.2s ease, transform 0.2s ease',
+                }}
+              >
+                <Icon name={s.icon} size={17} />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

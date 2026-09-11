@@ -8,10 +8,17 @@ export const company = {
   name: 'GRENCO',
   legal: 'Grupo Enriquez Construcciones S.A.C.',
   full: 'GRENCO · Grupo Enriquez Construcciones',
-  tagline: 'Movimiento de tierras, obra civil y maquinaria pesada. Piura y Trujillo, Perú.',
+  tagline: 'Movimiento de tierras, obras viales, edificaciones y alquiler de maquinaria pesada. Piura y Trujillo, Perú.',
   email: 'contacto@grenco.pe',
   whatsapp: '51900000000',
   url: 'https://grenco.pe',
+  socials: [
+    { name: 'LinkedIn', url: 'https://www.linkedin.com', icon: 'linkedin' },
+    { name: 'Facebook', url: 'https://www.facebook.com', icon: 'facebook' },
+    { name: 'Instagram', url: 'https://www.instagram.com', icon: 'instagram' },
+    { name: 'TikTok', url: 'https://www.tiktok.com', icon: 'tiktok' },
+    { name: 'YouTube', url: 'https://www.youtube.com', icon: 'youtube' },
+  ],
 };
 
 export const nav = [
@@ -30,7 +37,7 @@ export const sedes = [
     name: 'Sede Piura',
     label: 'Sede Piura',
     principal: true,
-    address: 'Oficina y taller · Piura, Perú',
+    address: 'Oficina técnica y operaciones · Piura, Perú',
     hours: 'Lun a sáb · 7:00 – 18:00',
     phone: '+51 900 000 000',
     tel: '+51900000000',
@@ -41,7 +48,7 @@ export const sedes = [
     name: 'Sede Trujillo',
     label: 'Sede Trujillo',
     principal: false,
-    address: 'Oficina comercial · Trujillo, La Libertad',
+    address: 'Oficina técnica y comercial · Trujillo, La Libertad',
     hours: 'Lun a vie · 8:00 – 18:00',
     phone: '+51 900 000 001',
     tel: '+51900000001',
@@ -52,53 +59,35 @@ export const sedes = [
 export const hero = {
   eyebrow: 'Grupo Enriquez Construcciones',
   title: ['Movemos tierra.', 'Levantamos', 'el norte.'],
-  text: 'Movimiento de tierras, obra civil y alquiler de maquinaria pesada para proyectos públicos y privados en Piura y La Libertad. Flota propia, cuadrillas propias, plazos firmados.',
-
-  /**
-   * Triptico de fondo: tres clips verticales en fila.
-   *
-   * Viven en public/video/ (los genera `npm run video`), no en src/: son
-   * archivos grandes que cambian muy de vez en cuando y no tiene sentido
-   * meterlos en el grafo de modulos. El `poster` es ademas la degradacion
-   * natural — si el video no carga o el usuario pidio menos movimiento, es lo
-   * unico que se ve.
-   */
+  text: 'Movimiento de tierras, obras viales, edificaciones y alquiler de maquinaria pesada para proyectos públicos y privados en Piura y La Libertad. Equipos certificados, cuadrillas especializadas y plazos firmados.',
   paneles: [
     {
-      id: 'obra-1',
-      video: '/video/obra-1.mp4',
-      poster: '/video/obra-1.webp',
-      alt: 'Excavadora cargando un volquete en el frente de trabajo',
-      tag: 'Movimiento de tierras',
-      lugar: 'Piura',
+      id: 'piura-1',
+      video: '/video/piura-1.mp4',
+      poster: '/video/piura-1.webp',
+      alt: 'Rodillo compactador y cuadrilla en conformación de terraplén, Río Piura',
+      tag: 'Compactación de acceso',
+      lugar: 'Río Piura',
     },
     {
-      id: 'obra-2',
-      video: '/video/obra-2.mp4',
-      poster: '/video/obra-2.webp',
-      alt: 'Excavadora CAT posicionada en obra',
-      tag: 'Maquinaria pesada',
-      lugar: 'Sullana',
+      id: 'piura-2',
+      video: '/video/piura-2.mp4',
+      poster: '/video/piura-2.webp',
+      alt: 'Vista aérea de infraestructura vial y puente carrozable sobre el Río Piura',
+      tag: 'Puente y defensas',
+      lugar: 'Río Piura',
     },
     {
-      id: 'obra-3',
-      video: '/video/obra-3.mp4',
-      poster: '/video/obra-3.webp',
-      alt: 'Cuadrilla y volquete durante la carga',
-      tag: 'Cuadrillas en planilla',
-      lugar: 'Trujillo',
+      id: 'piura-3',
+      video: '/video/piura-3.mp4',
+      poster: '/video/piura-3.webp',
+      alt: 'Motoniveladora CAT nivelando terraplén de acceso en el Río Piura',
+      tag: 'Frente de nivelación',
+      lugar: 'Río Piura',
     },
   ],
 };
 
-/**
- * Las tres pruebas rapidas que solapan el hero.
- *
- * Cada una cubre un eje distinto —gente, plazo y seguridad— y ninguna repite
- * lo que ya dicen las otras secciones. La flota tiene su propia seccion
- * (Maquinaria) y se menciona en el titular, asi que aqui ocupaba un sitio que
- * rendia mas hablando del personal.
- */
 export const highlights = [
   {
     icon: 'users',
@@ -120,42 +109,104 @@ export const highlights = [
 export const about = {
   eyebrow: 'Quiénes somos',
   title: 'Una constructora del norte, hecha para el terreno del norte.',
-  text: 'GRENCO nació en Piura ejecutando movimiento de tierras para habilitaciones urbanas. Hoy operamos desde dos sedes con equipo propio, taller propio y un método simple: medir el terreno antes de prometer una fecha.',
+  text: 'GRENCO nació en Piura ejecutando movimiento de tierras para obras viales y plataformas industriales. Hoy operamos desde dos sedes con equipos de alto rendimiento, soporte técnico directo y un método simple: medir el terreno antes de prometer una fecha.',
   points: [
     {
       title: 'Control topográfico en cada corte',
       text: 'Replanteo con estación total antes, durante y al cierre de cada partida.',
     },
     {
-      title: 'Mantenimiento en taller propio',
-      text: 'Los equipos no paran la obra: repuestos críticos en stock y mecánicos en sede.',
+      title: 'Soporte técnico y mantenimiento en obra',
+      text: 'Cuadrillas mecánicas de respuesta rápida para asegurar continuidad operativa.',
+    },
+    {
+      title: 'Cuadrillas especializadas en planilla',
+      text: 'Operadores de maquinaria y personal civil con seguro y habilitación técnica.',
+    },
+    {
+      title: 'Plazos firmados bajo contrato',
+      text: 'Penalidades asumidas por contrato: si prometemos una fecha, la cumplimos.',
     },
   ],
   stats: [
-    { num: '12', label: 'Años en obra' },
-    { num: '180', label: 'Obras entregadas' },
+    { num: '12+', label: 'Años en obra' },
+    { num: '85+', label: 'Obras entregadas' },
     { num: '02', label: 'Sedes operativas' },
+    { num: '100%', label: 'Operadores certificados' },
   ],
 };
 
-/**
- * Adelanto de la app / portal del cliente. Todavia no existe: la seccion se
- * presenta explicitamente como un producto en desarrollo, con su insignia, y
- * no promete fechas.
- */
+export const stats = about.stats;
+
+export const manifiesto = {
+  eyebrow: 'Cómo trabajamos',
+  title: 'La tierra no negocia: o mides bien o pagas el doble.',
+  lead:
+    'El norte tiene suelos difíciles: arenas que ceden, gredas expansivas y quebradas que despiertan con El Niño. Para construir aquí no basta con tener máquinas: hay que saber cómo responde el terreno.',
+  bloques: [
+    {
+      paso: '01',
+      title: 'Medición real de campo',
+      text: 'No cotizamos por foto satelital. Enviamos topógrafo al terreno para verificar cotas, nivel freático y accesos.',
+    },
+    {
+      paso: '02',
+      title: 'Plan de corte y relleno',
+      text: 'Calculamos volúmenes con software topográfico para minimizar fletes de eliminación y optimizar el material de préstamo.',
+    },
+    {
+      paso: '03',
+      title: 'Ejecución con soporte continuo',
+      text: 'Equipos asignados con operador certificado y mecánicos de guardia para no parar la ruta crítica.',
+    },
+  ],
+  panel: {
+    eyebrow: 'Frente de trabajo',
+    title: 'Obras viales Los Algarrobos',
+    sector: 'Sector Noroeste · Piura',
+    specs: [
+      { label: 'Área intervenida', value: '14 ha' },
+      { label: 'Volumen de corte', value: '42,000 m³' },
+      { label: 'Plazo de ejecución', value: '9 meses' },
+    ],
+    progreso: [
+      { label: 'Corte y relleno', pct: 92 },
+      { label: 'Redes de agua y desagüe', pct: 64 },
+      { label: 'Subrasante de vías', pct: 40 },
+    ],
+    cuadrillas: [
+      { nombre: 'Frente A · Corte', personas: 8, equipo: 'Excavadora 20T' },
+      { nombre: 'Frente B · Redes', personas: 6, equipo: 'Retro 4×4' },
+      { nombre: 'Topografía', personas: 2, equipo: 'Estación total' },
+    ],
+  },
+};
+
 export const tracking = {
   eyebrow: 'Producto en desarrollo',
   badge: 'Próximamente',
   title: 'GRENCO Tracking: tu obra, en el bolsillo.',
   text: 'Estamos construyendo el portal del cliente. Avance por partida, cuadrillas del día y fotos de campo subidas desde la obra, sin esperar al informe del viernes.',
   features: [
-    { icon: 'chart', title: 'Avance por partida', text: 'Porcentaje valorizado, actualizado por el residente al cierre de cada jornada.' },
-    { icon: 'users', title: 'Registro de cuadrillas', text: 'Quién estuvo en obra, en qué frente y con qué equipo asignado.' },
-    { icon: 'camera', title: 'Fotos de campo', text: 'Evidencia fotográfica geolocalizada, subida desde el celular del capataz.' },
+    {
+      icon: 'chart',
+      title: 'Avance por partida',
+      text: 'Porcentaje valorizado, actualizado por el residente al cierre de cada jornada.',
+    },
+    {
+      icon: 'users',
+      title: 'Registro de cuadrillas',
+      text: 'Quién estuvo en obra, en qué frente y con qué equipo asignado.',
+    },
+    {
+      icon: 'camera',
+      title: 'Fotos de campo',
+      text: 'Evidencia fotográfica geolocalizada, subida desde el celular del capataz.',
+    },
   ],
   app: {
     kicker: 'Control de obra · semana 14',
-    title: 'Habilitación Los Algarrobos',
+    title: 'Obras viales Los Algarrobos',
     status: 'En obra',
     bars: [
       { label: 'Movimiento de tierras', pct: 92 },
@@ -176,54 +227,54 @@ export const tracking = {
 };
 
 export const services = {
-  eyebrow: 'Servicios que brindamos',
+  eyebrow: 'Servicios especializados',
   title: 'Del terreno en bruto a la obra entregada.',
   items: [
     {
       id: 'movimiento',
       icon: 'layers',
       title: 'Movimiento de tierras',
-      text: 'Corte, relleno, nivelación y compactación con control topográfico y ensayos de densidad.',
+      text: 'Corte masivo, relleno, nivelación, conformación de terraplenes y compactación controlada con ensayos de densidad.',
       video: '/video/servicios/servicio-movimiento.mp4',
       poster: '/video/servicios/servicio-movimiento.webp',
     },
     {
-      id: 'obras-civiles',
+      id: 'obras-viales',
+      icon: 'grid',
+      title: 'Obras viales',
+      text: 'Apertura de trochas, afirmado, pavimentación rígida y flexible, bermas, cunetas de drenaje y señalización.',
+      video: '/video/servicios/servicio-habilitacion.mp4',
+      poster: '/video/servicios/servicio-habilitacion.webp',
+    },
+    {
+      id: 'edificaciones',
       icon: 'building',
-      title: 'Obras civiles',
-      text: 'Cimentación, estructuras de concreto armado, pavimentos rígidos y flexibles.',
+      title: 'Edificaciones',
+      text: 'Cimentaciones profundas, estructuras de concreto armado, losas industriales de alta resistencia y cerramientos.',
       video: '/video/servicios/servicio-obras-civiles.mp4',
       poster: '/video/servicios/servicio-obras-civiles.webp',
     },
     {
-      id: 'maquinaria',
-      icon: 'truck',
-      title: 'Alquiler de maquinaria',
-      text: 'Equipos con operador, combustible y mantenimiento incluidos. Por hora, día o partida.',
-      video: '/video/servicios/servicio-maquinaria.mp4',
-      poster: '/video/servicios/servicio-maquinaria.webp',
+      id: 'soldadura',
+      icon: 'shield',
+      title: 'Grenco Soldadura',
+      text: 'Soldadura calificada, arquitectura metálica pesada, entubados de gran diámetro y montaje de naves industriales.',
+      video: '/video/servicios/servicio-soldadura.mp4',
+      poster: '/video/servicios/servicio-soldadura.webp',
     },
     {
       id: 'saneamiento',
       icon: 'drop',
       title: 'Saneamiento y redes',
-      text: 'Agua potable, alcantarillado y drenaje pluvial con pruebas hidráulicas certificadas.',
+      text: 'Tendido de redes de agua potable, alcantarillado, colectores y drenaje pluvial con pruebas hidráulicas normadas.',
       video: '/video/servicios/servicio-saneamiento.mp4',
       poster: '/video/servicios/servicio-saneamiento.webp',
-    },
-    {
-      id: 'habilitacion',
-      icon: 'grid',
-      title: 'Habilitación urbana',
-      text: 'Lotización, vías, veredas y servicios: terreno listo para vender o construir.',
-      video: '/video/servicios/servicio-habilitacion.mp4',
-      poster: '/video/servicios/servicio-habilitacion.webp',
     },
     {
       id: 'demolicion',
       icon: 'demo',
       title: 'Demolición y desbroce',
-      text: 'Retiro controlado, eliminación de material y limpieza de terreno con disposición final.',
+      text: 'Demolición controlada de estructuras, desbroce de terreno, eliminación de desmonte y disposición final autorizada.',
       video: '/video/servicios/servicio-demolicion.mp4',
       poster: '/video/servicios/servicio-demolicion.webp',
     },
@@ -231,47 +282,54 @@ export const services = {
 };
 
 export const machinery = {
-  eyebrow: 'Nuestra flota',
-  title: 'Tres equipos que resuelven el 80% de una obra.',
+  eyebrow: 'Alquiler de maquinaria pesada',
+  title: 'Equipos certificados listos para operar en tu frente de obra.',
+  text: 'Modalidades de alquiler flexibles por hora, día, mes o partida de obra. Todos los equipos incluyen operador calificado y soporte técnico preventivo para garantizar cero tiempos muertos.',
   items: [
     {
-      img: 'maq-excavadora',
+      id: 'excavadora',
       name: 'Excavadora sobre orugas',
-      tag: '20 T',
+      tag: '20 T · Alquiler',
       specs: [
         ['Alcance de excavación', '9.9 m'],
         ['Capacidad de cuchara', '1.0 m³'],
         ['Operador certificado', 'Incluido'],
+        ['Modalidad de servicio', 'Por hora / mes'],
       ],
     },
     {
-      img: 'maq-retroexcavadora',
+      id: 'retroexcavadora',
       name: 'Retroexcavadora 4×4',
-      tag: '7 T',
+      tag: '7 T · Alquiler',
       specs: [
         ['Profundidad de zanja', '4.4 m'],
         ['Cuchara frontal', '1.0 m³'],
-        ['Ideal para', 'Redes'],
+        ['Ideal para', 'Zanjas y redes'],
+        ['Modalidad de servicio', 'Por hora / mes'],
       ],
     },
     {
-      img: 'maq-cargador',
+      id: 'cargador',
       name: 'Cargador frontal',
-      tag: '3 m³',
+      tag: '3 m³ · Alquiler',
       specs: [
         ['Carga de operación', '5.4 t'],
         ['Altura de descarga', '3.3 m'],
-        ['Ideal para', 'Acopio'],
+        ['Ideal para', 'Acopio y carga'],
+        ['Modalidad de servicio', 'Por hora / mes'],
       ],
     },
   ],
 };
 
 export const missionVision = {
+  eyebrow: 'Misión y visión',
+  title: 'Hacer obra seria, con plazos que se respetan.',
   mision: {
     label: 'Misión',
-    title: 'Ejecutar obras de movimiento de tierras e infraestructura con equipo propio, cumpliendo el plazo y el estándar técnico que el cliente firmó.',
-    body: 'Trabajamos con cuadrillas en planilla, maquinaria mantenida en taller propio y control topográfico en cada partida. Esa es toda la fórmula.',
+    title: 'Construir con rigor técnico y palabra empeñada.',
+    body:
+      'Brindar soluciones integrales en movimiento de tierras, obras viales, edificaciones y alquiler de maquinaria pesada en el norte del Perú, operando con estándares de seguridad, personal calificado y cumplimiento estricto de cronogramas.',
     pillars: [
       'Plazo y presupuesto sostenidos',
       'Cero accidentes incapacitantes',
@@ -280,24 +338,27 @@ export const missionVision = {
   },
   vision: {
     label: 'Visión',
-    title: 'Ser la constructora de referencia del norte peruano para obras de tierra e infraestructura urbana hacia 2030.',
-    body: 'Crecer sin perder el control del frente de trabajo: más equipos propios, más operadores formados en la zona y una tercera sede en el norte.',
+    title: 'Ser la constructora de referencia en el norte del Perú.',
+    body:
+      'Consolidarnos como el socio estratégico más confiable para proyectos de infraestructura pública y privada, reconocidos por nuestra capacidad técnica, soporte operativo continuo y honestidad en cada metro cúbico movido.',
     pillars: [
-      'Flota renovada cada 5 años',
-      'Operadores formados en casa',
-      'Tercera sede operativa',
+      'Equipos certificados en alquiler',
+      'Operadores homologados en casa',
+      'Soporte técnico directo en campo',
     ],
   },
 };
 
 export const culture = {
   eyebrow: 'Nuestra cultura',
-  title: 'La obra la hace la gente que se para en ella.',
+  title: 'La cuadrilla que entra al terreno es la que lo entrega.',
+  text:
+    'No rotamos personal a mitad de obra. El ingeniero residente y la cuadrilla que inician el corte acompañan el proyecto hasta el último ensayo de compactación.',
   people: [
     { img: 'eq-topografia', name: 'Topografía', role: 'Campo' },
-    { img: 'eq-operador', name: 'Operación', role: 'Flota' },
-    { img: 'eq-ssoma', name: 'SSOMA', role: 'Turno' },
-    { img: 'eq-residencia', name: 'Residencia', role: 'Oficina' },
+    { img: 'eq-operador', name: 'Operador CAT', role: 'Maquinaria' },
+    { img: 'eq-ssoma', name: 'Supervisor SSOMA', role: 'Seguridad' },
+    { img: 'eq-residencia', name: 'Residencia técnica', role: 'Oficina' },
   ],
   values: [
     {
@@ -321,57 +382,92 @@ export const projects = {
   items: [
     {
       img: 'pro-ejidos',
-      kind: 'Habilitación',
+      kind: 'Obras viales',
       place: 'Piura',
       sede: 'piura',
       title: 'Los Ejidos, etapa II',
-      text: '14 hectáreas lotizadas con vías, veredas y redes de agua ejecutadas en 9 meses.',
+      text: '14 hectáreas habilitadas con vías pavimentadas, bermas, veredas y redes de agua ejecutadas en 9 meses.',
     },
     {
       img: 'pro-planta-agro',
-      kind: 'Obra civil',
+      kind: 'Edificaciones',
       place: 'Sullana',
       sede: 'piura',
-      title: 'Ampliación planta agro',
-      text: 'Plataforma, losa industrial y patio de maniobras sin detener la operación de la planta.',
+      title: 'Ampliación planta agroindustrial',
+      text: 'Plataforma estructural, losa industrial y patio de maniobras sin detener la operación de la planta.',
     },
     {
       img: 'pro-via-drenaje',
-      kind: 'Vialidad',
+      kind: 'Obras viales',
       place: 'Trujillo',
       sede: 'trujillo',
-      title: 'Vía de acceso y drenaje',
-      text: '1.8 km de vía con cunetas y alcantarillas, diseñada para la temporada de lluvias.',
+      title: 'Vía de acceso y defensas ribereñas',
+      text: '1.8 km de vía con cunetas revestidas y alcantarillas, diseñada para resistir crecidas de río.',
     },
   ],
 };
 
 export const gallery = {
-  eyebrow: 'Galería de obra',
-  title: 'Lo que se ve en campo.',
-  // span = filas del grid que ocupa cada tarjeta (grid-auto-rows: 88px).
-  // w/h son las dimensiones nativas: sin ellas el navegador no reserva sitio
-  // y la pagina salta cuando cargan (CLS).
+  eyebrow: 'Galería multimedia',
+  title: 'Equipos, frentes de obra y redes oficiales.',
+  text: 'Explora nuestros frentes en campo y síguenos en redes sociales para ver tomas aéreas y avances técnicos actualizados.',
+  categories: [
+    'Todas',
+    'Topografía',
+    'Maquinaria',
+    'Obras viales',
+    'Edificaciones',
+    'Grenco Soldadura',
+    'SSOMA',
+  ],
   items: [
-    { img: 'gal-1', w: 800, h: 1066, alt: 'Foto vertical de obra', span: 3 },
-    { img: 'gal-2', w: 1000, h: 700, alt: 'Frente de trabajo', span: 2 },
-    { img: 'gal-3', w: 800, h: 1066, alt: 'Equipo en operación', span: 3 },
-    { img: 'gal-4', w: 1000, h: 700, alt: 'Detalle de obra', span: 2 },
-    { img: 'gal-5', w: 1000, h: 700, alt: 'Cuadrilla en campo', span: 2 },
-    { img: 'gal-6', w: 1000, h: 700, alt: 'Entrega de obra', span: 2 },
+    // Maquinaria (3 equipos distintos: excavadora 20T, cargador frontal y retroexcavadora)
+    { id: 'maq-1', img: 'maq-excavadora', w: 1000, h: 750, alt: 'Excavadora CAT 20T en frente de corte masivo', tag: 'Maquinaria', span: 2 },
+    { id: 'maq-2', img: 'maq-cargador', w: 1000, h: 1778, alt: 'Cargador frontal CAT en patio de maniobras y acopio', tag: 'Maquinaria', span: 3 },
+    { id: 'maq-3', img: 'maq-retro-obra', w: 1000, h: 1778, alt: 'Retroexcavadora CAT en zanja estructural urbana', tag: 'Maquinaria', span: 3 },
+
+    // Topografía (las mejores 6 tomas técnicas reales)
+    { id: 'topo-1', img: 'topo-lomas-4', w: 1200, h: 593, alt: 'Cuadrilla técnica con receptor GNSS en Las Lomas', tag: 'Topografía', span: 2 },
+    { id: 'topo-2', img: 'topo-1', w: 800, h: 1422, alt: 'Estación total Leica sobre hito geodésico en canal', tag: 'Topografía', span: 3 },
+    { id: 'topo-3', img: 'topo-lomas-1', w: 800, h: 1422, alt: 'Lectura de prisma y control altimétrico en relieve agreste', tag: 'Topografía', span: 3 },
+    { id: 'topo-4', img: 'topo-lomas-extra', w: 800, h: 1422, alt: 'Nivelación digital electrónica de precisión Leica PinPoint', tag: 'Topografía', span: 3 },
+    { id: 'topo-5', img: 'topo-lomas-7', w: 800, h: 1422, alt: 'Estación base GNSS sobre punto geodésico certificado', tag: 'Topografía', span: 3 },
+    { id: 'topo-6', img: 'topo-2', w: 800, h: 1422, alt: 'Nivel óptico de precisión Leica NA332 para rasantes', tag: 'Topografía', span: 2 },
+
+    // Obras viales
+    { id: 'vial-1', img: 'gal-3', w: 800, h: 1066, alt: 'Operación de maquinaria pesada en Piura', tag: 'Obras viales', span: 3 },
+    { id: 'vial-2', img: 'vial-apertura', w: 1000, h: 1333, alt: 'Apertura de trocha y explanaciones viales', tag: 'Obras viales', span: 3 },
+    { id: 'vial-3', img: 'vial-rasante', w: 1000, h: 1333, alt: 'Nivelación y conformación de rasante vial', tag: 'Obras viales', span: 2 },
+    { id: 'vial-4', img: 'gal-6', w: 1000, h: 700, alt: 'Superficie compactada y entrega de obra vial', tag: 'Obras viales', span: 2 },
+
+    // Edificaciones
+    { id: 'edif-1', img: 'gal-2', w: 1000, h: 700, alt: 'Frente de trabajo estructural y cuadrilla en campo', tag: 'Edificaciones', span: 2 },
+    { id: 'edif-2', img: 'edif-estructura-1', w: 1000, h: 1333, alt: 'Montaje de pórticos y estructuras para edificación', tag: 'Edificaciones', span: 3 },
+    { id: 'edif-3', img: 'edif-estructura-2', w: 1000, h: 1333, alt: 'Armado de tijerales y cerramientos industriales', tag: 'Edificaciones', span: 3 },
+    { id: 'edif-4', img: 'pro-planta-agro', w: 1200, h: 2134, alt: 'Plataforma estructural y patio de maniobras', tag: 'Edificaciones', span: 2 },
+
+    // Grenco Soldadura
+    { id: 'sold-1', img: 'gal-4', w: 1000, h: 700, alt: 'Detalle de armadura y uniones metálicas soldadas', tag: 'Grenco Soldadura', span: 2 },
+    { id: 'sold-2', img: 'sold-entubado-1', w: 1000, h: 1778, alt: 'Soldadura y trabajos en fierro para entubados hidráulicos', tag: 'Grenco Soldadura', span: 3 },
+    { id: 'sold-3', img: 'sold-entubado-2', w: 1000, h: 1778, alt: 'Fabricación y fijación de soportes metálicos', tag: 'Grenco Soldadura', span: 3 },
+
+    // SSOMA
+    { id: 'ssoma-1', img: 'gal-5', w: 1000, h: 700, alt: 'Supervisión de seguridad y charla técnica de inicio de jornada', tag: 'SSOMA', span: 2 },
+    { id: 'ssoma-2', img: 'eq-ssoma', w: 800, h: 1423, alt: 'Inspección de EPPs y protocolos SSOMA en frente de obra', tag: 'SSOMA', span: 3 },
   ],
 };
 
 export const contact = {
   eyebrow: 'Conversemos',
-  title: 'Cuéntanos el terreno. Te respondemos en 24 horas.',
-  text: 'Envía la ubicación y el alcance estimado. Si hace falta, vamos a verlo antes de cotizar.',
+  title: 'Cuéntanos tu proyecto. Te respondemos en 24 horas.',
+  text: 'Envía la ubicación y el alcance estimado de la obra. Nuestro equipo técnico realiza visita de inspección en campo antes de cotizar.',
   serviceOptions: [
     'Movimiento de tierras',
-    'Obras civiles',
-    'Alquiler de maquinaria',
+    'Obras viales',
+    'Edificaciones',
+    'Grenco Soldadura',
+    'Alquiler de maquinaria pesada',
     'Saneamiento y redes',
-    'Habilitación urbana',
     'Demolición y desbroce',
   ],
 };
@@ -382,18 +478,22 @@ export const footer = {
       title: 'Servicios',
       links: [
         { label: 'Movimiento de tierras', href: '#servicios' },
-        { label: 'Obras civiles', href: '#servicios' },
-        { label: 'Alquiler de maquinaria', href: '#maquinaria' },
-        { label: 'Habilitación urbana', href: '#servicios' },
+        { label: 'Obras viales', href: '#servicios' },
+        { label: 'Edificaciones', href: '#servicios' },
+        { label: 'Grenco Soldadura', href: '#servicios' },
+        { label: 'Saneamiento y redes', href: '#servicios' },
+        { label: 'Demolición y desbroce', href: '#servicios' },
       ],
     },
     {
-      title: 'Empresa',
+      title: 'Navegación',
       links: [
         { label: 'Nosotros', href: '#nosotros' },
+        { label: 'Servicios', href: '#servicios' },
+        { label: 'Maquinaria', href: '#maquinaria' },
         { label: 'Proyectos', href: '#proyectos' },
+        { label: 'Bitácora', href: '#bitacora' },
         { label: 'Galería', href: '#galeria' },
-        { label: 'Contacto', href: '#contacto' },
       ],
     },
   ],
