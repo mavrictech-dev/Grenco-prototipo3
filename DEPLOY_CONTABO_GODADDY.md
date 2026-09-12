@@ -86,8 +86,8 @@ En **GoDaddy → Domains → DNS → Manage DNS**, elimina o sustituye los regis
 
 | Tipo | Nombre | Valor | TTL |
 |---|---|---|---|
-| A | `@` | `IP_PUBLICA_DEL_VPS` | 600 o 1 hora |
-| CNAME | `www` | `tu-dominio.com` | 600 o 1 hora |
+| A | `@` | `37.60.234.60` | 600 o 1 hora |
+| CNAME | `www` | `grenco.com.pe` | 600 o 1 hora |
 
 No modifiques los registros MX/TXT existentes si el correo corporativo ya funciona. Espera la propagacion DNS; cuando ambos hostnames resuelvan a la IP del VPS, Caddy emitira el certificado HTTPS. Comprueba `https://tu-dominio` y `https://www.tu-dominio` (el segundo redirige al primero).
 
