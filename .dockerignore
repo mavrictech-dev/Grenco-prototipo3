@@ -1,0 +1,11 @@
+.git
+.github
+.env
+.env.*
+!.env.example
+node_modules
+dist
+scratch
+DOCUMENTO_LANDING_GRENCO.docx
+DOCUMENTO_LANDING_GRENCO_ACTUALIZADO.docx
+*.log

@@ -1,0 +1,37 @@
+name: Desplegar en Contabo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: grenco-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Actualizar VPS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configurar conexion SSH segura
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.CONTABO_SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.CONTABO_SSH_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - name: Obtener main, reconstruir y verificar
+        env:
+          VPS_HOST: ${{ secrets.CONTABO_HOST }}
+          VPS_PORT: ${{ secrets.CONTABO_PORT || '22' }}
+          VPS_USER: ${{ secrets.CONTABO_USER }}
+          VPS_APP_DIR: ${{ secrets.CONTABO_APP_DIR || '/opt/grenco' }}
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -p "$VPS_PORT" \
+            -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$VPS_USER@$VPS_HOST" \
+            "cd '$VPS_APP_DIR' && git pull --ff-only origin main && docker compose up -d --build --remove-orphans && docker compose ps && docker compose exec -T app wget -q --spider http://127.0.0.1:8080/"
