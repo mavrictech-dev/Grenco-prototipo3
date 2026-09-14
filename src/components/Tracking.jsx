@@ -20,7 +20,7 @@ function useBarras() {
 
 /** Maqueta de la app movil. El marco es CSS, no una imagen: escala solo. */
 function Telefono({ llenas }) {
-  const { kicker, title, status, bars, cuadrillas } = tracking.app;
+  const { kicker, title, status, bars } = tracking.app;
 
   return (
     <div className="mock-tel">
@@ -62,20 +62,10 @@ function Telefono({ llenas }) {
             ))}
           </ul>
 
-          <div className="mock-tel__seccion">Cuadrillas de hoy</div>
-          <ul className="mock-cuadrillas">
-            {cuadrillas.map((c) => (
-              <li key={c.nombre}>
-                <span className="mock-cuadrillas__ini" aria-hidden="true">
-                  {c.personas}
-                </span>
-                <span>
-                  <b>{c.nombre}</b>
-                  <em>{c.equipo}</em>
-                </span>
-              </li>
-            ))}
-          </ul>
+          <div className="mock-tel__status-foot">
+            <span className="mock-tel__status-icon" aria-hidden="true">✓</span>
+            <span>Reporte diario validado por residente</span>
+          </div>
         </div>
       </div>
     </div>
@@ -167,7 +157,7 @@ export default function Tracking({ fotos = [] }) {
             </li>
             <li>
               <Icon name="check" size={16} strokeWidth={2.2} />
-              <span>Reporte de horas de maquinaria y cuadrillas en campo</span>
+              <span>Reporte diario de frentes y horas de maquinaria en campo</span>
             </li>
             <li>
               <Icon name="check" size={16} strokeWidth={2.2} />

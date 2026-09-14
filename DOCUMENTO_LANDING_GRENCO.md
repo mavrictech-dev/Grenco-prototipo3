@@ -94,13 +94,12 @@ Para consolidar una presencia web fidedigna, sobria y representativa de una cons
 
 ---
 
-### SECCIÓN 3: MÉTRICAS CLAVE Y DIFERENCIALES (HIGHLIGHTS)
+### SECCIÓN 3: DIFERENCIALES TÉCNICOS (HIGHLIGHTS)
 * **Función:** Transmitir credibilidad técnica y formalidad legal frente a competidores informales.
 * **Elementos que incluye:**
-  * **Cuadrillas en Planilla:** Personal técnico y obrero asegurado, con seguro SCTR y cumplimiento laboral.
-  * **Flota Propia Certificada:** Maquinaria pesada propia con revisiones técnicas y operadores homologados.
-  * **Cumplimiento de Plazos:** Cronogramas de avance valorizado con penalidades contractuales asumidas.
-  * **Estándar SSOMA:** Cero accidentes incapacitantes mediante protocolos de seguridad y salud en el trabajo.
+  * **Topografía de Precisión:** Levantamiento con estación total, fotogrametría aérea con dron y georreferenciación GNSS en cada frente de obra.
+  * **Cumplimiento de Plazos:** Cronogramas de avance valorizado desde el primer día con evidencia fotográfica.
+  * **Estándar SSOMA:** Charla diaria, protocolos de seguridad, señalización y equipo de protección verificado en cada turno de obra.
 
 ---
 
@@ -131,8 +130,8 @@ Para consolidar una presencia web fidedigna, sobria y representativa de una cons
 * **Función:** Demostración de control transparente de avance de obra para clientes y entidades supervisoras.
 * **Elementos que incluye:**
   * Insignia neumórfica táctil grabada en la superficie (*"Próximamente"*), con punto indicador de estado activo.
-  * Ficha técnica de supervisión de la aplicación al costado del encabezado: control de avance valorizado, curva S diaria, reporte de horas de maquinaria pesada, cuadrillas en frente y trazabilidad de ensayos de calidad.
-  * Maquetas interactivas en doble entorno: simulador de aplicativo móvil con barras dinámicas de porcentaje y panel de control web (`grenco.pe/portal`) con métricas clave de obra.
+  * Ficha técnica de supervisión de la aplicación al costado del encabezado: control de avance valorizado, curva S diaria, reporte de frentes y horas de maquinaria pesada, y trazabilidad de ensayos de calidad.
+  * Maquetas interactivas en doble entorno: simulador de aplicativo móvil con barras dinámicas de porcentaje de avance (topografía, movimiento de tierras, redes y pavimentación) con validación de cierre de jornada, y panel de control web (`grenco.pe/portal`) con métricas clave de frentes.
   * Tira continua de fotos de campo procesadas con metadatos de obra.
 * **Imágenes incluidas:**
   * Selección de fotografías de campo (`obra-0186.webp`, `obra-1012.webp`, `obra-1096.webp`, `obra-1728.webp`, `obra-1844.webp`).
@@ -148,21 +147,21 @@ Para consolidar una presencia web fidedigna, sobria y representativa de una cons
   1. **Movimiento de Tierras:**
      * *Video:* `/video/servicios/servicio-movimiento.mp4` (Póster: `servicio-movimiento.webp`)
      * *Descripción:* Excavadoras sobre orugas realizando corte masivo de terreno, carguío a volquetes y perfilado de taludes.
-  2. **Habilitación Urbana y Rasantes:**
+  2. **Topografía y Geodesia:**
+     * *Video:* `/video/servicios/servicio-topografia.mp4` (Póster: `servicio-topografia.webp`)
+     * *Descripción:* Levantamiento topográfico con estación total, fotogrametría aérea con dron sobre terreno y caminos en Las Lomas, georreferenciación GNSS de precisión y control altimétrico.
+  3. **Obras Viales:**
      * *Video:* `/video/servicios/servicio-habilitacion.mp4` (Póster: `servicio-habilitacion.webp`)
-     * *Descripción:* Motoniveladora y rodillo compactador conformando subrasante y terraplén para vías de acceso.
-  3. **Obras Civiles y Edificaciones:**
-     * *Video:* `/video/servicios/servicio-obras-civiles.mp4` (Póster: `servicio-obras-civiles.webp`)
-     * *Descripción:* Encofrado, vaciado de concreto estructural y cimentaciones para naves industriales y colegios.
-  4. **Soldadura y Estructuras Metálicas:**
+     * *Descripción:* Motoniveladora y rodillo compactador conformando subrasante, pavimentación y terraplén para vías de acceso.
+  4. **Grenco Soldadura y Estructuras:**
      * *Video:* `/video/servicios/servicio-soldadura.mp4` (Póster: `servicio-soldadura.webp`)
-     * *Descripción:* Operadores especializados en soldadura por arco y armado de vigas reticuladas y tuberías de conducción.
+     * *Descripción:* Operadores especializados en soldadura por arco calificada y armado de entubados y vigas reticuladas.
   5. **Saneamiento y Redes Hidráulicas:**
      * *Video:* `/video/servicios/servicio-saneamiento.mp4` (Póster: `servicio-saneamiento.webp`)
-     * *Descripción:* Zanjeo con retroexcavadora e instalación de tuberías para redes de agua potable, alcantarillado y drenaje pluvial.
-  6. **Demoliciones Técnicas y Eliminación:**
+     * *Descripción:* Zanjeo e instalación de tuberías para redes de agua potable, alcantarillado, colectores y drenaje pluvial con pruebas hidráulicas.
+  6. **Demoliciones Técnicas y Desbroce:**
      * *Video:* `/video/servicios/servicio-demolicion.mp4` (Póster: `servicio-demolicion.webp`)
-     * *Descripción:* Demolición controlada de estructuras de concreto y retiro de material con volquetes de alto tonelaje.
+     * *Descripción:* Demolición controlada de estructuras de concreto, desbroce de terreno y retiro de desmonte a botaderos autorizados.
 
 ---
 
@@ -175,36 +174,19 @@ Para consolidar una presencia web fidedigna, sobria y representativa de una cons
 
 ---
 
-### SECCIÓN 9: CULTURA ORGANIZACIONAL Y EQUIPO TÉCNICO
-* **Función:** Humanizar la marca y evidenciar la profesionalización de las cuadrillas.
-* **Elementos que incluye:**
-  * Tarjetas de los frentes de especialidad: Residencia de obra, Cuadrilla de topografía satelital, Operadores de equipo pesado y Supervisión SSOMA.
-* **Imágenes incluidas:**
-  * Ingeniero Residente en campo: `src/assets/images/eq-residencia.webp`
-  * Especialista en Topografía: `src/assets/images/eq-topografia.webp`
-  * Operador de Maquinaria Certificado: `src/assets/images/eq-operador.webp`
-  * Supervisor de Seguridad SSOMA: `src/assets/images/eq-ssoma.webp`
-
-![Residente de Obra](src/assets/images/eq-residencia.webp)
-![Topografía en Campo](src/assets/images/eq-topografia.webp)
-![Operador Homologado](src/assets/images/eq-operador.webp)
-![Seguridad SSOMA](src/assets/images/eq-ssoma.webp)
-
----
-
-### SECCIÓN 10: PROYECTOS EMBLEMÁTICOS
-* **Función:** Portafolio de obras finalizadas o en ejecución clasificado por región.
+### SECCIÓN 9: PROYECTOS EMBLEMÁTICOS
+* **Función:** Portafolio de obras finalizadas o en ejecución clasificado por región, con soporte interactivo de video para levantamientos con dron.
 * **Proyectos destacados:**
-  1. Planta Agroindustrial Los Ejidos (Movimiento de tierras masivo y plataforma).
-  2. Defensas Ribereñas y Vía de Evitamiento (Terraplenes y diques de contención).
-  3. Habilitación Urbana y Drenaje Pluvial (Redes de conducción y rasantes viales).
-* **Imágenes incluidas:**
-  * Proyecto Planta Agroindustrial: `src/assets/images/pro-planta-agro.webp`
+  1. **Los Ejidos, etapa II (Piura · Obras Viales):** 14 hectáreas habilitadas con vías pavimentadas, bermas, veredas y redes de agua ejecutadas en 9 meses.
+  2. **Vuelo de Las Lomas (Piura · Topografía con Dron · Video de Dron):** Servicio de la Municipalidad de Piura: levantamiento topográfico para elaboración de expediente técnico con ortofotografía aérea de alta precisión y video de dron interactivo.
+  3. **Vía de acceso y defensas ribereñas (Trujillo · Obras Viales):** 1.8 km de vía con cunetas revestidas y alcantarillas, diseñada para resistir crecidas de río.
+* **Imágenes y Videos incluidos:**
   * Proyecto Los Ejidos: `src/assets/images/pro-ejidos.webp`
+  * Proyecto Vuelo de Las Lomas: `src/assets/images/pro-lomas-dron.webp` y video `/video/proyectos/proyecto-las-lomas-dron.mp4`
   * Proyecto Vía y Drenaje: `src/assets/images/pro-via-drenaje.webp`
 
-![Planta Agroindustrial](src/assets/images/pro-planta-agro.webp)
 ![Frente Los Ejidos](src/assets/images/pro-ejidos.webp)
+![Vuelo Topográfico Las Lomas](src/assets/images/pro-lomas-dron.webp)
 ![Vía y Drenaje Pluvial](src/assets/images/pro-via-drenaje.webp)
 
 ---

@@ -8,7 +8,6 @@ import About from './components/About';
 import Tracking from './components/Tracking';
 import Services from './components/Services';
 import MissionVision from './components/MissionVision';
-import Culture from './components/Culture';
 import Projects from './components/Projects';
 import Bitacora from './components/Bitacora';
 import Gallery from './components/Gallery';
@@ -88,7 +87,6 @@ export default function App() {
           <Tracking fotos={fotosPortal} />
           <Services />
           <MissionVision />
-          <Culture />
           <Projects sede={sede} />
           <Bitacora sede={sede} />
           <Gallery />

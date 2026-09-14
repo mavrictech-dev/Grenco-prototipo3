@@ -14,7 +14,7 @@
 const CONTENIDO = {
   piura: {
     hero: {
-      eyebrow: 'Sede Piura · Oficina técnica y base de operaciones',
+      eyebrow: 'Sede Piura',
       title: ['Movemos tierra.', 'Levantamos', 'el norte.'],
       text: 'Movimiento de tierras, obras viales y edificaciones en Piura, Sullana y Talara. Equipos propios certificados, cuadrillas en planilla y soporte técnico directo.',
       hint: 'Tomas reales · Obra Río Piura',
@@ -44,7 +44,7 @@ const CONTENIDO = {
 
   trujillo: {
     hero: {
-      eyebrow: 'Sede Trujillo · La Libertad',
+      eyebrow: 'Sede Trujillo',
       title: ['Abrimos vía.', 'Construimos', 'La Libertad.'],
       text: 'Edificaciones, obras viales, saneamiento y movimiento de tierras para proyectos públicos y privados en Trujillo y toda La Libertad. Residencia técnica en obra y equipos propios de alto rendimiento.',
       hint: 'Tomas reales de obra · Trujillo y La Libertad',

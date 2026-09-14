@@ -73,9 +73,9 @@ export const hero = {
 
 export const highlights = [
   {
-    icon: 'users',
-    title: 'Cuadrillas en planilla',
-    text: 'Operadores y peones contratados en planilla, con seguro y capacitación. Sin subcontratas informales en el frente de trabajo.',
+    icon: 'topografia',
+    title: 'Topografía de precisión',
+    text: 'Levantamiento con estación total, fotogrametría aérea con dron y georreferenciación GNSS en cada frente de obra.',
   },
   {
     icon: 'clock',
@@ -169,7 +169,7 @@ export const tracking = {
   eyebrow: 'Producto en desarrollo',
   badge: 'Próximamente',
   title: 'GRENCO Tracking: tu obra, en el bolsillo.',
-  text: 'Estamos construyendo el portal del cliente. Avance por partida, cuadrillas del día y fotos de campo subidas desde la obra, sin esperar al informe del viernes.',
+  text: 'Estamos construyendo el portal del cliente. Avance por partida, estado de frentes y fotos de campo subidas desde la obra, sin esperar al informe del viernes.',
   features: [
     {
       icon: 'chart',
@@ -177,9 +177,9 @@ export const tracking = {
       text: 'Porcentaje valorizado, actualizado por el residente al cierre de cada jornada.',
     },
     {
-      icon: 'users',
-      title: 'Registro de cuadrillas',
-      text: 'Quién estuvo en obra, en qué frente y con qué equipo asignado.',
+      icon: 'layers',
+      title: 'Control de frentes y equipos',
+      text: 'Horas máquina, frentes activos y trazabilidad directa de operaciones en campo.',
     },
     {
       icon: 'camera',
@@ -192,19 +192,15 @@ export const tracking = {
     title: 'Obras viales Los Algarrobos',
     status: 'En obra',
     bars: [
+      { label: 'Topografía y trazo inicial', pct: 100 },
       { label: 'Movimiento de tierras', pct: 92 },
       { label: 'Redes de agua y desagüe', pct: 64 },
       { label: 'Pavimentación', pct: 21 },
     ],
     tiles: [
-      { value: '4', label: 'Cuadrillas' },
+      { value: '3', label: 'Frentes' },
       { value: '11', label: 'Equipos' },
       { value: '+6%', label: 'Semanal', accent: true },
-    ],
-    cuadrillas: [
-      { nombre: 'Frente A · Corte', personas: 8, equipo: 'Excavadora 20T' },
-      { nombre: 'Frente B · Redes', personas: 6, equipo: 'Retro 4×4' },
-      { nombre: 'Topografía', personas: 2, equipo: 'Estación total' },
     ],
   },
 };
@@ -222,20 +218,20 @@ export const services = {
       poster: '/video/servicios/servicio-movimiento.webp',
     },
     {
+      id: 'topografia',
+      icon: 'topografia',
+      title: 'Topografía y geodesia',
+      text: 'Levantamiento topográfico con estación total, fotogrametría aérea con dron, georreferenciación GNSS de precisión y control altimétrico.',
+      video: '/video/servicios/servicio-topografia.mp4',
+      poster: '/video/servicios/servicio-topografia.webp',
+    },
+    {
       id: 'obras-viales',
       icon: 'grid',
       title: 'Obras viales',
       text: 'Apertura de trochas, afirmado, pavimentación rígida y flexible, bermas, cunetas de drenaje y señalización.',
       video: '/video/servicios/servicio-habilitacion.mp4',
       poster: '/video/servicios/servicio-habilitacion.webp',
-    },
-    {
-      id: 'edificaciones',
-      icon: 'building',
-      title: 'Edificaciones',
-      text: 'Cimentaciones profundas, estructuras de concreto armado, losas industriales de alta resistencia y cerramientos.',
-      video: '/video/servicios/servicio-obras-civiles.mp4',
-      poster: '/video/servicios/servicio-obras-civiles.webp',
     },
     {
       id: 'soldadura',
@@ -331,12 +327,15 @@ export const projects = {
       text: '14 hectáreas habilitadas con vías pavimentadas, bermas, veredas y redes de agua ejecutadas en 9 meses.',
     },
     {
-      img: 'pro-planta-agro',
-      kind: 'Edificaciones',
-      place: 'Sullana',
+      img: 'pro-lomas-dron',
+      video: '/video/proyectos/proyecto-las-lomas-dron.mp4',
+      poster: '/video/proyectos/proyecto-las-lomas-dron.webp',
+      badge: 'Video de Dron',
+      kind: 'Topografía con dron',
+      place: 'Las Lomas · Piura',
       sede: 'piura',
-      title: 'Ampliación planta agroindustrial',
-      text: 'Plataforma estructural, losa industrial y patio de maniobras sin detener la operación de la planta.',
+      title: 'Vuelo de Las Lomas',
+      text: 'Servicio de la Municipalidad de Piura: levantamiento topográfico para expediente técnico con ortofoto y vuelo de dron de alta resolución.',
     },
     {
       img: 'pro-via-drenaje',
@@ -406,8 +405,8 @@ export const contact = {
   text: 'Envía la ubicación y el alcance estimado de la obra. Nuestro equipo técnico realiza visita de inspección en campo antes de cotizar.',
   serviceOptions: [
     'Movimiento de tierras',
+    'Topografía y geodesia',
     'Obras viales',
-    'Edificaciones',
     'Grenco Soldadura',
     'Saneamiento y redes',
     'Demolición y desbroce',
@@ -420,8 +419,8 @@ export const footer = {
       title: 'Servicios',
       links: [
         { label: 'Movimiento de tierras', href: '#servicios' },
+        { label: 'Topografía y geodesia', href: '#servicios' },
         { label: 'Obras viales', href: '#servicios' },
-        { label: 'Edificaciones', href: '#servicios' },
         { label: 'Grenco Soldadura', href: '#servicios' },
         { label: 'Saneamiento y redes', href: '#servicios' },
         { label: 'Demolición y desbroce', href: '#servicios' },

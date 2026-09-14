@@ -37,15 +37,6 @@ export default function About({ sede }) {
               </li>
             ))}
           </ul>
-
-          <div className="stats">
-            {about.stats.map((s) => (
-              <div className="stat" key={s.label}>
-                <div className="stat__num">{s.num}</div>
-                <div className="stat__label">{s.label}</div>
-              </div>
-            ))}
-          </div>
         </Reveal>
 
         <Reveal delay={140} data-px="0.05">
