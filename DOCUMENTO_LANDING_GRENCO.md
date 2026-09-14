@@ -175,19 +175,13 @@ Para consolidar una presencia web fidedigna, sobria y representativa de una cons
 ---
 
 ### SECCIÓN 9: PROYECTOS EMBLEMÁTICOS
-* **Función:** Portafolio de obras finalizadas o en ejecución clasificado por región, con soporte interactivo de video para levantamientos con dron.
-* **Proyectos destacados:**
-  1. **Los Ejidos, etapa II (Piura · Obras Viales):** 14 hectáreas habilitadas con vías pavimentadas, bermas, veredas y redes de agua ejecutadas en 9 meses.
-  2. **Vuelo de Las Lomas (Piura · Topografía con Dron · Video de Dron):** Servicio de la Municipalidad de Piura: levantamiento topográfico para elaboración de expediente técnico con ortofotografía aérea de alta precisión y video de dron interactivo.
-  3. **Vía de acceso y defensas ribereñas (Trujillo · Obras Viales):** 1.8 km de vía con cunetas revestidas y alcantarillas, diseñada para resistir crecidas de río.
+* **Función:** Portafolio técnico de obras y levantamientos de alta precisión, con tarjeta cinematográfica centralizada y soporte interactivo de video en bucle para vuelos de dron.
+* **Proyecto destacado:**
+  * **Vuelo de Las Lomas (Piura · Topografía con Dron · Video de Dron):** Servicio de la Municipalidad de Piura: levantamiento topográfico para elaboración de expediente técnico con ortofotografía aérea de alta resolución, fotogrametría y video de dron interactivo al pasar el cursor.
 * **Imágenes y Videos incluidos:**
-  * Proyecto Los Ejidos: `src/assets/images/pro-ejidos.webp`
   * Proyecto Vuelo de Las Lomas: `src/assets/images/pro-lomas-dron.webp` y video `/video/proyectos/proyecto-las-lomas-dron.mp4`
-  * Proyecto Vía y Drenaje: `src/assets/images/pro-via-drenaje.webp`
 
-![Frente Los Ejidos](src/assets/images/pro-ejidos.webp)
 ![Vuelo Topográfico Las Lomas](src/assets/images/pro-lomas-dron.webp)
-![Vía y Drenaje Pluvial](src/assets/images/pro-via-drenaje.webp)
 
 ---
 

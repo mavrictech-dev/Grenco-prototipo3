@@ -1449,6 +1449,15 @@ html[data-theme='dark'] .hero__scroll {
   margin-top: 52px;
 }
 
+.projects__grid--single {
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+.projects__grid--single .project .media {
+  height: clamp(240px, 45vw, 380px);
+}
+
 .project {
   border-radius: 28px;
   padding: 20px;

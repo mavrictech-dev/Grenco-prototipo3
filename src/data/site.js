@@ -319,14 +319,6 @@ export const projects = {
   title: 'Casos entregados y en ejecución.',
   items: [
     {
-      img: 'pro-ejidos',
-      kind: 'Obras viales',
-      place: 'Piura',
-      sede: 'piura',
-      title: 'Los Ejidos, etapa II',
-      text: '14 hectáreas habilitadas con vías pavimentadas, bermas, veredas y redes de agua ejecutadas en 9 meses.',
-    },
-    {
       img: 'pro-lomas-dron',
       video: '/video/proyectos/proyecto-las-lomas-dron.mp4',
       poster: '/video/proyectos/proyecto-las-lomas-dron.webp',
@@ -336,14 +328,6 @@ export const projects = {
       sede: 'piura',
       title: 'Vuelo de Las Lomas',
       text: 'Servicio de la Municipalidad de Piura: levantamiento topográfico para expediente técnico con ortofoto y vuelo de dron de alta resolución.',
-    },
-    {
-      img: 'pro-via-drenaje',
-      kind: 'Obras viales',
-      place: 'Trujillo',
-      sede: 'trujillo',
-      title: 'Vía de acceso y defensas ribereñas',
-      text: '1.8 km de vía con cunetas revestidas y alcantarillas, diseñada para resistir crecidas de río.',
     },
   ],
 };

@@ -80,7 +80,7 @@ export default function Projects({ sede }) {
         <h2 className="h2">{projects.title}</h2>
       </Reveal>
 
-      <div className="projects__grid">
+      <div className={`projects__grid ${orden.length === 1 ? 'projects__grid--single' : ''}`}>
         {orden.map((p, i) => (
           <ProjectCard key={p.title} project={p} delay={i * 110} />
         ))}
