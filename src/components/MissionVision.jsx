@@ -10,7 +10,7 @@ export default function MissionVision() {
   const data = missionVision[active];
 
   return (
-    <section className="section">
+    <section id="mision-vision" className="section">
       <Reveal>
         <div className="segment" role="tablist" aria-label="Misión y visión">
           {KEYS.map((key) => (

@@ -18,7 +18,7 @@ export default function Manifiesto({ sede }) {
   const foto = fotoObra(hero.foto);
 
   return (
-    <section className="section manifiesto">
+    <section id="manifiesto" className="section manifiesto">
       <div className="manifiesto__grid">
         <Reveal className="manifiesto__caja">
           {/* La key remonta el bloque al cambiar de sede, para que la entrada

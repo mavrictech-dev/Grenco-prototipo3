@@ -34,9 +34,13 @@ export default function Footer({ theme }) {
           <h4>Sedes</h4>
           <ul>
             {sedes.map((s) => (
-              <li key={s.id}>{s.address}</li>
+              <li key={s.id} style={{ marginBottom: '8px' }}>
+                <strong style={{ color: 'var(--ink)' }}>{s.name}:</strong> {s.address}
+                <br />
+                <a href={`tel:${s.tel}`}>{s.phone}</a>
+              </li>
             ))}
-            <li>
+            <li style={{ marginTop: '8px' }}>
               <a href={`mailto:${company.email}`}>{company.email}</a>
             </li>
           </ul>

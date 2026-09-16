@@ -26,14 +26,19 @@ async function getJpgBuffer(relPath) {
   }
   try {
     const meta = await sharp(fullPath).metadata();
-    const buffer = await sharp(fullPath)
-      .resize({ width: 800, withoutEnlargement: true })
-      .jpeg({ quality: 85 })
-      .toBuffer();
+    const targetWidth = 490; // Ancho óptimo para página Word con márgenes de 1 pulgada
+    let targetHeight = Math.round((targetWidth / (meta.width || 1440)) * (meta.height || 900));
     
-    // Calcular ancho y alto proporcionales para Word (máximo 520px de ancho)
-    const targetWidth = 500;
-    const targetHeight = Math.round((500 / (meta.width || 800)) * (meta.height || 600));
+    // Si la captura es muy alta (por ejemplo, una grilla extensa), limitamos la altura para que no desborde la página
+    if (targetHeight > 420) {
+      targetHeight = 420;
+    }
+
+    const buffer = await sharp(fullPath)
+      .resize({ width: 980, height: Math.round(targetHeight * 2), fit: 'inside' })
+      .jpeg({ quality: 88 })
+      .toBuffer();
+
     return { buffer, width: targetWidth, height: targetHeight };
   } catch (err) {
     console.warn('Error converting image:', relPath, err.message);
@@ -48,7 +53,7 @@ async function createImageParagraph(relPath, caption) {
       new Paragraph({
         children: [
           new TextRun({
-            text: `[Imagen: ${caption} - Archivo: ${relPath}]`,
+            text: `[Captura de pantalla: ${caption} - Archivo: ${relPath}]`,
             italics: true,
             color: '000000',
           }),
@@ -127,7 +132,7 @@ function bullet(text, boldPrefix = '') {
   return new Paragraph({
     bullet: { level: 0 },
     children,
-    spacing: { after: 80 },
+    spacing: { after: 100 },
   });
 }
 
@@ -138,20 +143,12 @@ function heading1(text) {
       new TextRun({
         text,
         bold: true,
-        size: 32, // 16 pt
+        size: 28, // 14 pt
         color: '000000',
         font: 'Arial',
       }),
     ],
-    spacing: { before: 280, after: 140 },
-    border: {
-      bottom: {
-        color: '000000',
-        space: 4,
-        value: 'single',
-        size: 12,
-      },
-    },
+    spacing: { before: 240, after: 140 },
   });
 }
 
@@ -162,12 +159,12 @@ function heading2(text) {
       new TextRun({
         text,
         bold: true,
-        size: 26, // 13 pt
+        size: 24, // 12 pt
         color: '000000',
         font: 'Arial',
       }),
     ],
-    spacing: { before: 240, after: 100 },
+    spacing: { before: 200, after: 100 },
   });
 }
 
@@ -178,17 +175,17 @@ function heading3(text) {
       new TextRun({
         text,
         bold: true,
-        size: 23, // 11.5 pt
+        size: 22, // 11 pt
         color: '000000',
         font: 'Arial',
       }),
     ],
-    spacing: { before: 180, after: 80 },
+    spacing: { before: 140, after: 80 },
   });
 }
 
 async function buildDoc() {
-  console.log('Generando documento de Word (.docx)...');
+  console.log('Generando documento de Word con capturas de pantalla reales (.docx)...');
 
   const children = [];
 
@@ -242,7 +239,7 @@ async function buildDoc() {
                 pText('Proyecto: Plataforma Web Institucional y Comercial (Landing Page)'),
                 pText('Versión: 2.0 (Producción)'),
                 pText('Ámbito Geográfico: Regiones Piura y La Libertad (Trujillo) - Perú'),
-                pText('Formato: Documento técnico formal (tipografía en color negro, sin enlaces azules)'),
+                pText('Modalidad de Registro: Informe técnico con capturas directas de pantalla de la interfaz en producción'),
               ],
               shading: { fill: 'F8F8F8' },
               margins: { top: 120, bottom: 120, left: 160, right: 160 },
@@ -258,10 +255,10 @@ async function buildDoc() {
   children.push(
     heading1('1. INTRODUCCIÓN Y OBJETIVO DEL PROYECTO'),
     pText(
-      'El presente documento detalla la totalidad de secciones, funcionalidades interactivas, arquitectura de diseño y recursos multimedia (fotografías reales de obra y producciones de video) que integran la landing page oficial de GRENCO (Grupo Enriquez Construcciones S.A.C.).'
+      'El presente documento detalla la totalidad de secciones, funcionalidades interactivas, arquitectura de diseño y evidencias visuales directas (capturas de pantalla tomadas de la plataforma en funcionamiento) que conforman la landing page oficial de GRENCO (Grupo Enriquez Construcciones S.A.C.).'
     ),
     pText(
-      'La web ha sido diseñada para posicionar a GRENCO frente a clientes corporativos públicos y privados en el norte del país, destacando su solvencia en movimiento de tierras masivo, habilitación urbana, obras viales, edificaciones, saneamiento y soldadura industrial.'
+      'En cumplimiento con los requerimientos de gerencia, se han incorporado capturas de pantalla auténticas de cada sección del aplicativo web, permitiendo visualizar la composición real, la estética neumórfica táctil, el comportamiento responsivo, las fichas técnicas y los controles interactivos desplegados para los clientes corporativos del sector público y privado.'
     )
   );
 
@@ -298,374 +295,277 @@ async function buildDoc() {
     ),
     bullet(
       ' Se eliminó el componente huérfano Nubes.jsx y más de 140 líneas de estilos CSS asociadas al cómputo de nubes fractales SVG y un sol artificial procedural, reduciendo el consumo de memoria y CPU del navegador del cliente.',
-      'Eliminación de Simulación Climática Procedural:'
+      '1. Eliminación de Simulación Climática Procedural:'
     ),
     bullet(
-      ' Se calibraron los tokens cromáticos de sombra (--nu1, --nu2, --nu3, --nuin). Se reemplazaron sombras oscuras con tintes marrones por elevaciones neutras, nítidas y arquitectónicas, eliminando el efecto de "plastilina hinchada" para proyectar la solidez estructural del concreto y el acero.',
-      'Refinamiento del Neumorfismo a Estándar de Ingeniería:'
+      ' Se calibraron sombras arquitectónicas nítidas, erradicando fondos marrones sucios en modo claro y suprimiendo relieves de "plastilina inflada" por biseles sobrios de ingeniería.',
+      '2. Neumorfismo Calibrado a Estándar de Ingeniería Civil:'
     ),
     bullet(
-      ' Se moderaron los radios de curvatura excesivos (de 24-34px a 14-18px en tarjetas y marcos de fotografía de obra), aportando una geometría más sobria, aplomada y técnica.',
-      'Ajuste de Geometría y Radios de Borde:'
+      ' Se redujeron bordes excesivamente redondeados (de 34px a 14px-18px), otorgando a las tarjetas y marcos de foto una presencia constructiva seria.',
+      '3. Geometría y Radios de Borde Controlados:'
     ),
     bullet(
-      ' Se retiró la animación de onda expansiva continua en el botón flotante de WhatsApp (.wa__pulse), manteniendo una interacción limpia y enfocada sin distracciones permanentes.',
-      'Supresión de Micro-Animaciones Invasivas:'
+      ' Se eliminó la onda de choque expansiva constante en el botón de WhatsApp, dejando una interacción limpia sin distracciones invasivas.',
+      '4. Supresión de Animaciones Distractoras:'
     ),
     bullet(
-      ' Se preservaron deliberadamente la barra fija superior de 3px que indica visualmente el avance de desplazamiento (scroll) y el módulo "GRENCO Tracking" (mockups de aplicación móvil y portal de control de obra con cuadrillas de campo).',
-      'Preservación de Componentes Clave Validados:'
+      ' Se rediseñó la insignia a un bajo relieve neumórfico grabado con punto de estado, integrando a su costado una ficha técnica sobre curva S, avance valorizado y horas de maquinaria, eliminando espacios vacíos.',
+      '5. Rediseño Neumórfico del Módulo Tracking y Ficha de App:'
+    ),
+    bullet(
+      ' La sección de proyectos se optimizó para destacar con exclusividad el servicio insignia de topografía con dron ("Vuelo de Las Lomas"), con video aéreo interactivo.',
+      '6. Consolidación de Casos Emblemáticos:'
     )
   );
 
-  // 4. Desglose sección por sección
-  children.push(heading1('4. DESGLOSE DETALLADO SECCIÓN POR SECCIÓN'));
-
-  // Sección 1: Navbar
+  // 4. Evidencias visuales y desglose de secciones
   children.push(
-    heading2('Sección 1: Barra de Navegación Superior (Navbar)'),
+    heading1('4. EVIDENCIAS VISUALES Y DESGLOSE POR SECCIONES (CAPTURAS EN VIVO)'),
     pText(
-      'Cabecera fija inteligente con detector de desplazamiento (ScrollSpy) y barra fija dorada de 3px que refleja el progreso de lectura. Incluye el logotipo oficial en versión clara y oscura, enlaces directos a las áreas principales (Inicio, Nosotros, Servicios, Proyectos, Bitácora, Galería, Contacto), selector de sede (Piura / Trujillo), conmutador de modo claro/oscuro y botón de cotización directa.'
-    )
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/brand/grenco-lockup-light.webp',
-      'Logotipo Institucional GRENCO para Modo Claro'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/brand/grenco-lockup-dark.webp',
-      'Logotipo Institucional GRENCO para Modo Oscuro'
-    ))
-  );
-
-  // Sección 2: Hero
-  children.push(
-    heading2('Sección 2: Portada Principal (Hero Wall)'),
-    pText(
-      'Impacto visual inicial con video cinematográfico en pantalla completa, relieve central del isotipo de la marca y llamada a la acción para explorar proyectos.'
-    ),
-    bullet(
-      ' Registro aéreo cinematográfico en 4K optimizado para web a 720p 30fps (3.36 MB). Muestra un vuelo continuo de dron sobre el puente vehicular del Río Piura, el tránsito en marcha, el agua del río y el panorama urbano. Se reproduce en bucle infinito continuo (loop) sin pestañas de corte. Dispone de póster WebP companion (/video/piura-hero.webp).',
-      'Video Hero Piura (/video/piura-hero.mp4 - 12.0 Segundos):'
-    ),
-    bullet(
-      ' Registro aéreo continuo sobre frente de trabajo de maquinaria y cuadrillas en La Libertad, acompañado de su póster WebP companion (/video/trujillo.webp).',
-      'Video Hero Trujillo (/video/trujillo.mp4 - 14.0 Segundos):'
+      'A continuación se presentan las capturas de pantalla capturadas directamente de la plataforma en funcionamiento, documentando la interfaz de usuario, los componentes interactivos y el contenido técnico presentado a los visitantes:'
     )
   );
 
-  // Sección 3: Highlights
+  // Sección 1: Navbar y Hero Wall
   children.push(
-    heading2('Sección 3: Indicadores de Confianza (Highlights)'),
-    pText('Bloques de respaldo técnico y formalidad empresarial:'),
-    bullet(' Personal técnico y operarios contratados bajo régimen formal con seguro SCTR.', 'Cuadrillas en Planilla:'),
-    bullet(' Equipos propios CAT, Volvo y Komatsu con operadores certificados.', 'Flota Propia Certificada:'),
-    bullet(' Cronogramas de avance valorizado con compromisos de penalidad por atraso.', 'Cumplimiento de Plazos:'),
-    bullet(' Protocolos estrictos de seguridad y salud en el trabajo con meta de cero incidentes.', 'Estándar SSOMA:')
-  );
-
-  // Sección 4: Manifiesto
-  children.push(
-    heading2('Sección 4: Manifiesto Institucional'),
+    heading2('Sección 1: Cabecera Fija (Navbar) y Portada Principal Hero Wall (Sede Piura)'),
     pText(
-      'Declaración de principios de ingeniería que aloja el titular H1 principal para posicionamiento en motores de búsqueda: "Movemos tierra. Levantamos el norte". Presenta el compromiso operativo de la empresa acompañado de fotografía real de campo.'
+      'La cabecera superior fija proporciona navegación inmediata con enlaces a las secciones clave, conmutador de tema claro/oscuro, selector de sede activa y botón de cotización directa. El Hero Wall despliega en pantalla completa el vuelo de dron en 4K optimizado sobre el puente vehicular del Río Piura en bucle continuo, con el isotipo de la marca en relieve.'
     )
   );
   children.push(
     ...(await createImageParagraph(
-      'src/assets/obra/obra-0082.webp',
-      'Cuadrilla de Campo y Maquinaria en Movimiento de Tierras (obra-0082)'
+      'src/assets/capturas/01-portada-hero-navbar.png',
+      'Cabecera de Navegación Fija con Selector de Sede y Portada Hero Wall (Sede Piura)'
     ))
   );
 
-  // Sección 5: About
+  // Sección 1B: Hero Wall Sede Trujillo
   children.push(
-    heading2('Sección 5: Sobre la Empresa (About)'),
+    heading2('Demostración Multi-Sede: Conmutación a Sede Trujillo'),
     pText(
-      'Exposición de la capacidad técnica, talleres de mantenimiento propios, bases operativas en Piura y Trujillo y especialidades constructivas en el norte del país.'
+      'Al seleccionar la Sede Trujillo en la barra de navegación, la portada adapta instantáneamente el registro de video y el titular contextual hacia los frentes de trabajo de maquinaria y movimiento de tierras en la región La Libertad, conservando la selección en la sesión del usuario.'
     )
   );
   children.push(
     ...(await createImageParagraph(
-      'src/assets/obra/obra-1718.webp',
-      'Inspección Técnica de Suelos y Topografía en Obra (obra-1718)'
+      'src/assets/capturas/01b-portada-hero-trujillo.png',
+      'Portada Hero Wall Dinámica con Frente de Obra en Trujillo (La Libertad)'
     ))
   );
 
-  // Sección 6: Tracking
+  // Sección 2: Highlights
   children.push(
-    heading2('Sección 6: Portal de Seguimiento en Tiempo Real (Tracking)'),
+    heading2('Sección 2: Indicadores de Confianza y Sellos de Respaldo (Highlights)'),
     pText(
-      'Adelanto del sistema digital de supervisión de obra. Cuenta con una insignia táctil neumórfica "Próximamente" con relieve grabado y punto de estado, acompañada de una ficha técnica de la aplicación (curva S valorizada, reporte de horas de maquinaria pesada y cuadrillas en frente) que completa armónicamente el encabezado. Se presentan maquetas interactivas del aplicativo móvil y panel web, junto con una tira continua de fotos de campo georreferenciadas.'
+      'Tres tarjetas con elevación neumórfica convexa que sintetizan los principales sellos diferenciales de GRENCO: topografía de precisión con estación total y dron, flota propia de maquinaria pesada certificada (CAT, Volvo, Komatsu) y cumplimiento estricto de cronogramas con penalidades contractuales.'
     )
   );
   children.push(
     ...(await createImageParagraph(
-      'src/assets/obra/obra-1012.webp',
-      'Verificación de Eje y Nivel de Vía en Terreno (obra-1012)'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/obra/obra-1844.webp',
-      'Cuadrilla de Ingeniería Verificando Puntos Geodésicos (obra-1844)'
+      'src/assets/capturas/02-highlights.png',
+      'Tarjetas de Confianza y Sellos de Formalidad Operativa en Relieve Neumórfico'
     ))
   );
 
-  // Sección 7: Servicios
+  // Sección 3: Manifiesto
   children.push(
-    heading2('Sección 7: Servicios Especializados (Videos Demostrativos)'),
+    heading2('Sección 3: Manifiesto Institucional'),
     pText(
-      'Seis tarjetas con especificaciones técnicas detalladas y videos individuales en bucle continuo:'
-    ),
-    bullet(
-      ' Excavadoras sobre orugas realizando corte masivo de terreno, perfilado de taludes y carguío a camiones volquete.',
-      '1. Movimiento de Tierras (Video: /video/servicios/servicio-movimiento.mp4):'
-    ),
-    bullet(
-      ' Motoniveladora y rodillo compactador conformando subrasante y terraplén para vías de acceso urbano y rural.',
-      '2. Habilitación Urbana y Rasantes (Video: /video/servicios/servicio-habilitacion.mp4):'
-    ),
-    bullet(
-      ' Encofrado, vaciado de concreto estructural y cimentaciones para naves industriales y colegios.',
-      '3. Obras Civiles y Edificaciones (Video: /video/servicios/servicio-obras-civiles.mp4):'
-    ),
-    bullet(
-      ' Operadores especializados en soldadura por arco y habilitación de vigas reticuladas y tuberías de conducción.',
-      '4. Soldadura y Estructuras Metálicas (Video: /video/servicios/servicio-soldadura.mp4):'
-    ),
-    bullet(
-      ' Zanjeo con retroexcavadora e instalación de tuberías para redes de agua potable, desagüe y drenaje pluvial.',
-      '5. Saneamiento y Redes Hidráulicas (Video: /video/servicios/servicio-saneamiento.mp4):'
-    ),
-    bullet(
-      ' Demolición controlada de estructuras de concreto y retiro de material excedente con volquetes de alto tonelaje.',
-      '6. Demoliciones Técnicas y Eliminación (Video: /video/servicios/servicio-demolicion.mp4):'
-    )
-  );
-
-  // Sección 8: Misión y Visión
-  children.push(
-    heading2('Sección 8: Misión, Visión y Valores'),
-    pText(
-      'Pilares institucionales de GRENCO: compromiso de ingeniería rigurosa, cumplimiento estricto de cronogramas y transparencia en costos operativos.'
-    )
-  );
-
-  // Sección 9: Cultura
-  children.push(
-    heading2('Sección 9: Cultura y Equipo Humano'),
-    pText('Presentación de los perfiles profesionales que lideran las obras de la constructora:')
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/eq-residencia.webp',
-      'Ingeniería Residente de Obra'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/eq-topografia.webp',
-      'Especialista en Topografía y Georreferenciación'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/eq-operador.webp',
-      'Operador Homologado de Maquinaria Pesada'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/eq-ssoma.webp',
-      'Supervisión de Seguridad y Salud Ocupacional (SSOMA)'
-    ))
-  );
-
-  // Sección 10: Proyectos
-  children.push(
-    heading2('Sección 10: Proyectos Emblemáticos'),
-    pText('Fichas de obras de envergadura ejecutadas en el norte peruano:')
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/pro-planta-agro.webp',
-      'Planta Agroindustrial - Movimiento de Tierras y Nivelación'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/pro-ejidos.webp',
-      'Defensas Ribereñas y Muros de Contención Los Ejidos'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/pro-via-drenaje.webp',
-      'Construcción de Vía Canal y Redes de Drenaje Pluvial'
-    ))
-  );
-
-  // Sección 11: Bitácora
-  children.push(
-    heading2('Sección 11: Bitácora de Obra'),
-    pText(
-      'Registro cronológico de avances de campo con fechas formales, descripciones técnicas y soporte fotográfico.'
+      'Declaración de principios de ingeniería que aloja el titular H1 principal de la plataforma ("Movemos tierra. Levantamos el norte"), acompañado de la fotografía técnica de frente de campo y el botón de solicitud directa de cotización.'
     )
   );
   children.push(
     ...(await createImageParagraph(
-      'src/assets/obra/obra-1096.webp',
-      'Avance de Plataforma y Rasante (obra-1096)'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/obra/obra-4827.webp',
-      'Nivelación y Control Altimétrico de Terreno (obra-4827)'
+      'src/assets/capturas/03-manifiesto.png',
+      'Manifiesto Institucional H1 con Fotografía de Cuadrilla de Campo y Llamada a la Acción'
     ))
   );
 
-  // Sección 12: Galería
+  // Sección 4: About
   children.push(
-    heading2('Sección 12: Galería Fotográfica Profesional con Sistema de Zoom 2D'),
+    heading2('Sección 4: Capacidad Operativa y Bases (Sobre la Empresa)'),
     pText(
-      'Módulo de exhibición clasificado por categorías técnicas (Todas, Topografía, Maquinaria, Obras viales, Edificaciones, Grenco Soldadura). Cuenta con vista inicial compacta de 6 fotografías y botón con relieve neumorfista 3D "Ver más fotos".'
-    ),
-    heading3('Funcionalidades del Visor con Zoom Interactivo:'),
-    bullet(
-      ' Clic directo sobre cualquier foto amplía instantáneamente a 240% centrado hacia la zona pulsada. Un segundo clic restaura la vista al 100%.',
-      'Zoom por Clic / Doble Clic:'
-    ),
-    bullet(
-      ' Desplazamiento de la rueda del ratón amplía progresivamente desde 100% hasta 400% sin alterar el scroll de la página.',
-      'Zoom Continuo con Rueda del Mouse:'
-    ),
-    bullet(
-      ' Con la imagen aumentada, el cursor adopta modo de agarre (grab/grabbing) para arrastrar y explorar detalles constructivos en tiempo real a 60 fps con topes elásticos de contorno.',
-      'Arrastre y Paneo 2D (Pan & Drag):'
-    ),
-    bullet(
-      ' Botón alejar (-), badge de porcentaje activo (100%, 150%, 200%), botón acercar (+) y botón restablecer (↺).',
-      'Barra de Controles Neumórfica:'
-    ),
-    bullet(
-      ' Al abrir el visor, el fondo se desenfoca 20px y se bloquea totalmente el scroll y la interacción del fondo.',
-      'Bloqueo Absoluto de Fondo:'
-    ),
-    bullet(
-      ' Pellizco con dos dedos (pinch-to-zoom) y arrastre con un dedo en teléfonos y tabletas.',
-      'Compatibilidad Táctil Móvil:'
+      'Detalle de la infraestructura de la empresa: talleres mecánicos propios para mantenimiento preventivo, bases operativas descentralizadas en Piura y Trujillo, y cumplimiento de estándares de seguridad SSOMA con meta de cero incidentes.'
     )
   );
   children.push(
     ...(await createImageParagraph(
-      'src/assets/images/topo-lomas-4.webp',
-      'Topografía con Receptor Satelital GNSS Diferencial en Las Lomas'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/topo-1.webp',
-      'Estación Total Leica Calibrada sobre Hito Geodésico en Canal'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/topo-lomas-extra.webp',
-      'Detalle Digital Macro Leica PinPoint y Plomada Láser'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/gal-4.webp',
-      'Motoniveladora Komatsu en Conformación de Rasante Urbana'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/sold-3128.webp',
-      'Corte y Soldadura de Perfiles de Acero Estructural en Obra'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/sold-0191.webp',
-      'Montaje y Fijación de Elementos Metálicos Estructurales'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/sold-entubado-1.webp',
-      'Habilitación y Soldadura en Zanja para Tubería Hidráulica'
-    ))
-  );
-  children.push(
-    ...(await createImageParagraph(
-      'src/assets/images/edif-estructura-1.webp',
-      'Columnas y Cimentación de Concreto Armado en Edificación'
+      'src/assets/capturas/04-nosotros.png',
+      'Sección Sobre la Empresa: Capacidad Técnica, Flota y Bases en Piura y Trujillo'
     ))
   );
 
-  // Sección 13 y 14
+  // Sección 5: Tracking
   children.push(
-    heading2('Sección 13: Contacto y Cotizaciones'),
+    heading2('Sección 5: Portal de Seguimiento en Tiempo Real (GRENCO Tracking)'),
     pText(
-      'Canal de conversión con formulario técnico de cotización, números directos de WhatsApp institucional para Piura y Trujillo y ubicación física de bases operativas.'
-    ),
-    heading2('Sección 14: Pie de Página (Footer) y Elementos Flotantes'),
-    pText(
-      'Enlaces a redes sociales institucionales (LinkedIn, Facebook, Instagram, TikTok, YouTube), botón flotante permanente de WhatsApp (FAB), botón de retorno rápido a cabecera (Volver arriba) y leyenda de derechos de autor con cálculo dinámico del año.'
+      'Adelanto del sistema digital de supervisión de obra. Incorpora la insignia neumórfica grabada "Próximamente" en bajo relieve, la nueva ficha técnica informativa de la aplicación móvil/web (curva S valorizada, reporte diario de horas de maquinaria y ensayos de densidad) y los mockups interactivos de supervisión.'
     )
   );
-
-  // Tabla resumen multimedia
   children.push(
-    heading1('5. TABLA RESUMEN DE RECURSOS MULTIMEDIA DE LA LANDING'),
-    pText('Inventario técnico de los archivos multimedia incorporados en la plataforma:')
+    ...(await createImageParagraph(
+      'src/assets/capturas/05-tracking-portal.png',
+      'Portal y App GRENCO Tracking: Insignia Neumórfica Grabada, Ficha de App y Maquetas UI'
+    ))
+  );
+
+  // Sección 6: Servicios
+  children.push(
+    heading2('Sección 6: Grilla de Servicios Especializados'),
+    pText(
+      'Exhibición de las seis líneas operativas de la constructora: Movimiento de tierras masivo, Topografía y geodesia de precisión (con video de dron en Las Lomas), Obras viales y rasantes, Grenco Soldadura y estructuras pesadas, Saneamiento y redes hidráulicas, y Demoliciones técnicas controladas. Cada tarjeta dispone de video demostrativo en bucle e iconografía industrial.'
+    )
+  );
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/06-servicios.png',
+      'Grilla de Servicios Especializados con Tarjetas de Video en Bucle Continuo'
+    ))
+  );
+
+  // Sección 7: Misión y Visión
+  children.push(
+    heading2('Sección 7: Misión, Visión y Pilares Estratégicos'),
+    pText(
+      'Control segmentado interactivo con relieve neumórfico que permite alternar entre la Misión institucional y la Visión a largo plazo de GRENCO, respaldadas por cuatro pilares: rigor técnico, maquinaria de última generación, seguridad humana y transparencia en costos.'
+    )
+  );
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/07-mision-vision.png',
+      'Control Segmentado Interactivo de Misión, Visión y Pilares Estratégicos'
+    ))
+  );
+
+  // Sección 8: Proyectos
+  children.push(
+    heading2('Sección 8: Proyectos Emblemáticos (Caso Destacado "Vuelo de Las Lomas")'),
+    pText(
+      'Presentación destacada de obra técnica mediante una tarjeta cinematográfica singular: levantamiento topográfico para expediente técnico con ortofotografía de alta resolución y video aéreo interactivo de dron para la Municipalidad de Piura.'
+    )
+  );
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/08-proyectos-lomas.png',
+      'Tarjeta Singular del Proyecto "Vuelo de Las Lomas" con Soporte de Video Aéreo de Dron'
+    ))
+  );
+
+  // Sección 9: Bitácora
+  children.push(
+    heading2('Sección 9: Bitácora de Obra (Avances Georreferenciados)'),
+    pText(
+      'Registro cronológico de actividades constructivas en campo, presentando tarjetas formales con fecha, ubicación exacta por sede, descripción de partidas y fotografías de sustento técnico.'
+    )
+  );
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/09-bitacora.png',
+      'Bitácora de Obra: Registro Cronológico de Partidas y Avances Técnicos en Campo'
+    ))
+  );
+
+  // Sección 10: Galería
+  children.push(
+    heading2('Sección 10: Galería Multimedia Interactiva con Filtros por Especialidad'),
+    pText(
+      'Módulo de exhibición visual clasificado por áreas técnicas (Topografía, Maquinaria, Obras viales, Edificaciones, Soldadura). Incorpora visor de aumento profesional (zoom 2D con rueda de ratón hasta 400%, paneo táctil y controles neumórficos).'
+    )
+  );
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/10-galeria.png',
+      'Galería Multimedia con Filtros por Categoría Técnica y Fotografías Reales de Obra'
+    ))
+  );
+
+  // Sección 11: Contacto
+  children.push(
+    heading2('Sección 11: Módulo de Contacto Directo y Formulario de Cotización'),
+    pText(
+      'Canal de conversión diseñado con campos de formulario en relieve neumórfico para cotizaciones inmediatas de obras civiles, acompañado de los números de contacto directo de WhatsApp y direcciones físicas de las bases operativas en Piura y Trujillo.'
+    )
+  );
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/11-contacto.png',
+      'Formulario Neumórfico de Cotización de Obra y Canales Directos de Atención'
+    ))
+  );
+
+  // Sección 12: Footer
+  children.push(
+    heading2('Sección 12: Pie de Página Institucional (Footer)'),
+    pText(
+      'Pie de página formal que consolida el logotipo de GRENCO, síntesis corporativa, enlaces rápidos de navegación, canales de contacto y el cálculo dinámico del año fiscal de derechos reservados.'
+    )
+  );
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/12-footer.png',
+      'Pie de Página Institucional con Año Dinámico y Accesos Rápidos de Navegación'
+    ))
+  );
+
+  // Sección 13: Demostración Modo Oscuro
+  children.push(
+    heading2('Sección 13: Demostración de Modo Oscuro (Entorno Nocturno)'),
+    pText(
+      'La plataforma dispone de soporte completo para navegación nocturna. Al alternar el tema visual, las superficies se transforman en grafito mate y acero oscuro, conservando la legibilidad técnica, los contrastes cromáticos dorados y los relieves volumétricos sin fatiga visual.'
+    )
+  );
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/13-modo-oscuro-hero.png',
+      'Portada Principal en Modo Oscuro (Ambiente Nocturno de Alta Definición)'
+    ))
+  );
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/14-modo-oscuro-tracking.png',
+      'Módulo de Supervisión Tracking en Modo Oscuro con Contraste Neumórfico'
+    ))
+  );
+
+  // 5. Tabla resumen multimedia
+  children.push(
+    heading1('5. TABLA RESUMEN DE RECURSOS Y CAPTURAS DEL INFORME'),
+    pText('Inventario técnico de los componentes y evidencias visuales incorporadas:')
   );
 
   const tableRows = [
     new TableRow({
       children: [
         new TableCell({ children: [pText('Tipo', { bold: true })], shading: { fill: 'EAEAEA' } }),
-        new TableCell({ children: [pText('Archivo', { bold: true })], shading: { fill: 'EAEAEA' } }),
-        new TableCell({ children: [pText('Formato', { bold: true })], shading: { fill: 'EAEAEA' } }),
-        new TableCell({ children: [pText('Sección', { bold: true })], shading: { fill: 'EAEAEA' } }),
-        new TableCell({ children: [pText('Descripción Técnica', { bold: true })], shading: { fill: 'EAEAEA' } }),
+        new TableCell({ children: [pText('Identificador', { bold: true })], shading: { fill: 'EAEAEA' } }),
+        new TableCell({ children: [pText('Sección / Componente', { bold: true })], shading: { fill: 'EAEAEA' } }),
+        new TableCell({ children: [pText('Detalle Técnico Documentado', { bold: true })], shading: { fill: 'EAEAEA' } }),
       ],
     }),
     ...[
-      ['Video', 'piura-hero.mp4', 'H.264 720p', 'Hero Piura', 'Toma aérea 12s sobre puente vehicular Río Piura en bucle continuo'],
-      ['Póster', 'piura-hero.webp', 'WebP', 'Hero Piura', 'Imagen de precarga del Hero de Piura'],
-      ['Video', 'trujillo.mp4', 'H.264 720p', 'Hero Trujillo', 'Toma aérea 14s sobre frente de obra en La Libertad'],
-      ['Póster', 'trujillo.webp', 'WebP', 'Hero Trujillo', 'Imagen de precarga del Hero de Trujillo'],
-      ['Video', 'servicio-movimiento.mp4', 'H.264 720p', 'Servicios', 'Excavadoras en corte masivo y carguío a volquetes'],
-      ['Video', 'servicio-habilitacion.mp4', 'H.264 720p', 'Servicios', 'Motoniveladora y rodillo perfilando subrasante'],
-      ['Video', 'servicio-obras-civiles.mp4', 'H.264 720p', 'Servicios', 'Encofrado y vaciado de concreto en zapatas'],
-      ['Video', 'servicio-soldadura.mp4', 'H.264 720p', 'Servicios', 'Soldadores en estructuras metálicas y tuberías'],
-      ['Video', 'servicio-saneamiento.mp4', 'H.264 720p', 'Servicios', 'Zanjeo e instalación de redes matrices'],
-      ['Video', 'servicio-demolicion.mp4', 'H.264 720p', 'Servicios', 'Demolición controlada y retiro de material'],
-      ['Foto', 'topo-lomas-4.webp', 'WebP', 'Galería', 'Topografía GNSS diferencial en Las Lomas'],
-      ['Foto', 'topo-1.webp', 'WebP', 'Galería', 'Estación total Leica sobre hito geodésico'],
-      ['Foto', 'topo-lomas-extra.webp', 'WebP', 'Galería', 'Detalle digital pantalla Leica PinPoint'],
-      ['Foto', 'gal-4.webp', 'WebP', 'Galería', 'Motoniveladora Komatsu en rasante vial'],
-      ['Foto', 'sold-3128.webp', 'WebP', 'Galería', 'Soldadura estructural pesada en taller de obra'],
-      ['Foto', 'sold-0191.webp', 'WebP', 'Galería', 'Montaje de vigas y columnas de acero'],
-      ['Foto', 'sold-entubado-1.webp', 'WebP', 'Galería', 'Soldadura en tubería hidráulica'],
-      ['Foto', 'maq-excavadora.webp', 'WebP', 'Galería (Maquinaria)', 'Excavadora hidráulica sobre orugas CAT 20T en frente de obra'],
-      ['Foto', 'maq-cargador.webp', 'WebP', 'Galería (Maquinaria)', 'Cargador frontal CAT para carguío y acopio'],
-      ['Foto', 'maq-retro-obra.webp', 'WebP', 'Galería (Maquinaria)', 'Retroexcavadora CAT 420F en zanjeo estructural'],
+      ['Captura UI', '01-portada-hero-navbar.png', 'Hero Wall & Navbar', 'Cabecera fija, conmutador de sede, video 4K dron Río Piura y CTA'],
+      ['Captura UI', '01b-portada-hero-trujillo.png', 'Hero Wall Trujillo', 'Adaptación multi-sede dinámica a frente de obra en La Libertad'],
+      ['Captura UI', '02-highlights.png', 'Highlights', 'Tarjetas neumórficas de topografía, flota pesada y cumplimiento'],
+      ['Captura UI', '03-manifiesto.png', 'Manifiesto H1', 'Titular principal SEO, foto de obra en campo y cotización'],
+      ['Captura UI', '04-nosotros.png', 'Sobre la Empresa', 'Capacidad operativa, talleres propios y bases Piura / Trujillo'],
+      ['Captura UI', '05-tracking-portal.png', 'GRENCO Tracking', 'Insignia grabada "Próximamente", ficha técnica y mockups de app'],
+      ['Captura UI', '06-servicios.png', 'Servicios', 'Seis tarjetas de servicio con video continuo y topografía de dron'],
+      ['Captura UI', '07-mision-vision.png', 'Misión y Visión', 'Control segmentado interactivo y pilares estratégicos de calidad'],
+      ['Captura UI', '08-proyectos-lomas.png', 'Proyectos', 'Caso insignia "Vuelo de Las Lomas" con video aéreo interactivo'],
+      ['Captura UI', '09-bitacora.png', 'Bitácora de Obra', 'Tarjetas cronológicas georreferenciadas con avances de obra'],
+      ['Captura UI', '10-galeria.png', 'Galería Multimedia', 'Filtros por categoría técnica y visor con zoom 2D hasta 400%'],
+      ['Captura UI', '11-contacto.png', 'Contacto', 'Formulario neumórfico táctil de cotización y WhatsApp directo'],
+      ['Captura UI', '12-footer.png', 'Pie de Página', 'Cálculo dinámico de año fiscal con JavaScript y enlaces formales'],
+      ['Captura UI', '13-modo-oscuro-hero.png', 'Modo Oscuro Hero', 'Paleta grafito mate con contraste dorado para navegación nocturna'],
+      ['Captura UI', '14-modo-oscuro-tracking.png', 'Modo Oscuro Tracking', 'Superficies y maquetas en relieve bajo entorno nocturno'],
     ].map(
-      ([tipo, archivo, formato, seccion, desc]) =>
+      ([tipo, archivo, seccion, desc]) =>
         new TableRow({
           children: [
             new TableCell({ children: [pText(tipo, { bold: true })] }),
             new TableCell({ children: [pText(archivo)] }),
-            new TableCell({ children: [pText(formato)] }),
             new TableCell({ children: [pText(seccion)] }),
             new TableCell({ children: [pText(desc)] }),
           ],
@@ -695,7 +595,7 @@ async function buildDoc() {
       alignment: AlignmentType.CENTER,
       children: [
         new TextRun({
-          text: 'Documento técnico formal emitido para la gerencia y equipo de ingeniería de GRENCO (Grupo Enriquez Construcciones S.A.C.).',
+          text: 'Documento técnico formal emitido con capturas de pantalla auténticas para la gerencia y equipo de ingeniería de GRENCO (Grupo Enriquez Construcciones S.A.C.).',
           italics: true,
           size: 20,
           color: '000000',

@@ -5,7 +5,7 @@ import { highlights } from '../data/site';
 /** Tres tarjetas que solapan el borde inferior del hero. */
 export default function Highlights() {
   return (
-    <section className="highlights">
+    <section id="highlights" className="highlights">
       <div className="grid-auto">
         {highlights.map((item, i) => (
           <Reveal as="article" key={item.title} delay={i * 90} className="card card--lift highlight">

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://grenco.pe/sitemap.xml
+Sitemap: https://grenco.com.pe/sitemap.xml
