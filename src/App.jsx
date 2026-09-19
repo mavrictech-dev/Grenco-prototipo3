@@ -5,11 +5,9 @@ import Hero from './components/Hero';
 import Highlights from './components/Highlights';
 import Manifiesto from './components/Manifiesto';
 import About from './components/About';
-import Tracking from './components/Tracking';
 import Services from './components/Services';
 import MissionVision from './components/MissionVision';
 import Projects from './components/Projects';
-import Bitacora from './components/Bitacora';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -19,7 +17,7 @@ import { useSettings } from './hooks/useSettings';
 import { useScrollFx } from './hooks/useScrollFx';
 import { useScrollSpy } from './hooks/useScrollSpy';
 import { nav } from './data/site';
-import { fotosObra, mark } from './assets/images';
+import { mark } from './assets/images';
 
 export default function App() {
   const { theme, sede, setSede } = useSettings();
@@ -27,10 +25,6 @@ export default function App() {
 
   const ids = useMemo(() => nav.map((n) => n.id), []);
   const seccionActiva = useScrollSpy(ids);
-
-  // Fotos para la tira del portal. Se toman del banco convertido; si aun no se
-  // ha corrido `npm run fotos`, la tira simplemente sale vacia.
-  const fotosPortal = useMemo(() => fotosObra.slice(0, 5).map((f) => f.url), []);
 
   // Las entradas escalonadas solo se activan una vez montado: si data-anim
   // estuviera en el HTML, el contenido quedaria invisible si JS falla.
@@ -84,11 +78,9 @@ export default function App() {
           <Highlights />
           <Manifiesto sede={sede} />
           <About sede={sede} />
-          <Tracking fotos={fotosPortal} />
           <Services />
           <MissionVision />
           <Projects sede={sede} />
-          <Bitacora sede={sede} />
           <Gallery />
           <Contact sede={sede} />
         </main>

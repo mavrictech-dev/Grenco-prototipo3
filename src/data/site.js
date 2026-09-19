@@ -18,7 +18,7 @@ export const company = {
     { name: 'Facebook', url: 'https://www.facebook.com/share/1Jf3TEdKWL/?mibextid=wwXIfr', icon: 'facebook' },
     { name: 'Instagram', url: 'https://www.instagram.com/grenco20construcciones?stkn=YTJzenJlczV4c2d3', icon: 'instagram' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com', icon: 'linkedin' },
-    { name: 'TikTok', url: 'https://www.tiktok.com', icon: 'tiktok' },
+    { name: 'TikTok', url: 'https://www.tiktok.com/@grenco.construcci?is_from_webapp=1&sender_device=pc', icon: 'tiktok' },
     { name: 'YouTube', url: 'https://www.youtube.com', icon: 'youtube' },
   ],
 };
@@ -28,7 +28,6 @@ export const nav = [
   { id: 'nosotros', label: 'Nosotros' },
   { id: 'servicios', label: 'Servicios' },
   { id: 'proyectos', label: 'Proyectos' },
-  { id: 'bitacora', label: 'Bitácora' },
   { id: 'galeria', label: 'Galería' },
 ];
 
@@ -228,28 +227,12 @@ export const services = {
       poster: '/video/servicios/servicio-topografia.webp',
     },
     {
-      id: 'obras-viales',
-      icon: 'grid',
-      title: 'Obras viales',
-      text: 'Apertura de trochas, afirmado, pavimentación rígida y flexible, bermas, cunetas de drenaje y señalización.',
-      video: '/video/servicios/servicio-habilitacion.mp4',
-      poster: '/video/servicios/servicio-habilitacion.webp',
-    },
-    {
       id: 'soldadura',
       icon: 'shield',
       title: 'Grenco Soldadura',
       text: 'Soldadura calificada, arquitectura metálica pesada, entubados de gran diámetro y montaje de naves industriales.',
       video: '/video/servicios/servicio-soldadura.mp4',
       poster: '/video/servicios/servicio-soldadura.webp',
-    },
-    {
-      id: 'saneamiento',
-      icon: 'drop',
-      title: 'Saneamiento y redes',
-      text: 'Tendido de redes de agua potable, alcantarillado, colectores y drenaje pluvial con pruebas hidráulicas normadas.',
-      video: '/video/servicios/servicio-saneamiento.mp4',
-      poster: '/video/servicios/servicio-saneamiento.webp',
     },
     {
       id: 'demolicion',
@@ -328,7 +311,7 @@ export const projects = {
       kind: 'Topografía con dron',
       place: 'Las Lomas · Piura',
       sede: 'piura',
-      title: 'Vuelo de Las Lomas',
+      title: 'Levantamiento topográfico en canal El Partidor y ramales - Las Lomas - Piura',
       text: 'Servicio de la Municipalidad de Piura: levantamiento topográfico para expediente técnico con ortofoto y vuelo de dron de alta resolución.',
     },
   ],
@@ -392,9 +375,7 @@ export const contact = {
   serviceOptions: [
     'Movimiento de tierras',
     'Topografía y geodesia',
-    'Obras viales',
     'Grenco Soldadura',
-    'Saneamiento y redes',
     'Demolición y desbroce',
   ],
 };
@@ -406,9 +387,7 @@ export const footer = {
       links: [
         { label: 'Movimiento de tierras', href: '#servicios' },
         { label: 'Topografía y geodesia', href: '#servicios' },
-        { label: 'Obras viales', href: '#servicios' },
         { label: 'Grenco Soldadura', href: '#servicios' },
-        { label: 'Saneamiento y redes', href: '#servicios' },
         { label: 'Demolición y desbroce', href: '#servicios' },
       ],
     },
@@ -418,7 +397,6 @@ export const footer = {
         { label: 'Nosotros', href: '#nosotros' },
         { label: 'Servicios', href: '#servicios' },
         { label: 'Proyectos', href: '#proyectos' },
-        { label: 'Bitácora', href: '#bitacora' },
         { label: 'Galería', href: '#galeria' },
       ],
     },
