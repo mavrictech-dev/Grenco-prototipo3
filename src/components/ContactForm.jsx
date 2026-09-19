@@ -12,7 +12,11 @@ import { company, contact, sedes } from '../data/site';
  * los datos.
  */
 
-const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || '';
+const ENDPOINT =
+  import.meta.env.VITE_GOOGLE_SHEET_URL ||
+  import.meta.env.VITE_FORM_ENDPOINT ||
+  contact.googleSheetUrl ||
+  '';
 const ACCESS_KEY = import.meta.env.VITE_FORM_ACCESS_KEY || '';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -91,6 +95,22 @@ export default function ContactForm({ sede }) {
 
     setStatus('sending');
     try {
+      const isGoogleScript = ENDPOINT.includes('script.google.com');
+
+      if (isGoogleScript) {
+        // Con Google Apps Script usamos text/plain y no-cors para evitar bloqueos del navegador
+        await fetch(ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        });
+        setStatus('ok');
+        setValues(EMPTY);
+        setErrors({});
+        return;
+      }
+
       const res = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -216,7 +236,7 @@ export default function ContactForm({ sede }) {
         {status === 'ok' && (
           <p className="notice notice--ok" role="status">
             <Icon name="check" size={18} strokeWidth={2} />
-            Solicitud registrada. Te escribimos dentro de 24 horas hábiles.
+            Solicitud registrada. Te respondemos hoy mismo.
           </p>
         )}
 

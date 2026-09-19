@@ -37,7 +37,7 @@ const CONTENIDO = {
       text: 'GRENCO nació en Piura ejecutando movimiento de tierras para obras viales e infraestructura agrícola. Aquí operan la oficina técnica, el centro logístico y el soporte mecánico para asegurar operatividad continua en frentes de trabajo.',
     },
     contact: {
-      title: 'Cotiza tu proyecto en Piura. Te respondemos en 24 horas.',
+      title: 'Cotiza tu proyecto en Piura. Te respondemos hoy mismo.',
       text: 'Envía la ubicación y alcance preliminar de tu obra. Si el terreno está en Piura, Sullana, Paita o Talara, nuestro equipo técnico realiza visita de campo antes de cotizar.',
     },
   },
@@ -67,7 +67,7 @@ const CONTENIDO = {
       text: 'Desde nuestra sede en Trujillo respondemos a las exigencias de edificaciones, defensas ribereñas, canalizaciones y obras viales en toda La Libertad. Nuestra residencia técnica y cuadrillas operan directamente a pie de obra.',
     },
     contact: {
-      title: 'Cotiza tu proyecto en Trujillo. Te respondemos en 24 horas.',
+      title: 'Cotiza tu proyecto en Trujillo. Te respondemos hoy mismo.',
       text: 'Envía las coordenadas y alcance de tu obra en La Libertad (Trujillo, Virú, Pacasmayo, Chicama). Coordinamos inspección técnica en terreno para cotizar con precisión.',
     },
   },

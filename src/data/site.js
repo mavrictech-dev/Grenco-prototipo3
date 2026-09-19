@@ -370,8 +370,9 @@ export const gallery = {
 
 export const contact = {
   eyebrow: 'Conversemos',
-  title: 'Cuéntanos tu proyecto. Te respondemos en 24 horas.',
+  title: 'Cuéntanos tu proyecto. Te respondemos hoy mismo.',
   text: 'Envía la ubicación y el alcance estimado de la obra. Nuestro equipo técnico realiza visita de inspección en campo antes de cotizar.',
+  googleSheetUrl: 'https://script.google.com/macros/s/AKfycbxTczyNMdGandsWvFoamFMDuityqLAZdRYJ-aKJ7oEUvvBCt-sFa69UtIutXwz-SHab/exec', // URL de Google Apps Script para guardar en Excel/Google Sheets
   serviceOptions: [
     'Movimiento de tierras',
     'Topografía y geodesia',
