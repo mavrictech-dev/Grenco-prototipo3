@@ -226,14 +226,14 @@ export const services = {
       video: '/video/servicios/servicio-topografia.mp4',
       poster: '/video/servicios/servicio-topografia.webp',
     },
-    {
-      id: 'soldadura',
-      icon: 'shield',
-      title: 'Grenco Soldadura',
-      text: 'Soldadura calificada, arquitectura metálica pesada, entubados de gran diámetro y montaje de naves industriales.',
-      video: '/video/servicios/servicio-soldadura.mp4',
-      poster: '/video/servicios/servicio-soldadura.webp',
-    },
+    // {
+    //   id: 'soldadura',
+    //   icon: 'shield',
+    //   title: 'Grenco Soldadura',
+    //   text: 'Soldadura calificada, arquitectura metálica pesada, entubados de gran diámetro y montaje de naves industriales.',
+    //   video: '/video/servicios/servicio-soldadura.mp4',
+    //   poster: '/video/servicios/servicio-soldadura.webp',
+    // },
     {
       id: 'demolicion',
       icon: 'demo',
@@ -376,7 +376,6 @@ export const contact = {
   serviceOptions: [
     'Movimiento de tierras',
     'Topografía y geodesia',
-    'Grenco Soldadura',
     'Demolición y desbroce',
   ],
 };
@@ -388,7 +387,6 @@ export const footer = {
       links: [
         { label: 'Movimiento de tierras', href: '#servicios' },
         { label: 'Topografía y geodesia', href: '#servicios' },
-        { label: 'Grenco Soldadura', href: '#servicios' },
         { label: 'Demolición y desbroce', href: '#servicios' },
       ],
     },
