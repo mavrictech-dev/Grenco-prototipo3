@@ -182,6 +182,39 @@ async function captureAll() {
       });
       await new Promise((r) => setTimeout(r, 300));
     }
+
+    if (item.id === '10-galeria') {
+      // Capturar filtros específicos de la nueva galería
+      const filtrosExtra = [
+        { nombre: 'Maquinaria', archivo: '10b-galeria-maquinaria.png' },
+        { nombre: 'Topografía', archivo: '10c-galeria-topografia.png' },
+        { nombre: 'SSOMA', archivo: '10d-galeria-ssoma.png' },
+      ];
+
+      for (const f of filtrosExtra) {
+        console.log(`Filtrando galería por "${f.nombre}" para captura...`);
+        await page.evaluate((filtroName) => {
+          const btns = Array.from(document.querySelectorAll('.gallery__filters button'));
+          const btn = btns.find((b) => b.textContent.trim() === filtroName);
+          if (btn) btn.click();
+        }, f.nombre);
+        await new Promise((r) => setTimeout(r, 450));
+        const galEl = await page.$('#galeria');
+        if (galEl) {
+          const filterPath = path.join(OUT_DIR, f.archivo);
+          await galEl.screenshot({ path: filterPath });
+          console.log(`✓ Capturado: ${f.archivo}`);
+        }
+      }
+
+      // Regresar filtro a "Todas"
+      await page.evaluate(() => {
+        const btns = Array.from(document.querySelectorAll('.gallery__filters button'));
+        const btn = btns.find((b) => b.textContent.trim() === 'Todas');
+        if (btn) btn.click();
+      });
+      await new Promise((r) => setTimeout(r, 300));
+    }
   }
 
   // Captura especial: Modo Oscuro

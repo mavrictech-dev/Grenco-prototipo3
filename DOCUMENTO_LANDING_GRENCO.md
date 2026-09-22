@@ -167,6 +167,40 @@ A continuación se presentan las capturas de pantalla obtenidas directamente del
 
 ---
 
+---
+
+## 5. ANEXO DE ACTUALIZACIONES RECIENTES Y NUEVAS MODIFICACIONES (VERSIÓN 2.1)
+
+El presente anexo consolida las últimas mejoras funcionales, visuales, de seguridad operativa industrial y de arquitectura de software implementadas en la plataforma web de GRENCO:
+
+### 5.1 Conexión Directa del Formulario a Google Sheets (Excel en Línea)
+Se ha implementado una arquitectura de captura de leads y cotizaciones en tiempo real directamente conectada a una hoja de cálculo institucional de Google Sheets (Excel en línea). Esta solución opera mediante un endpoint dedicado en Google Apps Script, eliminando la necesidad de plataformas intermediarias de pago (Formspree, Basin) y garantizando que los datos ingresados se almacenen inmediatamente en filas seguras en la nube.
+
+* **Campos capturados:** Marca temporal (Fecha y Hora), Nombre y Apellido, Correo Electrónico, Teléfono de contacto, Servicio de interés, Sede seleccionada (Piura o Trujillo) y Ubicación/Alcance del proyecto.
+* **Mensaje de compromiso:** La interfaz ofrece retroalimentación instantánea al usuario con el compromiso formal: *"Solicitud registrada. Te respondemos hoy mismo."*
+
+### 5.2 Reestructuración de Servicios y Adaptabilidad Responsive
+Atendiendo a las directivas comerciales y estratégicas de la constructora, se procedió a retirar la tarjeta de "Grenco Soldadura" de la cuadrícula de servicios y opciones desplegables. Para mantener un equilibrio visual perfecto y evitar espacios vacíos asimétricos, se rediseñó la rejilla de servicios en un formato dinámico de 3 columnas simétricas en pantallas de escritorio (`repeat(3, 1fr)`).
+
+* **Adaptación en tablets:** Centra automáticamente cualquier tarjeta impar para conservar la armonía estética neumórfica.
+* **Adaptación en smartphones:** Pasa a una columna vertical fluida (`1fr`) de lectura táctil.
+
+### 5.3 Nueva Galería Multimedia con 17 Fotos Reales y Auditoría de Seguridad EPP
+Se integraron 17 nuevas fotografías auténticas en alta definición, capturadas directamente en los frentes de obra, canteras y proyectos de ingeniería de GRENCO. Cada imagen fue sometida a un riguroso proceso de compresión a formato WebP moderno, logrando una reducción promedio de peso del 87.5% (de más de 45 MB a solo 5.1 MB totales).
+
+Asimismo, se realizó una auditoría de seguridad industrial (SSOMA) sobre todas las tomas con presencia de personal, confirmando el cumplimiento estricto de Equipos de Protección Personal (EPP):
+* **Cascos de seguridad MSA:** Reglamentarios con código de colores según jerarquía técnica (blanco para supervisión e ingeniería, azul y naranja para operarios).
+* **Chalecos técnicos y uniformes:** Con cintas de alta visibilidad reflectiva homologadas.
+* **Protección auditiva y cubre-nucas:** Protectores auditivos integrados y cubre-nucas legionarios contra radiación solar intensa.
+* **Calzado de seguridad:** Botines punta de acero para terreno agreste y botas de jebe para vaciado de concreto húmedo.
+
+### 5.4 Protección de Propiedad Intelectual y Ofuscación de Código
+Para salvaguardar el valor comercial y tecnológico del desarrollo ante la entrega del producto final al cliente, se incorporó un pipeline de ofuscación de código avanzado en el proceso de compilación (`npm run build`).
+
+El motor de ofuscación transforma el JavaScript de producción mediante renombramiento hexadecimal de variables y funciones, cifrado en Base64 de cadenas de texto y aplanamiento de flujo de control (Control Flow Flattening), desactivando los source maps para imposibilitar la ingeniería inversa o extracción del código fuente original desde las herramientas de inspección del navegador.
+
+---
+
 ## 6. TABLA RESUMEN DE CAPTURAS DE PANTALLA EN EL INFORME
 
 | Identificador | Sección / Componente | Detalle Técnico Documentado |
@@ -176,16 +210,16 @@ A continuación se presentan las capturas de pantalla obtenidas directamente del
 | `02-highlights.png` | Highlights | Tarjetas neumórficas de topografía, flota pesada y cumplimiento |
 | `03-manifiesto.png` | Manifiesto H1 | Titular principal SEO, foto de obra en campo y cotización |
 | `04-nosotros.png` | Sobre la Empresa | Capacidad operativa, talleres propios y bases Piura / Trujillo |
-| `05-tracking-portal.png` | GRENCO Tracking | Insignia grabada "Próximamente", ficha técnica y mockups de app |
-| `06-servicios.png` | Servicios | Seis tarjetas de servicio con video continuo y topografía de dron |
+| `06-servicios.png` | Servicios Responsive | Rejilla simétrica de 3 columnas sin soldadura, adaptable a todo dispositivo |
 | `07-mision-vision.png` | Misión y Visión | Control segmentado interactivo y pilares estratégicos de calidad |
 | `08-proyectos-lomas.png` | Proyectos | Caso insignia "Vuelo de Las Lomas" con video aéreo interactivo |
-| `09-bitacora.png` | Bitácora de Obra | Tarjetas cronológicas georreferenciadas con avances de obra |
-| `10-galeria.png` | Galería Multimedia | Filtros por categoría técnica y visor con zoom 2D hasta 400% |
-| `11-contacto.png` | Contacto | Formulario neumórfico táctil de cotización y WhatsApp directo |
+| `10-galeria.png` | Galería General | 17 fotos reales de alta resolución y visor con zoom 2D hasta 400% |
+| `10b-galeria-maquinaria.png` | Galería Maquinaria | Motoniveladora al atardecer, rodillo Bomag y excavadoras CAT |
+| `10c-galeria-topografia.png` | Galería Topografía | Estación Leica PinPoint y georreferenciación GNSS sobre hito IGN |
+| `10d-galeria-ssoma.png` | Galería SSOMA | Charla de seguridad de 5 minutos con toda la cuadrilla en EPP completo |
+| `11-contacto.png` | Contacto Google Sheets | Formulario directo a Google Sheets en tiempo real y mensaje hoy mismo |
 | `12-footer.png` | Pie de Página | Cálculo dinámico de año fiscal con JavaScript y enlaces formales |
 | `13-modo-oscuro-hero.png` | Modo Oscuro Hero | Paleta grafito mate con contraste dorado para navegación nocturna |
-| `14-modo-oscuro-tracking.png` | Modo Oscuro Tracking | Superficies y maquetas en relieve bajo entorno nocturno |
 
 ---
 

@@ -237,9 +237,9 @@ async function buildDoc() {
               children: [
                 pText('Empresa: Grupo Enriquez Construcciones S.A.C. (GRENCO)', { bold: true }),
                 pText('Proyecto: Plataforma Web Institucional y Comercial (Landing Page)'),
-                pText('Versión: 2.0 (Producción)'),
+                pText('Versión: 2.1 (Actualización y Nuevas Modificaciones - Septiembre 2026)'),
                 pText('Ámbito Geográfico: Regiones Piura y La Libertad (Trujillo) - Perú'),
-                pText('Modalidad de Registro: Informe técnico con capturas directas de pantalla de la interfaz en producción'),
+                pText('Modalidad de Registro: Informe técnico formal con capturas directas de pantalla de la interfaz en producción'),
               ],
               shading: { fill: 'F8F8F8' },
               margins: { top: 120, bottom: 120, left: 160, right: 160 },
@@ -529,10 +529,108 @@ async function buildDoc() {
     ))
   );
 
-  // 5. Tabla resumen multimedia
+  // 5. Anexo de Nuevas Modificaciones y Actualizaciones
   children.push(
-    heading1('5. TABLA RESUMEN DE RECURSOS Y CAPTURAS DEL INFORME'),
-    pText('Inventario técnico de los componentes y evidencias visuales incorporadas:')
+    heading1('5. ANEXO DE ACTUALIZACIONES RECIENTES Y NUEVAS MODIFICACIONES (VERSIÓN 2.1)'),
+    pText(
+      'El presente anexo documenta de manera exhaustiva las últimas mejoras funcionales, visuales, de seguridad operativa industrial y de arquitectura de software implementadas en la plataforma web de GRENCO, incluyendo la integración en la nube, auditoría de seguridad y protección de código para entrega al cliente.'
+    ),
+
+    heading2('5.1 Conexión Directa del Formulario a Google Sheets (Excel en Línea)'),
+    pText(
+      'Se ha implementado una arquitectura de captura de leads y cotizaciones en tiempo real directamente conectada a una hoja de cálculo institucional de Google Sheets (Excel en línea). Esta solución opera mediante un endpoint dedicado en Google Apps Script, eliminando la necesidad de plataformas intermediarias de pago (Formspree, Basin) y garantizando que los datos ingresados se almacenen inmediatamente en filas seguras en la nube.'
+    ),
+    pText(
+      'Cada registro captura: Marca temporal (Fecha y Hora), Nombre y Apellido del cliente, Correo Electrónico, Teléfono de contacto, Servicio de interés, Sede seleccionada (Piura o Trujillo) y Ubicación/Alcance del proyecto. La interfaz ofrece retroalimentación instantánea al usuario con el compromiso formal: "Solicitud registrada. Te respondemos hoy mismo."'
+    )
+  );
+
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/11-contacto.png',
+      'Módulo de Contacto Actualizado con Conexión a Google Sheets y Compromiso de Respuesta Inmediata'
+    ))
+  );
+
+  children.push(
+    heading2('5.2 Reestructuración de Servicios y Adaptabilidad Responsive'),
+    pText(
+      'Atendiendo a las directivas comerciales y estratégicas de la constructora, se procedió a retirar la tarjeta de "Grenco Soldadura" de la cuadrícula de servicios y opciones desplegables. Para mantener un equilibrio visual perfecto y evitar espacios vacíos asimétricos, se rediseñó la rejilla de servicios en un formato dinámico de 3 columnas simétricas en pantallas de escritorio (repeat(3, 1fr)).'
+    ),
+    pText(
+      'En dispositivos móviles y tablets, el layout se adapta automáticamente: en resoluciones intermedias centra cualquier tarjeta impar para conservar la armonía estética neumórfica, y en teléfonos inteligentes pasa a una columna vertical fluida de lectura táctil.'
+    )
+  );
+
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/06-servicios.png',
+      'Cuadrícula de Servicios Reestructurada en 3 Columnas Simétricas 100% Responsives'
+    ))
+  );
+
+  children.push(
+    heading2('5.3 Nueva Galería Multimedia con 17 Fotos Reales y Auditoría de Seguridad EPP'),
+    pText(
+      'Se integraron 17 nuevas fotografías auténticas en alta definición, capturadas directamente en los frentes de obra, canteras y proyectos de ingeniería de GRENCO. Cada imagen fue sometida a un riguroso proceso de compresión a formato WebP moderno, logrando una reducción promedio de peso del 87.5% (de más de 45 MB a solo 5.1 MB totales), lo que asegura una velocidad de carga ultrarrápida sin pérdida de nitidez.'
+    ),
+    pText(
+      'Asimismo, se realizó una auditoría de seguridad industrial (SSOMA) sobre todas las tomas con presencia de personal, confirmando el cumplimiento estricto de Equipos de Protección Personal (EPP):'
+    ),
+    bullet(' reglamentarios con código de colores según jerarquía técnica (blanco para supervisión e ingeniería, azul y naranja para operarios).', 'Cascos de seguridad MSA'),
+    bullet(' y uniformes institucionales con cintas de alta visibilidad reflectiva homologadas.', 'Chalecos técnicos'),
+    bullet(' integrada y cubre-nucas legionarios contra radiación solar intensa en el norte peruano.', 'Protección auditiva'),
+    bullet(' de faena (botines punta de acero para terreno agreste y botas de jebe para vaciado de concreto húmedo).', 'Calzado de seguridad')
+  );
+
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/10-galeria.png',
+      'Nueva Galería Multimedia con Selección de Imágenes Reales de Alto Impacto'
+    ))
+  );
+
+  children.push(
+    pText(
+      'A continuación se exhiben las evidencias de los nuevos filtros técnicos especializados de la galería:'
+    )
+  );
+
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/10b-galeria-maquinaria.png',
+      'Filtro Maquinaria: Flota Pesada CAT, Rodillo Compactador Bomag y Motoniveladora al Atardecer'
+    ))
+  );
+
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/10c-galeria-topografia.png',
+      'Filtro Topografía: Estación Total Leica PinPoint R500 y Georreferenciación GNSS sobre Hito IGN'
+    ))
+  );
+
+  children.push(
+    ...(await createImageParagraph(
+      'src/assets/capturas/10d-galeria-ssoma.png',
+      'Filtro SSOMA: Formación y Charla Técnica de Seguridad de 5 Minutos con Cuadrilla Completa en EPP'
+    ))
+  );
+
+  children.push(
+    heading2('5.4 Protección de Propiedad Intelectual y Ofuscación de Código'),
+    pText(
+      'Para salvaguardar el valor comercial y tecnológico del desarrollo ante la entrega del producto final al cliente, se incorporó un pipeline de ofuscación de código avanzado en el proceso de compilación (npm run build).'
+    ),
+    pText(
+      'El motor de ofuscación transforma el JavaScript de producción mediante renombramiento hexadecimal de variables y funciones, cifrado en Base64 de cadenas de texto y aplanamiento de flujo de control (Control Flow Flattening), desactivando los source maps para imposibilitar la ingeniería inversa o extracción del código fuente original desde las herramientas de inspección del navegador.'
+    )
+  );
+
+  // 6. Tabla resumen multimedia
+  children.push(
+    heading1('6. TABLA RESUMEN DE RECURSOS Y CAPTURAS DEL INFORME'),
+    pText('Inventario técnico de los componentes y evidencias visuales incorporadas en el informe:')
   );
 
   const tableRows = [
@@ -550,16 +648,16 @@ async function buildDoc() {
       ['Captura UI', '02-highlights.png', 'Highlights', 'Tarjetas neumórficas de topografía, flota pesada y cumplimiento'],
       ['Captura UI', '03-manifiesto.png', 'Manifiesto H1', 'Titular principal SEO, foto de obra en campo y cotización'],
       ['Captura UI', '04-nosotros.png', 'Sobre la Empresa', 'Capacidad operativa, talleres propios y bases Piura / Trujillo'],
-      ['Captura UI', '05-tracking-portal.png', 'GRENCO Tracking', 'Insignia grabada "Próximamente", ficha técnica y mockups de app'],
-      ['Captura UI', '06-servicios.png', 'Servicios', 'Seis tarjetas de servicio con video continuo y topografía de dron'],
+      ['Captura UI', '06-servicios.png', 'Servicios Responsive', 'Rejilla simétrica de 3 columnas sin soldadura, adaptable a todo dispositivo'],
       ['Captura UI', '07-mision-vision.png', 'Misión y Visión', 'Control segmentado interactivo y pilares estratégicos de calidad'],
       ['Captura UI', '08-proyectos-lomas.png', 'Proyectos', 'Caso insignia "Vuelo de Las Lomas" con video aéreo interactivo'],
-      ['Captura UI', '09-bitacora.png', 'Bitácora de Obra', 'Tarjetas cronológicas georreferenciadas con avances de obra'],
-      ['Captura UI', '10-galeria.png', 'Galería Multimedia', 'Filtros por categoría técnica y visor con zoom 2D hasta 400%'],
-      ['Captura UI', '11-contacto.png', 'Contacto', 'Formulario neumórfico táctil de cotización y WhatsApp directo'],
+      ['Captura UI', '10-galeria.png', 'Galería General', '17 fotos reales de alta resolución y visor con zoom 2D hasta 400%'],
+      ['Captura UI', '10b-galeria-maquinaria.png', 'Galería Maquinaria', 'Motoniveladora al atardecer, rodillo Bomag y excavadoras CAT'],
+      ['Captura UI', '10c-galeria-topografia.png', 'Galería Topografía', 'Estación Leica PinPoint y georreferenciación GNSS sobre hito IGN'],
+      ['Captura UI', '10d-galeria-ssoma.png', 'Galería SSOMA', 'Charla de seguridad de 5 minutos con toda la cuadrilla en EPP completo'],
+      ['Captura UI', '11-contacto.png', 'Contacto Google Sheets', 'Formulario directo a Google Sheets en tiempo real y mensaje hoy mismo'],
       ['Captura UI', '12-footer.png', 'Pie de Página', 'Cálculo dinámico de año fiscal con JavaScript y enlaces formales'],
       ['Captura UI', '13-modo-oscuro-hero.png', 'Modo Oscuro Hero', 'Paleta grafito mate con contraste dorado para navegación nocturna'],
-      ['Captura UI', '14-modo-oscuro-tracking.png', 'Modo Oscuro Tracking', 'Superficies y maquetas en relieve bajo entorno nocturno'],
     ].map(
       ([tipo, archivo, seccion, desc]) =>
         new TableRow({
