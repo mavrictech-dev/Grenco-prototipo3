@@ -323,48 +323,56 @@ export const gallery = {
   text: 'Explora nuestros frentes en campo y síguenos en redes sociales para ver tomas aéreas y avances técnicos actualizados.',
   categories: [
     'Todas',
-    'Topografía',
     'Maquinaria',
+    'Topografía',
     'Obras viales',
     'Edificaciones',
-    'Grenco Soldadura',
     'SSOMA',
   ],
   items: [
-    // Maquinaria (3 equipos distintos: excavadora 20T, cargador frontal y retroexcavadora)
-    { id: 'maq-1', img: 'maq-excavadora', w: 1000, h: 750, alt: 'Excavadora CAT 20T en frente de corte masivo', tag: 'Maquinaria', span: 2 },
-    { id: 'maq-2', img: 'maq-cargador', w: 1000, h: 1778, alt: 'Cargador frontal CAT en patio de maniobras y acopio', tag: 'Maquinaria', span: 3 },
-    { id: 'maq-3', img: 'maq-retro-obra', w: 1000, h: 1778, alt: 'Retroexcavadora CAT en zanja estructural urbana', tag: 'Maquinaria', span: 3 },
+    // Primeras 6 fotos de alto impacto que se muestran al inicio en "Todas"
+    { id: 'gal-dest-1', img: 'nueva-8524', w: 1200, h: 2134, alt: 'Motoniveladora y rodillo Bomag al atardecer sobre avenida recién pavimentada', tag: 'Maquinaria', span: 3 },
+    { id: 'gal-dest-2', img: 'nueva-9929', w: 1200, h: 675, alt: 'Vaciado y reglado de losa de concreto con Carmix y cuadrilla en vía urbana', tag: 'Obras viales', span: 2 },
+    { id: 'gal-dest-3', img: 'nueva-6333', w: 1200, h: 2134, alt: 'Estación total Leica PinPoint R500 en canal de derivación', tag: 'Topografía', span: 3 },
+    { id: 'gal-dest-4', img: 'nueva-3558', w: 1200, h: 2134, alt: 'Charla técnica de seguridad de 5 minutos con cuadrilla y equipo pesado', tag: 'SSOMA', span: 3 },
+    { id: 'gal-dest-5', img: 'nueva-3436', w: 1200, h: 2134, alt: 'Tren de maquinaria pesada: rodillo compactador Bomag, excavadora CAT y volquete', tag: 'Maquinaria', span: 3 },
+    { id: 'gal-dest-6', img: 'edif-estructura-1', w: 1000, h: 1333, alt: 'Montaje de pórticos y estructuras para edificación industrial', tag: 'Edificaciones', span: 3 },
 
-    // Topografía (las mejores 6 tomas técnicas reales)
-    { id: 'topo-1', img: 'topo-lomas-4', w: 1200, h: 593, alt: 'Cuadrilla técnica con receptor GNSS en Las Lomas', tag: 'Topografía', span: 2 },
-    { id: 'topo-2', img: 'topo-1', w: 800, h: 1422, alt: 'Estación total Leica sobre hito geodésico en canal', tag: 'Topografía', span: 3 },
-    { id: 'topo-3', img: 'topo-lomas-1', w: 800, h: 1422, alt: 'Lectura de prisma y control altimétrico en relieve agreste', tag: 'Topografía', span: 3 },
-    { id: 'topo-4', img: 'topo-lomas-extra', w: 800, h: 1422, alt: 'Nivelación digital electrónica de precisión Leica PinPoint', tag: 'Topografía', span: 3 },
-    { id: 'topo-5', img: 'topo-lomas-7', w: 800, h: 1422, alt: 'Estación base GNSS sobre punto geodésico certificado', tag: 'Topografía', span: 3 },
-    { id: 'topo-6', img: 'topo-2', w: 800, h: 1422, alt: 'Nivel óptico de precisión Leica NA332 para rasantes', tag: 'Topografía', span: 2 },
+    // Maquinaria pesada
+    { id: 'maq-1', img: 'nueva-3765', w: 1200, h: 2134, alt: 'Excavadora CAT 20T sobre orugas con cuchara de corte masivo', tag: 'Maquinaria', span: 3 },
+    { id: 'maq-2', img: 'nueva-3431', w: 1200, h: 2134, alt: 'Retroexcavadora CAT 420 en perfilado y conformación de zanja', tag: 'Maquinaria', span: 3 },
+    { id: 'maq-3', img: 'nueva-9909', w: 1200, h: 2134, alt: 'Auto-hormigonera Carmix y motoniveladora en patio de acopio y áridos', tag: 'Maquinaria', span: 3 },
+    { id: 'maq-4', img: 'maq-excavadora', w: 1000, h: 750, alt: 'Excavadora CAT 20T en frente de corte masivo', tag: 'Maquinaria', span: 2 },
+    { id: 'maq-5', img: 'maq-cargador', w: 1000, h: 1778, alt: 'Cargador frontal CAT en patio de maniobras y acopio', tag: 'Maquinaria', span: 3 },
+    { id: 'maq-6', img: 'maq-retro-obra', w: 1000, h: 1778, alt: 'Retroexcavadora CAT en zanja estructural urbana', tag: 'Maquinaria', span: 3 },
+
+    // Topografía y geodesia
+    { id: 'topo-1', img: 'nueva-5483', w: 1200, h: 2133, alt: 'Receptor GNSS RTK geodésico sobre hito certificado con disco de bronce', tag: 'Topografía', span: 3 },
+    { id: 'topo-2', img: 'nueva-5541', w: 1200, h: 2134, alt: 'Estación base GNSS sobre trípode geodésico con vista panorámica', tag: 'Topografía', span: 3 },
+    { id: 'topo-3', img: 'nueva-5821', w: 1200, h: 2133, alt: 'Cuadrilla técnica con nivel óptico de precisión Leica en trocha carrozable', tag: 'Topografía', span: 3 },
+    { id: 'topo-4', img: 'nueva-5209', w: 1200, h: 2134, alt: 'Topógrafo operando estación total Leica en canal agrícola', tag: 'Topografía', span: 3 },
+    { id: 'topo-5', img: 'nueva-4784', w: 1200, h: 2134, alt: 'Pantalla de nivelación digital y burbuja electrónica Leica en campo', tag: 'Topografía', span: 3 },
+    { id: 'topo-6', img: 'nueva-4716', w: 1200, h: 2133, alt: 'Verificación y medición de calicata con wincha técnica y retroexcavadora', tag: 'Topografía', span: 3 },
+    { id: 'topo-7', img: 'nueva-4954', w: 1200, h: 2134, alt: 'Estación total Leica referenciada sobre hito topográfico en canal', tag: 'Topografía', span: 3 },
+    { id: 'topo-8', img: 'nueva-6345', w: 1200, h: 675, alt: 'Dron fotogramétrico DJI Mini 3 para levantamientos topográficos y ortofotos', tag: 'Topografía', span: 2 },
+    { id: 'topo-9', img: 'topo-lomas-4', w: 1200, h: 593, alt: 'Cuadrilla técnica con receptor GNSS en Las Lomas', tag: 'Topografía', span: 2 },
+    { id: 'topo-10', img: 'topo-1', w: 800, h: 1422, alt: 'Estación total Leica sobre hito geodésico en canal', tag: 'Topografía', span: 3 },
 
     // Obras viales
-    { id: 'vial-1', img: 'gal-3', w: 800, h: 1066, alt: 'Operación de maquinaria pesada en Piura', tag: 'Obras viales', span: 3 },
+    { id: 'vial-1', img: 'nueva-8919', w: 1200, h: 2112, alt: 'Trazado vial y canal de alivio con unidad móvil técnica y fotogrametría aérea', tag: 'Obras viales', span: 3 },
     { id: 'vial-2', img: 'vial-apertura', w: 1000, h: 1333, alt: 'Apertura de trocha y explanaciones viales', tag: 'Obras viales', span: 3 },
-    { id: 'vial-3', img: 'gal-4', w: 1000, h: 700, alt: 'Motoniveladora Komatsu en conformación de rasante urbana', tag: 'Obras viales', span: 2 },
-    { id: 'vial-4', img: 'vial-rasante', w: 1000, h: 1333, alt: 'Nivelación y rasante vial en frente de obra', tag: 'Obras viales', span: 3 },
+    { id: 'vial-3', img: 'vial-rasante', w: 1000, h: 1333, alt: 'Nivelación y rasante vial en frente de obra', tag: 'Obras viales', span: 3 },
+    { id: 'vial-4', img: 'gal-4', w: 1000, h: 700, alt: 'Motoniveladora Komatsu en conformación de rasante urbana', tag: 'Obras viales', span: 2 },
     { id: 'vial-5', img: 'gal-6', w: 1000, h: 700, alt: 'Superficie compactada y entrega de obra vial', tag: 'Obras viales', span: 2 },
-
-    // Edificaciones
-    { id: 'edif-1', img: 'gal-2', w: 1000, h: 700, alt: 'Frente de trabajo estructural y cuadrilla en campo', tag: 'Edificaciones', span: 2 },
-    { id: 'edif-2', img: 'edif-estructura-1', w: 1000, h: 1333, alt: 'Montaje de pórticos y estructuras para edificación', tag: 'Edificaciones', span: 3 },
-    { id: 'edif-3', img: 'edif-estructura-2', w: 1000, h: 1333, alt: 'Armado de tijerales y cerramientos industriales', tag: 'Edificaciones', span: 3 },
-    { id: 'edif-4', img: 'pro-planta-agro', w: 1200, h: 2134, alt: 'Plataforma estructural y patio de maniobras', tag: 'Edificaciones', span: 2 },
-
-    // Grenco Soldadura (fotos reales únicas sin repeticiones)
-    { id: 'sold-1', img: 'sold-3128', w: 1000, h: 1778, alt: 'Trabajos de corte, soldadura y armado de estructuras metálicas', tag: 'Grenco Soldadura', span: 3 },
-    { id: 'sold-2', img: 'sold-0191', w: 1000, h: 1333, alt: 'Montaje y fijación de elementos de acero estructural en obra', tag: 'Grenco Soldadura', span: 2 },
-    { id: 'sold-3', img: 'sold-entubado-1', w: 1000, h: 1778, alt: 'Soldadura y habilitación en fierro para entubados hidráulicos', tag: 'Grenco Soldadura', span: 3 },
 
     // SSOMA
     { id: 'ssoma-1', img: 'gal-5', w: 1000, h: 700, alt: 'Supervisión de seguridad y charla técnica de inicio de jornada', tag: 'SSOMA', span: 2 },
     { id: 'ssoma-2', img: 'eq-ssoma', w: 800, h: 1423, alt: 'Inspección de EPPs y protocolos SSOMA en frente de obra', tag: 'SSOMA', span: 3 },
+
+    // Edificaciones
+    { id: 'edif-1', img: 'gal-2', w: 1000, h: 700, alt: 'Frente de trabajo estructural y cuadrilla en campo', tag: 'Edificaciones', span: 2 },
+    { id: 'edif-2', img: 'edif-estructura-2', w: 1000, h: 1333, alt: 'Armado de tijerales y cerramientos industriales', tag: 'Edificaciones', span: 3 },
+    { id: 'edif-3', img: 'pro-planta-agro', w: 1200, h: 2134, alt: 'Plataforma estructural y patio de maniobras', tag: 'Edificaciones', span: 2 },
   ],
 };
 

@@ -19,7 +19,7 @@ export default function Gallery() {
   const lastTouchDistanceRef = useRef(null);
   const lastTapRef = useRef(0);
 
-  const categorias = gallery.categories || ['Todas', 'Topografía', 'Maquinaria', 'Obras viales', 'Edificaciones', 'Grenco Soldadura'];
+  const categorias = gallery.categories || ['Todas', 'Topografía', 'Maquinaria', 'Obras viales', 'Edificaciones', 'SSOMA'];
 
   const itemsFiltrados = useMemo(() => {
     if (filtro === 'Todas') return gallery.items;
