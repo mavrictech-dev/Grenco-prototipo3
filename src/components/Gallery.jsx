@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Reveal from './Reveal';
 import Icon from './Icon';
 import { gallery, company } from '../data/site';
@@ -16,6 +17,7 @@ export default function Gallery() {
 
   const frameRef = useRef(null);
   const dragStartRef = useRef({ x: 0, y: 0, panX: 0, panY: 0, moved: false, active: false });
+  const touchStartRef = useRef({ x: 0, y: 0, time: 0 });
   const lastTouchDistanceRef = useRef(null);
   const lastTapRef = useRef(0);
 
@@ -55,16 +57,16 @@ export default function Gallery() {
   }, [resetZoom]);
 
   const fotoAnterior = useCallback(() => {
-    if (itemsAMostrar.length === 0) return;
+    if (itemsFiltrados.length === 0) return;
     resetZoom();
-    setIndiceLightbox((prev) => (prev > 0 ? prev - 1 : itemsAMostrar.length - 1));
-  }, [itemsAMostrar.length, resetZoom]);
+    setIndiceLightbox((prev) => (prev > 0 ? prev - 1 : itemsFiltrados.length - 1));
+  }, [itemsFiltrados.length, resetZoom]);
 
   const fotoSiguiente = useCallback(() => {
-    if (itemsAMostrar.length === 0) return;
+    if (itemsFiltrados.length === 0) return;
     resetZoom();
-    setIndiceLightbox((prev) => (prev < itemsAMostrar.length - 1 ? prev + 1 : 0));
-  }, [itemsAMostrar.length, resetZoom]);
+    setIndiceLightbox((prev) => (prev < itemsFiltrados.length - 1 ? prev + 1 : 0));
+  }, [itemsFiltrados.length, resetZoom]);
 
   const zoomIn = useCallback(() => {
     setZoom((prev) => Math.min(4, +(prev + 0.5).toFixed(2)));
@@ -185,6 +187,12 @@ export default function Gallery() {
       lastTouchDistanceRef.current = dist;
       dragStartRef.current.active = false;
     } else if (e.touches.length === 1) {
+      touchStartRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+        time: Date.now(),
+      };
+
       const now = Date.now();
       if (now - lastTapRef.current < 300) {
         e.preventDefault();
@@ -238,7 +246,20 @@ export default function Gallery() {
     }
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (e) => {
+    // Si no está con zoom, detectar deslizamiento horizontal para cambiar de foto
+    if (zoom <= 1 && e && e.changedTouches && e.changedTouches.length === 1) {
+      const deltaX = e.changedTouches[0].clientX - touchStartRef.current.x;
+      const deltaY = e.changedTouches[0].clientY - touchStartRef.current.y;
+      const deltaTime = Date.now() - touchStartRef.current.time;
+      if (Math.abs(deltaX) > 42 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4 && deltaTime < 450) {
+        if (deltaX < 0) {
+          fotoSiguiente();
+        } else {
+          fotoAnterior();
+        }
+      }
+    }
     lastTouchDistanceRef.current = null;
     dragStartRef.current.active = false;
     setIsDragging(false);
@@ -265,6 +286,7 @@ export default function Gallery() {
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
     document.body.style.touchAction = 'none';
+    document.body.classList.add('has-lightbox-open');
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -288,11 +310,12 @@ export default function Gallery() {
       document.body.style.overflow = scrollOriginalBody;
       document.documentElement.style.overflow = scrollOriginalHtml;
       document.body.style.touchAction = touchOriginal;
+      document.body.classList.remove('has-lightbox-open');
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [indiceLightbox, cerrarLightbox, fotoAnterior, fotoSiguiente, zoom, resetZoom, zoomIn, zoomOut]);
 
-  const itemActivo = indiceLightbox !== null ? itemsAMostrar[indiceLightbox] : null;
+  const itemActivo = indiceLightbox !== null ? itemsFiltrados[indiceLightbox] : null;
 
   return (
     <section id="galeria" className="section">
@@ -442,9 +465,10 @@ export default function Gallery() {
       )}
 
       {/* Visor modal / Lightbox interactivo con animación suave y navegación */}
-      {itemActivo && (
-        <div
-          className="lightbox"
+      {itemActivo &&
+        createPortal(
+          <div
+            className="lightbox"
           role="dialog"
           aria-modal="true"
           aria-label="Visualizador de fotos de obra GRENCO"
@@ -452,6 +476,37 @@ export default function Gallery() {
           onTouchMove={(e) => e.stopPropagation()}
         >
           <div className="lightbox__backdrop" onClick={cerrarLightbox} aria-hidden="true" />
+
+          {/* Botones de navegación lateral (a los extremos de la pantalla, nunca recortados por overflow) */}
+          {itemsFiltrados.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="lightbox__nav lightbox__nav--prev"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fotoAnterior();
+                }}
+                aria-label="Foto anterior"
+                title="Foto anterior (←)"
+              >
+                <Icon name="chevronLeft" size={26} strokeWidth={2.4} />
+              </button>
+
+              <button
+                type="button"
+                className="lightbox__nav lightbox__nav--next"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fotoSiguiente();
+                }}
+                aria-label="Siguiente foto"
+                title="Siguiente foto (→)"
+              >
+                <Icon name="chevronRight" size={26} strokeWidth={2.4} />
+              </button>
+            </>
+          )}
 
           <div className="lightbox__dialog">
             {/* Barra superior con metadatos, controles de zoom y botón cerrar */}
@@ -531,20 +586,6 @@ export default function Gallery() {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              {itemsFiltrados.length > 1 && zoom <= 1 && (
-                <button
-                  type="button"
-                  className="lightbox__nav lightbox__nav--prev"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    fotoAnterior();
-                  }}
-                  aria-label="Foto anterior"
-                >
-                  <Icon name="chevronLeft" size={24} strokeWidth={2.4} />
-                </button>
-              )}
-
               <img
                 key={itemActivo.img}
                 src={img(itemActivo.img)}
@@ -562,20 +603,6 @@ export default function Gallery() {
                 draggable={false}
               />
 
-              {itemsFiltrados.length > 1 && zoom <= 1 && (
-                <button
-                  type="button"
-                  className="lightbox__nav lightbox__nav--next"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    fotoSiguiente();
-                  }}
-                  aria-label="Siguiente foto"
-                >
-                  <Icon name="chevronRight" size={24} strokeWidth={2.4} />
-                </button>
-              )}
-
               {/* Píldora de ayuda interactiva */}
               <div className="lightbox__zoom-hint">
                 {zoom > 1 ? 'Arrastra para explorar • Clic para restablecer' : 'Clic o rueda del mouse para hacer zoom'}
@@ -587,7 +614,8 @@ export default function Gallery() {
               {itemActivo.alt}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );

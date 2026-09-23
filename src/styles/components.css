@@ -1775,7 +1775,7 @@ html[data-theme='dark'] .hero__scroll {
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 99999;
+  z-index: 999999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1990,37 +1990,44 @@ html[data-theme='dark'] .hero__scroll {
 }
 
 .lightbox__nav {
-  position: absolute;
+  position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  background: rgba(14, 20, 30, 0.68);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: rgba(14, 20, 32, 0.84);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
   display: grid;
   place-items: center;
   cursor: pointer;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 4;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000000;
+  user-select: none;
 }
 
 .lightbox__nav:hover {
-  background: rgba(14, 20, 30, 0.95);
-  border-color: rgba(230, 168, 34, 0.6);
-  transform: translateY(-50%) scale(1.08);
-  color: var(--brand);
+  background: var(--brand);
+  color: #111111;
+  border-color: var(--brand);
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 14px 35px rgba(230, 168, 34, 0.45);
+}
+
+.lightbox__nav:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
 .lightbox__nav--prev {
-  left: max(-60px, -2vw);
+  left: clamp(16px, 3vw, 48px);
 }
 
 .lightbox__nav--next {
-  right: max(-60px, -2vw);
+  right: clamp(16px, 3vw, 48px);
 }
 
 .lightbox__caption {
@@ -2050,15 +2057,16 @@ html[data-theme='dark'] .hero__scroll {
   .lightbox__zoom-hint {
     display: none;
   }
+  .lightbox__nav {
+    width: 44px;
+    height: 44px;
+    background: rgba(14, 20, 32, 0.92);
+  }
   .lightbox__nav--prev {
-    left: 8px;
+    left: 10px;
   }
   .lightbox__nav--next {
-    right: 8px;
-  }
-  .lightbox__nav {
-    width: 40px;
-    height: 40px;
+    right: 10px;
   }
 }
 
@@ -2343,6 +2351,26 @@ html[data-theme='dark'] .hero__scroll {
 }
 
 /* --- Flotantes ------------------------------------------------------------ */
+
+/* Cuando el lightbox modal está abierto, oculta todos los elementos flotantes
+   para evitar cualquier superposición sobre la imagen o sus controles */
+body.has-lightbox-open .stickycta,
+body.has-lightbox-open .wa,
+body.has-lightbox-open .arriba {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(32px) !important;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease !important;
+}
+
+body.has-lightbox-open .navwrap {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-120%) !important;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease !important;
+}
 
 .stickycta {
   position: fixed;
