@@ -326,7 +326,6 @@ export const gallery = {
     'Maquinaria',
     'Topografía',
     'Obras viales',
-    'Edificaciones',
     'SSOMA',
   ],
   items: [
@@ -336,7 +335,7 @@ export const gallery = {
     { id: 'gal-dest-3', img: 'nueva-6333', w: 1200, h: 2134, alt: 'Estación total Leica PinPoint R500 en canal de derivación', tag: 'Topografía', span: 3 },
     { id: 'gal-dest-4', img: 'nueva-3558', w: 1200, h: 2134, alt: 'Charla técnica de seguridad de 5 minutos con cuadrilla y equipo pesado', tag: 'SSOMA', span: 3 },
     { id: 'gal-dest-5', img: 'nueva-3436', w: 1200, h: 2134, alt: 'Tren de maquinaria pesada: rodillo compactador Bomag, excavadora CAT y volquete', tag: 'Maquinaria', span: 3 },
-    { id: 'gal-dest-6', img: 'edif-estructura-1', w: 1000, h: 1333, alt: 'Montaje de pórticos y estructuras para edificación industrial', tag: 'Edificaciones', span: 3 },
+    { id: 'gal-dest-6', img: 'edif-estructura-1', w: 1000, h: 1333, alt: 'Montaje de pórticos y estructuras para edificación industrial', tag: 'Maquinaria', span: 3 },
 
     // Maquinaria pesada
     { id: 'maq-1', img: 'nueva-3765', w: 1200, h: 2134, alt: 'Excavadora CAT 20T sobre orugas con cuchara de corte masivo', tag: 'Maquinaria', span: 3 },
@@ -345,6 +344,9 @@ export const gallery = {
     { id: 'maq-4', img: 'maq-excavadora', w: 1000, h: 750, alt: 'Excavadora CAT 20T en frente de corte masivo', tag: 'Maquinaria', span: 2 },
     { id: 'maq-5', img: 'maq-cargador', w: 1000, h: 1778, alt: 'Cargador frontal CAT en patio de maniobras y acopio', tag: 'Maquinaria', span: 3 },
     { id: 'maq-6', img: 'maq-retro-obra', w: 1000, h: 1778, alt: 'Retroexcavadora CAT en zanja estructural urbana', tag: 'Maquinaria', span: 3 },
+    { id: 'edif-1', img: 'gal-2', w: 1000, h: 700, alt: 'Frente de trabajo estructural y cuadrilla en campo', tag: 'Maquinaria', span: 2 },
+    { id: 'edif-2', img: 'edif-estructura-2', w: 1000, h: 1333, alt: 'Armado de tijerales y cerramientos industriales', tag: 'Maquinaria', span: 3 },
+    { id: 'edif-3', img: 'pro-planta-agro', w: 1200, h: 2134, alt: 'Plataforma estructural y patio de maniobras', tag: 'Maquinaria', span: 2 },
 
     // Topografía y geodesia
     { id: 'topo-1', img: 'nueva-5483', w: 1200, h: 2133, alt: 'Receptor GNSS RTK geodésico sobre hito certificado con disco de bronce', tag: 'Topografía', span: 3 },
@@ -368,11 +370,6 @@ export const gallery = {
     // SSOMA
     { id: 'ssoma-1', img: 'gal-5', w: 1000, h: 700, alt: 'Supervisión de seguridad y charla técnica de inicio de jornada', tag: 'SSOMA', span: 2 },
     { id: 'ssoma-2', img: 'eq-ssoma', w: 800, h: 1423, alt: 'Inspección de EPPs y protocolos SSOMA en frente de obra', tag: 'SSOMA', span: 3 },
-
-    // Edificaciones
-    { id: 'edif-1', img: 'gal-2', w: 1000, h: 700, alt: 'Frente de trabajo estructural y cuadrilla en campo', tag: 'Edificaciones', span: 2 },
-    { id: 'edif-2', img: 'edif-estructura-2', w: 1000, h: 1333, alt: 'Armado de tijerales y cerramientos industriales', tag: 'Edificaciones', span: 3 },
-    { id: 'edif-3', img: 'pro-planta-agro', w: 1200, h: 2134, alt: 'Plataforma estructural y patio de maniobras', tag: 'Edificaciones', span: 2 },
   ],
 };
 
