@@ -6,3 +6,8 @@ dist/
 .vercel
 .DS_Store
 *.log
+scratch/
+assets/
+.claude/
+*.tmp
+*.bak
