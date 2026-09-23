@@ -8,7 +8,6 @@ node_modules
 dist
 scratch
 assets
-scripts
 src/assets/capturas
 DOCUMENTO_*
 *.docx
