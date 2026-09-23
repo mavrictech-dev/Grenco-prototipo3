@@ -21,9 +21,14 @@ export default function Manifiesto({ sede }) {
     <section id="manifiesto" className="section manifiesto">
       <div className="manifiesto__grid">
         <Reveal className="manifiesto__caja">
+          <p className="eyebrow" style={{ marginBottom: '14px' }}>
+            GRENCO · Constructora · {hero.eyebrow}
+          </p>
+
           {/* La key remonta el bloque al cambiar de sede, para que la entrada
               escalonada se vuelva a disparar con el texto nuevo. */}
           <h1 className="manifiesto__titulo" key={sede}>
+            <span className="sr-only">GRENCO — </span>
             {hero.title.map((line, i) => (
               <span key={line}>
                 {line}
